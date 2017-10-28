@@ -8,6 +8,7 @@ export const state = {
 		company: '',
 		jobTitle: '',
 		email: '',
+		mobile: '',
 		password: ''
 	}
 

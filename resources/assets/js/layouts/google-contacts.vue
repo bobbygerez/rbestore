@@ -153,6 +153,7 @@
         >
           New user
         </v-card-title>
+        <v-form v-model="valid" ref="form" lazy-validation>
         <v-container grid-list-sm class="pa-4">
           <v-layout row wrap>
             <v-flex xs6>
@@ -160,12 +161,18 @@
                 prepend-icon="account_circle"
                 placeholder="Firstname"
                 v-model="firstname"
+                :rules="nameRules"
+                :counter="20"
+                required
               ></v-text-field>
             </v-flex>
             <v-flex xs6>
               <v-text-field
                 placeholder="Lastname"
-                 v-model="lastname"
+                v-model="lastname"
+                :rules="nameRules"
+                :counter="20"
+                required
               ></v-text-field>
             </v-flex>
             <v-flex xs6>
@@ -173,35 +180,46 @@
                 prepend-icon="business"
                 placeholder="Company"
                 v-model="company"
+                :rules="nameRules"
+                :counter="20"
               ></v-text-field>
             </v-flex>
             <v-flex xs6>
               <v-text-field
                 placeholder="Job title"
                 v-model="jobTitle"
+                :rules="nameRules"
+                :counter="20"
               ></v-text-field>
             </v-flex>
             <v-flex xs12>
               <v-text-field
                 prepend-icon="mail"
                 placeholder="Email"
+                v-model="email"
+                :rules="emailRules"
+                required
               ></v-text-field>
             </v-flex>
             <v-flex xs12>
               <v-text-field
                 type="tel"
-                prepend-icon="phone"
-                placeholder="(000) 000 - 0000"
-                mask="phone"
+                prepend-icon="phone_android"
+                placeholder="Mobile number"
+                :mask="maskMobile"
+                v-model="mobile"
+                :rules="mobileRules"
+                required
               ></v-text-field>
             </v-flex>
           </v-layout>
         </v-container>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn flat color="primary" @click="dialog = false">Cancel</v-btn>
-          <v-btn flat @click="dialog = false">Save</v-btn>
+          <v-btn flat  @click="dialog = false">Cancel</v-btn>
+          <v-btn @click="submit">submit</v-btn>
         </v-card-actions>
+        </v-form>
       </v-card>
     </v-dialog>
   </v-app>
@@ -209,8 +227,23 @@
 
 <script>
 
+  import axios from 'axios'
+
   export default {
     data: () => ({
+      nameRules: [
+          (v) => !!v || 'Name is required',
+          (v) => v.length <= 20 || 'Name must be less than 10 characters'
+        ],
+      emailRules: [
+          (v) => !!v || 'E-mail is required',
+          (v) => /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(v) || 'E-mail must be valid'
+        ],
+      mobileRules: [
+        (v) => !!v || 'Mobile number is required'
+      ],
+      maskMobile: '(09##) - ### - ####',
+      valid: true,
       dialog: false,
       drawer: true,
       items: [
@@ -295,9 +328,55 @@
               value: value
             })
           }
+         },
+         email: {
+
+          get(){
+            return this.$store.getters.users.email
+          },
+          set(value){
+            this.$store.dispatch('users',{
+              fieldName: 'email',
+              value: value
+            })
+          }
+         },
+         mobile: {
+
+          get(){
+            return this.$store.getters.users.mobile
+          },
+          set(value){
+            this.$store.dispatch('users',{
+              fieldName: 'mobile',
+              value: value
+            })
+          }
          }
           
     },
+
+    methods: {
+
+      submit () {
+        if (this.$refs.form.validate()) {
+          
+          axios.post(api_register,{
+            firstname: this.firstname,
+            lastname: this.lastname,
+            company: this.company,
+            jobtitle: this.jobTitle,
+            email: this.email,
+            password: this.password
+          });
+
+        }
+      },
+      clear () {
+        this.$refs.form.reset()
+      }
+    },
+
     props: {
       source: String
     }

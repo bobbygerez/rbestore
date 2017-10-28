@@ -8,6 +8,11 @@ Vue.use(Vuetify)
 
 import { store } from './vuex/store.js'
 
+/******** USE FOR SHIFTING SERVER AND LOCAL DEVELOPMENT (APACHE SERVER) ***********/
+window.api_register = 'http://localhost/rbestore/public/api/auth/register';
+
+/******** USE FOR SHIFTING SERVER AND LOCAL DEVELOPMENT (APACHE SERVER) ***********/
+
 
 const app = new Vue({
     el: '#app',

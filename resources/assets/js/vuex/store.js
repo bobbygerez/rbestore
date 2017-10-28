@@ -23,6 +23,9 @@ export const store = new Vuex.Store({
 		email(state, email){
 			state.users.email = email
 		},
+		mobile(state, mobile){
+			state.users.mobile = mobile
+		},
 		password(state, password){
 			state.users.password = password
 		}

@@ -84,7 +84,7 @@
         <v-icon>apps</v-icon>
       </v-btn>
       <v-btn icon>
-        <v-icon>notifications</v-icon>
+        <v-icon>lock</v-icon>
       </v-btn>
       <v-btn icon large>
         <v-avatar size="32px" tile>
@@ -115,7 +115,7 @@
         <v-icon>apps</v-icon>
       </v-btn>
       <v-btn icon>
-        <v-icon>notifications</v-icon>
+        <v-icon>lock</v-icon>
       </v-btn>
       <v-btn icon large>
         <v-avatar size="32px" tile>
@@ -144,7 +144,7 @@
       fixed
       @click.stop="dialog = !dialog"
     >
-      <v-icon>add</v-icon>
+      <v-icon>account_circle</v-icon>
     </v-btn>
     <v-dialog v-model="dialog" width="800px">
       <v-card>
@@ -159,22 +159,26 @@
               <v-text-field
                 prepend-icon="account_circle"
                 placeholder="Firstname"
+                v-model="firstname"
               ></v-text-field>
             </v-flex>
             <v-flex xs6>
               <v-text-field
                 placeholder="Lastname"
+                 v-model="lastname"
               ></v-text-field>
             </v-flex>
             <v-flex xs6>
               <v-text-field
                 prepend-icon="business"
                 placeholder="Company"
+                v-model="company"
               ></v-text-field>
             </v-flex>
             <v-flex xs6>
               <v-text-field
                 placeholder="Job title"
+                v-model="jobTitle"
               ></v-text-field>
             </v-flex>
             <v-flex xs12>
@@ -204,6 +208,7 @@
 </template>
 
 <script>
+
   export default {
     data: () => ({
       dialog: false,
@@ -240,6 +245,59 @@
         { icon: 'keyboard', text: 'Go to the old version' }
       ]
     }),
+
+    computed: {
+
+        firstname: {
+
+            get(){
+              return this.$store.getters.users.firstname
+            },
+            set(value) {
+              this.$store.dispatch('users', {
+                  fieldName: 'firstname',
+                  value: value
+              })
+            }
+        },
+        lastname: {
+
+          get(){
+            return this.$store.getters.users.lastname
+          },
+          set(value){
+            this.$store.dispatch('users',{
+              fieldName: 'lastname',
+              value: value
+            })
+          }
+         },
+         company: {
+
+          get(){
+            return this.$store.getters.users.company
+          },
+          set(value){
+            this.$store.dispatch('users',{
+              fieldName: 'company',
+              value: value
+            })
+          }
+         },
+         jobTitle: {
+
+          get(){
+            return this.$store.getters.users.jobTitle
+          },
+          set(value){
+            this.$store.dispatch('users',{
+              fieldName: 'jobTitle',
+              value: value
+            })
+          }
+         }
+          
+    },
     props: {
       source: String
     }

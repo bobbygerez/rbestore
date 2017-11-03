@@ -167,6 +167,8 @@ return [
         /*
          * Package Service Providers...
          */
+        'Tymon\JWTAuth\Providers\JWTAuthServiceProvider',
+
 
         /*
          * Application Service Providers...
@@ -176,7 +178,7 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        'Tymon\JWTAuth\Providers\JWTAuthServiceProvider',
+        App\Providers\UserServiceProvider::class,
 
     ],
 

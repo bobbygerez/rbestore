@@ -80,12 +80,11 @@
         placeholder="Search"
       ></v-text-field>
       <v-spacer></v-spacer>
-      <v-btn icon>
-        <v-icon>apps</v-icon>
-      </v-btn>
-      <v-btn icon>
-        <v-icon>lock</v-icon>
-      </v-btn>
+
+
+      <mainMenu></mainMenu>
+
+
       <v-btn icon large>
         <v-avatar size="32px" tile>
           <img
@@ -111,20 +110,19 @@
         prepend-icon="search"
         placeholder="Search"
       ></v-text-field>
-      <v-btn icon>
-        <v-icon>apps</v-icon>
-      </v-btn>
-      <v-btn icon>
+      <v-btn icon
+        @click.stop="loginDialog = !loginDialog"
+      >
         <v-icon>lock</v-icon>
       </v-btn>
-      <v-btn icon large>
-        <v-avatar size="32px" tile>
-          <img
-            src="https://vuetifyjs.com/static/doc-images/logo.svg"
-            alt="Vuetify"
-          >
-        </v-avatar>
+      <v-btn 
+          icon
+         @click.stop="dialog = !dialog"
+
+      >
+        <v-icon>account_circle</v-icon>
       </v-btn>
+      
     </v-toolbar>
     <main>
       <v-content>
@@ -135,17 +133,7 @@
         </v-container>
       </v-content>
     </main>
-    <v-btn
-      fab
-      bottom
-      right
-      color="pink"
-      dark
-      fixed
-      @click.stop="dialog = !dialog"
-    >
-      <v-icon>account_circle</v-icon>
-    </v-btn>
+    
     <v-dialog v-model="dialog" width="800px">
       <v-card>
         <v-card-title
@@ -175,23 +163,7 @@
                 required
               ></v-text-field>
             </v-flex>
-            <v-flex xs6>
-              <v-text-field
-                prepend-icon="business"
-                placeholder="Company"
-                v-model="company"
-                :rules="nameRules"
-                :counter="20"
-              ></v-text-field>
-            </v-flex>
-            <v-flex xs6>
-              <v-text-field
-                placeholder="Job title"
-                v-model="jobTitle"
-                :rules="nameRules"
-                :counter="20"
-              ></v-text-field>
-            </v-flex>
+            
             <v-flex xs12>
               <v-text-field
                 prepend-icon="mail"
@@ -211,13 +183,79 @@
                 :rules="mobileRules"
                 required
               ></v-text-field>
+              
+            
             </v-flex>
+            <v-flex xs12>
+
+              <v-text-field
+              name="input-10-1"
+              label="Enter your password"
+              hint="At least 8 characters"
+              v-model="password"
+              :rules="passwordRules"
+              :prepend-icon= "e1 ? 'visibility' : 'visibility_off'""
+              :prepend-icon-cb="() => (e1 = !e1)"
+              :type="e1 ? 'password' : 'text'"
+              counter
+            ></v-text-field>
+
+            </v-flex>
+
           </v-layout>
         </v-container>
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn flat  @click="dialog = false">Cancel</v-btn>
-          <v-btn @click="submit">submit</v-btn>
+          <v-btn flat @click="submit" class="blue--text text--darken-3">submit</v-btn>
+        </v-card-actions>
+        </v-form>
+      </v-card>
+    </v-dialog>
+    <v-dialog v-model="loginDialog" width="800px">
+      <v-card>
+        <v-card-title
+          class="grey lighten-4 py-4 title"
+        >
+          Login 
+        </v-card-title>
+        <v-form v-model="valid" ref="form" lazy-validation>
+        <v-container grid-list-sm class="pa-4">
+          <v-layout row wrap>
+           
+            
+            <v-flex xs12>
+              <v-text-field
+                prepend-icon="mail"
+                placeholder="Email"
+                v-model="email"
+                :rules="emailRules"
+                required
+              ></v-text-field>
+            </v-flex>
+            
+            <v-flex xs12>
+
+              <v-text-field
+              name="input-10-1"
+              label="Enter your password"
+              hint="At least 8 characters"
+              v-model="password"
+              :rules="passwordRules"
+              :prepend-icon= "e1 ? 'visibility' : 'visibility_off'""
+              :prepend-icon-cb="() => (e1 = !e1)"
+              :type="e1 ? 'password' : 'text'"
+              counter
+            ></v-text-field>
+
+            </v-flex>
+
+          </v-layout>
+        </v-container>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn flat  @click="loginDialog = false">Cancel</v-btn>
+          <v-btn flat @click="loginAccount" class="blue--text text--darken-3">submit</v-btn>
         </v-card-actions>
         </v-form>
       </v-card>
@@ -228,9 +266,21 @@
 <script>
 
   import axios from 'axios'
+  import mainMenu from '../components/users/main-menu.vue'
 
   export default {
+    components: {
+      mainMenu
+    },
     data: () => ({
+        e1: true,
+        e2: false,
+        e3: false,
+        e4: false,
+      passwordRules: [
+          (v) => !!v || 'Password is required',
+          (v) => v.length >= 8 || 'Password must be at least 8 characters'
+        ],
       nameRules: [
           (v) => !!v || 'Name is required',
           (v) => v.length <= 20 || 'Name must be less than 10 characters'
@@ -245,6 +295,7 @@
       maskMobile: '(09##) - ### - ####',
       valid: true,
       dialog: false,
+      loginDialog: false,
       drawer: true,
       items: [
         { icon: 'queue',
@@ -341,6 +392,18 @@
             })
           }
          },
+         password: {
+
+          get(){
+            return this.$store.getters.users.password
+          },
+          set(value){
+            this.$store.dispatch('users',{
+              fieldName: 'password',
+              value: value
+            })
+          }
+         },
          mobile: {
 
           get(){
@@ -369,6 +432,17 @@
             email: this.email,
             password: this.password
           });
+
+        }
+      },
+      loginAccount(){
+
+        if (this.$refs.form.validate()) {
+          
+          axios.post(api_login, {
+            email: this.email,
+            password: this.password
+          })
 
         }
       },

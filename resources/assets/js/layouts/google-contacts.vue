@@ -84,15 +84,6 @@
 
       <mainMenu></mainMenu>
 
-
-      <v-btn icon large>
-        <v-avatar size="32px" tile>
-          <img
-            src="https://vuetifyjs.com/static/doc-images/logo.svg"
-            alt="Vuetify"
-          >
-        </v-avatar>
-      </v-btn>
     </v-toolbar>
     <v-toolbar
       color="blue darken-3"
@@ -110,18 +101,8 @@
         prepend-icon="search"
         placeholder="Search"
       ></v-text-field>
-      <v-btn icon
-        @click.stop="loginDialog = !loginDialog"
-      >
-        <v-icon>lock</v-icon>
-      </v-btn>
-      <v-btn 
-          icon
-         @click.stop="dialog = !dialog"
-
-      >
-        <v-icon>account_circle</v-icon>
-      </v-btn>
+      
+      <mainMenu></mainMenu>
       
     </v-toolbar>
     <main>
@@ -134,7 +115,7 @@
       </v-content>
     </main>
     
-    <v-dialog v-model="dialog" width="800px">
+    <v-dialog v-model="dialog.register" width="800px">
       <v-card>
         <v-card-title
           class="grey lighten-4 py-4 title"
@@ -206,13 +187,13 @@
         </v-container>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn flat  @click="dialog = false">Cancel</v-btn>
+          <v-btn flat  @click="dialogCancel">Cancel</v-btn>
           <v-btn flat @click="submit" class="blue--text text--darken-3">submit</v-btn>
         </v-card-actions>
         </v-form>
       </v-card>
     </v-dialog>
-    <v-dialog v-model="loginDialog" width="800px">
+    <v-dialog v-model="dialog.login" width="800px">
       <v-card>
         <v-card-title
           class="grey lighten-4 py-4 title"
@@ -254,7 +235,7 @@
         </v-container>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn flat  @click="loginDialog = false">Cancel</v-btn>
+          <v-btn flat  @click="dialogCancel">Cancel</v-btn>
           <v-btn flat @click="loginAccount" class="blue--text text--darken-3">submit</v-btn>
         </v-card-actions>
         </v-form>
@@ -294,8 +275,6 @@
       ],
       maskMobile: '(09##) - ### - ####',
       valid: true,
-      dialog: false,
-      loginDialog: false,
       drawer: true,
       items: [
         { icon: 'queue',
@@ -331,7 +310,12 @@
     }),
 
     computed: {
+        dialog: {
+            get(){
 
+              return this.$store.getters.dialog
+            }
+        },
         firstname: {
 
             get(){
@@ -420,7 +404,9 @@
     },
 
     methods: {
-
+      dialogCancel(){
+          this.$store.dispatch('dialogCancel');
+      },
       submit () {
         if (this.$refs.form.validate()) {
           

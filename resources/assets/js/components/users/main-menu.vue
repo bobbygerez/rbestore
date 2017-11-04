@@ -14,7 +14,7 @@
       </v-btn>
         <v-btn icon
 
-          @click.stop="dialog = !dialog"
+          @click.stop="dialogRegister"
         >
           <v-icon>account_circle</v-icon>
         </v-btn>
@@ -31,3 +31,22 @@
       
 	</span>
 </template>
+
+<script type="text/javascript">
+  
+  export default {
+    data: () => ({
+
+      successLogin: false,
+
+
+    }),
+    methods: {
+
+      dialogRegister(){
+
+          this.$store.dispatch('dialogRegister', true);
+      }
+    }
+  }
+</script>

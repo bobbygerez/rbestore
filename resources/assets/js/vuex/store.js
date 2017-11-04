@@ -28,17 +28,41 @@ export const store = new Vuex.Store({
 		},
 		password(state, password){
 			state.users.password = password
+		},
+
+		//DIALOG//
+		dialogLogin(state, value){
+			state.dialog.login = value
+		},
+		dialogRegister(state, value){
+
+			state.dialog.register = value
 		}
 	},
 	actions: {
 		users(store, value){
 			store.commit(value['fieldName'], value['value'])
+		},
+
+		//DIALOG
+		dialogCancel(store){
+			store.commit('dialogLogin', false)
+			store.commit('dialogRegister', false)
+		},
+
+		dialogRegister(store, value){
+			store.commit('dialogRegister', value)
 		}
+
 	},
 	getters: {
 		users(){
 
 			return store.state.users
+		},
+		dialog(){
+
+			return store.state.dialog
 		}
 	}
 	

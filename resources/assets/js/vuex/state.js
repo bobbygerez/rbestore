@@ -1,6 +1,9 @@
 
 export const state = {
-
+	dialog: {
+		register: false,
+		login: true
+	},
 	users: {
 
 		firstname: '',

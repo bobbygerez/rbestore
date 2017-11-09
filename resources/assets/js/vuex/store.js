@@ -37,6 +37,9 @@ export const store = new Vuex.Store({
 		dialogRegister(state, value){
 
 			state.dialog.register = value
+		},
+		dialogLogin(state, value){
+			state.dialog.login = value
 		}
 	},
 	actions: {
@@ -52,6 +55,9 @@ export const store = new Vuex.Store({
 
 		dialogRegister(store, value){
 			store.commit('dialogRegister', value)
+		},
+		dialogLogin(store, value){
+			store.commit('dialogLogin', value)
 		}
 
 	},

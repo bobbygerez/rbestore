@@ -31,7 +31,7 @@ class UserRepository extends BaseRepository implements UserInterface{
         $token = null;
         try {
            if (!$token = JWTAuth::attempt($credentials)) {
-            return response()->json(['invalid_email_or_password'], 422);
+            return response()->json('Invalid username or password', 422);
            }
         } catch (JWTAuthException $e) {
             return response()->json(['failed_to_create_token'], 500);

@@ -2,7 +2,7 @@
 export const state = {
 	dialog: {
 		register: false,
-		login: true
+		login: false
 	},
 	users: {
 

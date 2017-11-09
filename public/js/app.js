@@ -28598,6 +28598,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 
@@ -28613,6 +28618,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       e2: false,
       e3: false,
       e4: false,
+      loginAlert: false,
+      loginMessage: '',
       passwordRules: [function (v) {
         return !!v || 'Password is required';
       }, function (v) {
@@ -28757,10 +28764,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     loginAccount: function loginAccount() {
 
       if (this.$refs.form.validate()) {
-
+        var data = this;
         __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post(api_login, {
           email: this.email,
           password: this.password
+        }).then(function (response) {
+
+          localStorage.setItem('tokenKey', response.data.token);
+          data.dialogCancel();
+        }).catch(function (error) {
+          data.loginAlert = true;
+          data.loginMessage = error.response.data;
         });
       }
     },
@@ -28876,6 +28890,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     dialogRegister: function dialogRegister() {
 
       this.$store.dispatch('dialogRegister', true);
+    },
+    dialogLogin: function dialogLogin() {
+
+      this.$store.dispatch('dialogLogin', true);
     }
   }
 });
@@ -28914,7 +28932,7 @@ var render = function() {
                   on: {
                     click: function($event) {
                       $event.stopPropagation()
-                      _vm.loginDialog = !_vm.loginDialog
+                      _vm.dialogLogin($event)
                     }
                   }
                 },
@@ -29513,6 +29531,29 @@ var render = function() {
                     { staticClass: "pa-4", attrs: { "grid-list-sm": "" } },
                     [
                       _c(
+                        "v-alert",
+                        {
+                          attrs: {
+                            color: "error",
+                            icon: "warning",
+                            dismissible: ""
+                          },
+                          model: {
+                            value: _vm.loginAlert,
+                            callback: function($$v) {
+                              _vm.loginAlert = $$v
+                            },
+                            expression: "loginAlert"
+                          }
+                        },
+                        [
+                          _vm._v(
+                            "\n        " + _vm._s(_vm.loginMessage) + "\n      "
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
                         "v-layout",
                         { attrs: { row: "", wrap: "" } },
                         [
@@ -29635,6 +29676,8 @@ if (false) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuex__ = __webpack_require__(40);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__state_js__ = __webpack_require__(41);
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 
@@ -29643,7 +29686,7 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuex
 
 var store = new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
 	state: __WEBPACK_IMPORTED_MODULE_2__state_js__["a" /* state */],
-	mutations: {
+	mutations: _defineProperty({
 		firstname: function firstname(state, _firstname) {
 			state.users.firstname = _firstname;
 		},
@@ -29675,7 +29718,9 @@ var store = new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
 
 			state.dialog.register = value;
 		}
-	},
+	}, 'dialogLogin', function dialogLogin(state, value) {
+		state.dialog.login = value;
+	}),
 	actions: {
 		users: function users(store, value) {
 			store.commit(value['fieldName'], value['value']);
@@ -29689,6 +29734,9 @@ var store = new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
 		},
 		dialogRegister: function dialogRegister(store, value) {
 			store.commit('dialogRegister', value);
+		},
+		dialogLogin: function dialogLogin(store, value) {
+			store.commit('dialogLogin', value);
 		}
 	},
 	getters: {
@@ -30659,7 +30707,7 @@ var index_esm = {
 var state = {
 	dialog: {
 		register: false,
-		login: true
+		login: false
 	},
 	users: {
 

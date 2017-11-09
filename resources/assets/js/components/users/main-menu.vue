@@ -8,7 +8,7 @@
 
       <span v-else>
         <v-btn icon
-        @click.stop="loginDialog = !loginDialog"
+        @click.stop="dialogLogin"
       >
         <v-icon>lock</v-icon>
       </v-btn>
@@ -46,6 +46,10 @@
       dialogRegister(){
 
           this.$store.dispatch('dialogRegister', true);
+      },
+      dialogLogin(){
+
+          this.$store.dispatch('dialogLogin', true);
       }
     }
   }

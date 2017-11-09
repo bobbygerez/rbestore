@@ -200,8 +200,13 @@
         >
           Login 
         </v-card-title>
+        
+
         <v-form v-model="valid" ref="form" lazy-validation>
         <v-container grid-list-sm class="pa-4">
+          <v-alert color="error" icon="warning" dismissible v-model="loginAlert">
+          {{ loginMessage }}
+        </v-alert>
           <v-layout row wrap>
            
             
@@ -258,6 +263,8 @@
         e2: false,
         e3: false,
         e4: false,
+        loginAlert: false,
+        loginMessage: '',
       passwordRules: [
           (v) => !!v || 'Password is required',
           (v) => v.length >= 8 || 'Password must be at least 8 characters'
@@ -424,10 +431,20 @@
       loginAccount(){
 
         if (this.$refs.form.validate()) {
-          
+          let data = this
           axios.post(api_login, {
             email: this.email,
             password: this.password
+          }).then(function(response){
+
+              localStorage.setItem('tokenKey', response.data.token)
+              data.dialogCancel()
+
+          })
+
+          .catch(function(error){
+            data.loginAlert = true;
+            data.loginMessage = error.response.data;
           })
 
         }

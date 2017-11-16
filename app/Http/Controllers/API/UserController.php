@@ -26,6 +26,7 @@ class UserController extends Controller
        return $this->user->login($request);
     }
     public function getAuthUser(Request $request){
+
        
        return $this->user->getAuthUser($request);
     }

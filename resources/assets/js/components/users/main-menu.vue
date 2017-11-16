@@ -2,8 +2,13 @@
 	<span>
 		<span v-if="successLogin">
         <v-btn icon>
-        <v-icon>power_settings_new</v-icon>
-      </v-btn>
+          <v-icon>dashboard</v-icon>
+        </v-btn>
+        <v-btn icon
+          @click.stop="logoutUser"
+        >
+          <v-icon>power_settings_new</v-icon>
+        </v-btn>
       </span>
 
       <span v-else>
@@ -34,13 +39,15 @@
 
 <script type="text/javascript">
   
+  import axios from 'axios'
+
   export default {
-    data: () => ({
-
-      successLogin: false,
-
-
-    }),
+    
+    computed: {
+      successLogin(){
+        return this.$store.getters.successLogin
+      }
+    },
     methods: {
 
       dialogRegister(){
@@ -50,6 +57,18 @@
       dialogLogin(){
 
           this.$store.dispatch('dialogLogin', true);
+      },
+      logoutUser(){
+          let data = this;
+          let token = localStorage.getItem('tokenKey');
+          axios.get(api_logout + token)
+          .then(function(response){
+            data.$store.dispatch('successLogin', false)
+
+          })
+          .catch(function(error){
+
+          })
       }
     }
   }

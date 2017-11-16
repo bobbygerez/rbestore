@@ -40,10 +40,14 @@ export const store = new Vuex.Store({
 		},
 		dialogLogin(state, value){
 			state.dialog.login = value
+		},
+		successLogin(state, value){
+			state.successLogin = value
 		}
 	},
 	actions: {
 		users(store, value){
+			
 			store.commit(value['fieldName'], value['value'])
 		},
 
@@ -58,6 +62,9 @@ export const store = new Vuex.Store({
 		},
 		dialogLogin(store, value){
 			store.commit('dialogLogin', value)
+		},
+		successLogin(store, value){
+			store.commit('successLogin', value)
 		}
 
 	},
@@ -69,6 +76,10 @@ export const store = new Vuex.Store({
 		dialog(){
 
 			return store.state.dialog
+		},
+		successLogin(){
+
+			return store.state.successLogin
 		}
 	}
 	

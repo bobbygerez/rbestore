@@ -75,6 +75,7 @@
         RBeStore
       </v-toolbar-title>
       <v-text-field
+        
         solo
         prepend-icon="search"
         placeholder="Search"
@@ -122,7 +123,7 @@
         >
           New user
         </v-card-title>
-        <v-form v-model="valid" ref="form" lazy-validation>
+        <v-form v-model="valid" ref="register" lazy-validation>
         <v-container grid-list-sm class="pa-4">
           <v-layout row wrap>
             <v-flex xs6>
@@ -202,7 +203,7 @@
         </v-card-title>
         
 
-        <v-form v-model="valid" ref="form" lazy-validation>
+        <v-form v-model="valid" ref="login" lazy-validation>
         <v-container grid-list-sm class="pa-4">
           <v-alert color="error" icon="warning" dismissible v-model="loginAlert">
           {{ loginMessage }}
@@ -414,8 +415,9 @@
       dialogCancel(){
           this.$store.dispatch('dialogCancel');
       },
-      submit () {
-        if (this.$refs.form.validate()) {
+      submit() {
+
+        if (this.$refs.register.validate()) {
           
           axios.post(api_register,{
             firstname: this.firstname,
@@ -430,7 +432,7 @@
       },
       loginAccount(){
 
-        if (this.$refs.form.validate()) {
+        if (this.$refs.login.validate()) {
           let data = this
           axios.post(api_login, {
             email: this.email,
@@ -438,6 +440,7 @@
           }).then(function(response){
 
               localStorage.setItem('tokenKey', response.data.token)
+              data.$store.dispatch('successLogin', true)
               data.dialogCancel()
 
           })

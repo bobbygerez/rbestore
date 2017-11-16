@@ -36,15 +36,18 @@ class UserRepository extends BaseRepository implements UserInterface{
         } catch (JWTAuthException $e) {
             return response()->json(['failed_to_create_token'], 500);
         }
-        return response()->json(compact('token'));
+        return response()->json([
+                'token' => $token,
+            ]);
 	}
 
-	public function getAuthUser(Request $request){
+	public function getAuthUser($request){
+        
         $user = JWTAuth::toUser($request->token);
         return response()->json(['result' => $user]);
     }
 
-    public function logout(Request $request){
+    public function logout($request){
 
         JWTAuth::setToken($request->token)->invalidate();
         return response()->json(['result' => 'logout']);

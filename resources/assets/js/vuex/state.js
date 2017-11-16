@@ -1,5 +1,6 @@
 
 export const state = {
+	successLogin: false,
 	dialog: {
 		register: false,
 		login: false

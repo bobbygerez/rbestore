@@ -43,7 +43,20 @@ export const store = new Vuex.Store({
 		},
 		successLogin(state, value){
 			state.successLogin = value
+		},
+
+		//CATEGORIES
+		categories(state, value){
+			state.categories = value
+		},
+		//PROVINCES
+		provinces(state, value){
+			state.provinces = value
+		},
+		filterCategories(state, value){
+			state.filterCategories = value
 		}
+
 	},
 	actions: {
 		users(store, value){
@@ -65,6 +78,18 @@ export const store = new Vuex.Store({
 		},
 		successLogin(store, value){
 			store.commit('successLogin', value)
+		},
+		categories(store, value){
+			store.commit('categories', value)
+		},
+		provinces(store, value){
+			store.commit('provinces', value)
+		},
+		filterCategories(store, value){
+			store.commit('filterCategories', value)
+		},
+		categories(store, value){
+			store.commit('categories', value)
 		}
 
 	},
@@ -80,6 +105,19 @@ export const store = new Vuex.Store({
 		successLogin(){
 
 			return store.state.successLogin
+		},
+		items(){
+
+			return store.state.items
+		},
+		provinces(){
+			return store.state.provinces
+		},
+		filterCategories(){
+			return store.state.filterCategories
+		},
+		categories(){
+			return store.state.categories
 		}
 	}
 	

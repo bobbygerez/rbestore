@@ -1,7 +1,8 @@
 <template>
   <v-app id="inspire">
+
     <v-navigation-drawer
-      persistent
+      fixed
       clipped
       app
       v-model="drawer"
@@ -37,31 +38,33 @@
             <v-list-tile
               v-for="(child, i) in item.children"
               :key="i"
-              @click=""
+              @click="itemChildren"
             >
               <v-list-tile-action v-if="child.icon">
                 <v-icon>{{ child.icon }}</v-icon>
               </v-list-tile-action>
               <v-list-tile-content>
                 <v-list-tile-title>
-                  {{ child.text }}
+                  {{ child.name }} 
                 </v-list-tile-title>
               </v-list-tile-content>
             </v-list-tile>
           </v-list-group>
-          <v-list-tile v-else @click="">
+          <v-list-tile v-else @click="itemClick(item.text)">
             <v-list-tile-action>
               <v-icon>{{ item.icon }}</v-icon>
             </v-list-tile-action>
             <v-list-tile-content>
               <v-list-tile-title>
-                {{ item.text }}
+                {{ item.text }} 
               </v-list-tile-title>
             </v-list-tile-content>
           </v-list-tile>
         </template>
       </v-list>
     </v-navigation-drawer>
+
+
     <v-toolbar
       color="blue darken-3"
       dark
@@ -75,7 +78,6 @@
         RBeStore
       </v-toolbar-title>
       <v-text-field
-        
         solo
         prepend-icon="search"
         placeholder="Search"
@@ -106,15 +108,29 @@
       <mainMenu></mainMenu>
       
     </v-toolbar>
-    <main>
       <v-content>
-        <v-container fluid fill-height>
-          <v-layout justify-center align-center>
+        <v-container fluid grid-list-md>
+          <v-layout row wrap>
+            <v-flex d-flex xs12 sm6 md3>
+              <categories></categories>
+            </v-flex>
+            <v-flex d-flex xs12 sm6 md3>
+              <provinces></provinces>
+            </v-flex>
+            <v-flex d-flex xs12 sm6 md3>
+              <cities></cities>
+            </v-flex>
             
+            <v-flex d-flex xs12 sm6 md3>
+              <v-card color="blue lighten-2" dark>
+                <v-card-text
+                  v-text="lorem.slice(0, 100)">
+                </v-card-text>
+              </v-card>
+            </v-flex>
           </v-layout>
         </v-container>
       </v-content>
-    </main>
     
     <v-dialog v-model="dialog.register" width="800px">
       <v-card>
@@ -247,6 +263,8 @@
         </v-form>
       </v-card>
     </v-dialog>
+
+    <filterCategories></filterCategories>
   </v-app>
 </template>
 
@@ -254,12 +272,18 @@
 
   import axios from 'axios'
   import mainMenu from '../components/users/main-menu.vue'
+  import provinces from '../components/select/provinces.vue'
+  import cities from '../components/select/cities.vue'
+  import categories from '../components/select/categories.vue'
+  import product from '../components/cards/product.vue'
+  import filterCategories from '../components/dialog/filterCategories.vue'
 
   export default {
     components: {
-      mainMenu
+      mainMenu, provinces, product, cities, categories, filterCategories
     },
     data: () => ({
+        lorem: `Lorem ipsum dolor sit amet, mel at clita quando. Te sit oratio vituperatoribus, nam ad ipsum posidonium mediocritatem, explicari dissentiunt cu mea. Repudiare disputationi vim in, mollis iriure nec cu, alienum argumentum ius ad. Pri eu justo aeque torquatos.`,
         e1: true,
         e2: false,
         e3: false,
@@ -284,40 +308,14 @@
       maskMobile: '(09##) - ### - ####',
       valid: true,
       drawer: true,
-      items: [
-        { icon: 'queue',
-          'icon-alt': 'queue',
-          text: 'Categories',
-          model: true,
-          children: [
-          	{ text: 'Example 1'},
-          	{ text: 'Example 2'},
-
-
-          ]
-      	},
-        {
-          icon: 'place',
-          'icon-alt': 'place',
-          text: 'Places',
-          model: false,
-          children: [
-            { text: 'Import' },
-            { text: 'Export' },
-            { text: 'Print' },
-            { text: 'Undo changes' },
-            { text: 'Other contacts' }
-          ]
-        },
-        { icon: 'settings', text: 'Settings' },
-        { icon: 'chat_bubble', text: 'Send feedback' },
-        { icon: 'help', text: 'Help' },
-        { icon: 'phonelink', text: 'App downloads' },
-        { icon: 'keyboard', text: 'Go to the old version' }
-      ]
+      
     }),
 
     computed: {
+
+        items(){
+          return this.$store.getters.items
+        },
         dialog: {
             get(){
 
@@ -412,6 +410,12 @@
     },
 
     methods: {
+      itemClick(value){
+
+        if( value == 'Categories'){
+          this.$store.dispatch('filterCategories', true);
+        }
+      },
       dialogCancel(){
           this.$store.dispatch('dialogCancel');
       },
@@ -454,6 +458,9 @@
       },
       clear () {
         this.$refs.form.reset()
+      },
+      itemChildren(){
+        alert('asdf')
       }
     },
 

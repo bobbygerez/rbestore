@@ -4,6 +4,9 @@
 Route::post('auth/register', 'API\UserController@register');
 Route::post('auth/login', 'API\UserController@login');
 Route::get('auth/logout', 'API\UserController@logout');
+Route::get('categories', 'Category\UserCategoryController@index');
+Route::get('province', 'Province\ProvinceController@index');
 Route::group(['middleware' => 'jwt.auth'], function () {
     Route::get('user', 'API\UserController@getAuthUser');
 });
+

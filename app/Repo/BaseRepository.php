@@ -19,5 +19,15 @@ class BaseRepository{
 		return $this->modelName->create($request->all());
 	}
 
+	public function where($field, $id){
+
+		return $this->modelName->where($field, $id);
+	}
+
+	public function whereIn($field, $values){
+
+		return $this->modelName->whereIn($field, $values);
+	}
+
 	
 }

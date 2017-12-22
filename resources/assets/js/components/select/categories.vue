@@ -8,7 +8,7 @@
             <v-select
               prepend-icon="queue"
               v-bind:items="categories"
-              v-model="category"
+              v-model="categoryId"
               label="Categories"
               autocomplete
               item-value="id"
@@ -22,10 +22,13 @@
 </template>
 
 <script>
+
+  import axios from 'axios'
   export default {
-    data () {
+    
+     data() {
       return {
-        category: null,
+        categoryId: null,
         
       }
     },
@@ -36,9 +39,18 @@
         }
     },
     watch: {
-        province(){
+        categoryId(){
+
+          let data = this
+          this.$store.dispatch('categoryId', this.categoryId)
+          axios.get(api_categories + '/' + this.categoryId + '/subcategories')
+          .then( function(response){
+              data.$store.dispatch('subcategories', response.data.subcategories);
+          })
+          .catch( function(error){
 
 
+          })
         }
     }
   }

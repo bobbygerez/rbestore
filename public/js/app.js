@@ -11903,6 +11903,7 @@ window.api_login = 'http://localhost/rbestore/public/api/auth/login';
 window.api_getUser = 'http://localhost/rbestore/public/api/user?token=';
 window.api_logout = 'http://localhost/rbestore/public/api/auth/logout?token=';
 window.api_categories = 'http://localhost/rbestore/public/api/categories';
+window.api_further_categories = 'http://localhost/rbestore/public/api/further_categories';
 window.api_province = 'http://localhost/rbestore/public/api/province';
 /******** USE FOR SHIFTING SERVER AND LOCAL DEVELOPMENT (APACHE SERVER) ***********/
 
@@ -31209,6 +31210,8 @@ if (false) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
 //
 //
 //
@@ -31232,24 +31235,33 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  data: function data() {
-    return {
-      category: null
+    data: function data() {
+        return {
+            categoryId: null
 
-    };
-  },
+        };
+    },
 
-  computed: {
-    categories: function categories() {
+    computed: {
+        categories: function categories() {
 
-      return this.$store.getters.categories;
+            return this.$store.getters.categories;
+        }
+    },
+    watch: {
+        categoryId: function categoryId() {
+
+            var data = this;
+            this.$store.dispatch('categoryId', this.categoryId);
+            __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get(api_categories + '/' + this.categoryId + '/subcategories').then(function (response) {
+                data.$store.dispatch('subcategories', response.data.subcategories);
+            }).catch(function (error) {});
+        }
     }
-  },
-  watch: {
-    province: function province() {}
-  }
 });
 
 /***/ }),
@@ -31289,11 +31301,11 @@ var render = function() {
                           "item-text": "name"
                         },
                         model: {
-                          value: _vm.category,
+                          value: _vm.categoryId,
                           callback: function($$v) {
-                            _vm.category = $$v
+                            _vm.categoryId = $$v
                           },
-                          expression: "category"
+                          expression: "categoryId"
                         }
                       })
                     ],
@@ -31722,6 +31734,8 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
 //
 //
 //
@@ -31745,24 +31759,37 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  data: function data() {
-    return {
-      province: null
+    data: function data() {
+        return {
+            subcategory: null
 
-    };
-  },
+        };
+    },
 
-  computed: {
-    provinces: function provinces() {
+    computed: {
+        subcategories: function subcategories() {
 
-      return this.$store.getters.provinces;
+            return this.$store.getters.subcategories;
+        },
+        categoryId: function categoryId() {
+
+            return this.$store.getters.categoryId;
+        }
+    },
+    watch: {
+        subcategory: function subcategory() {
+
+            var data = this;
+            __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post(api_further_categories, {
+                subcategoryIds: this.subcategory
+            }).then(function (response) {}).catch(function (error) {});
+        }
     }
-  },
-  watch: {
-    province: function province() {}
-  }
 });
 
 /***/ }),
@@ -31795,19 +31822,20 @@ var render = function() {
                       _c("v-select", {
                         attrs: {
                           "prepend-icon": "add_box",
-                          items: _vm.provinces,
+                          items: _vm.subcategories,
                           multiple: "",
                           label: "Sub-categories",
                           autocomplete: "",
                           "item-value": "id",
                           "item-text": "name"
                         },
+                        on: { click: _vm.changeSubCategory },
                         model: {
-                          value: _vm.province,
+                          value: _vm.subcategory,
                           callback: function($$v) {
-                            _vm.province = $$v
+                            _vm.subcategory = $$v
                           },
-                          expression: "province"
+                          expression: "subcategory"
                         }
                       })
                     ],
@@ -32859,7 +32887,7 @@ if (false) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuex__ = __webpack_require__(63);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__state_js__ = __webpack_require__(64);
-var _mutations;
+var _mutations, _actions;
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
@@ -32907,14 +32935,20 @@ var store = new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
 		state.dialog.login = value;
 	}), _defineProperty(_mutations, 'successLogin', function successLogin(state, value) {
 		state.successLogin = value;
+	}), _defineProperty(_mutations, 'categoryId', function categoryId(state, value) {
+		state.categoryId = value;
 	}), _defineProperty(_mutations, 'categories', function categories(state, value) {
 		state.categories = value;
+	}), _defineProperty(_mutations, 'subcategoryId', function subcategoryId(state, value) {
+		state.subcategoryId = value;
+	}), _defineProperty(_mutations, 'subcategories', function subcategories(state, value) {
+		state.subcategories = value;
 	}), _defineProperty(_mutations, 'provinces', function provinces(state, value) {
 		state.provinces = value;
 	}), _defineProperty(_mutations, 'filterCategories', function filterCategories(state, value) {
 		state.filterCategories = value;
 	}), _mutations),
-	actions: _defineProperty({
+	actions: (_actions = {
 		users: function users(store, value) {
 
 			store.commit(value['fieldName'], value['value']);
@@ -32943,10 +32977,18 @@ var store = new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
 		},
 		filterCategories: function filterCategories(store, value) {
 			store.commit('filterCategories', value);
+		},
+		categoryId: function categoryId(store, value) {
+			store.commit('categoryId', value);
+		},
+		subcategoryId: function subcategoryId(store, value) {
+			store.commit('subcategoryId', value);
 		}
-	}, 'categories', function categories(store, value) {
+	}, _defineProperty(_actions, 'categories', function categories(store, value) {
 		store.commit('categories', value);
-	}),
+	}), _defineProperty(_actions, 'subcategories', function subcategories(store, value) {
+		store.commit('subcategories', value);
+	}), _actions),
 	getters: {
 		users: function users() {
 
@@ -32970,8 +33012,17 @@ var store = new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
 		filterCategories: function filterCategories() {
 			return store.state.filterCategories;
 		},
+		categoryId: function categoryId() {
+			return store.state.categoryId;
+		},
+		subcategoryId: function subcategoryId() {
+			return store.state.subcategoryId;
+		},
 		categories: function categories() {
 			return store.state.categories;
+		},
+		subcategories: function subcategories() {
+			return store.state.subcategories;
 		}
 	}
 
@@ -33930,28 +33981,32 @@ var index_esm = {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return state; });
 
 var state = {
-	successLogin: false,
-	filterCategories: false,
-	categories: [],
-	dialog: {
-		register: false,
-		login: false
-	},
-	provinces: [],
-	users: {
+  successLogin: false,
+  filterCategories: false,
+  categoryId: null,
+  categories: [],
+  subcategoryId: null,
+  subcategories: [],
+  furthercategories: [],
+  dialog: {
+    register: false,
+    login: false
+  },
+  provinces: [],
+  users: {
 
-		firstname: '',
-		lastname: '',
-		company: '',
-		jobTitle: '',
-		email: '',
-		mobile: '',
-		password: ''
-	},
-	items: [{ icon: 'queue',
-		'icon-alt': 'queue',
-		text: 'Categories'
-	}, { icon: 'settings', text: 'Settings' }, { icon: 'chat_bubble', text: 'Send feedback' }, { icon: 'help', text: 'Help' }, { icon: 'phonelink', text: 'App downloads' }, { icon: 'keyboard', text: 'Go to the old version' }]
+    firstname: '',
+    lastname: '',
+    company: '',
+    jobTitle: '',
+    email: '',
+    mobile: '',
+    password: ''
+  },
+  items: [{ icon: 'queue',
+    'icon-alt': 'queue',
+    text: 'Categories'
+  }, { icon: 'settings', text: 'Settings' }, { icon: 'chat_bubble', text: 'Send feedback' }, { icon: 'help', text: 'Help' }, { icon: 'phonelink', text: 'App downloads' }, { icon: 'keyboard', text: 'Go to the old version' }]
 
 };
 

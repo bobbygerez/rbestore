@@ -180,6 +180,8 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Providers\UserServiceProvider::class,
         App\Providers\CategoryServiceProvider::class,
+        App\Providers\SubCategoryServiceProvider::class,
+        App\Providers\FurtherCategoryServiceProvider::class,
 
     ],
 

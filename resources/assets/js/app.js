@@ -14,6 +14,7 @@ window.api_login = 'http://localhost/rbestore/public/api/auth/login';
 window.api_getUser = 'http://localhost/rbestore/public/api/user?token=';
 window.api_logout = 'http://localhost/rbestore/public/api/auth/logout?token=';
 window.api_categories = 'http://localhost/rbestore/public/api/categories';
+window.api_further_categories = 'http://localhost/rbestore/public/api/further_categories';
 window.api_province = 'http://localhost/rbestore/public/api/province';
 /******** USE FOR SHIFTING SERVER AND LOCAL DEVELOPMENT (APACHE SERVER) ***********/
 

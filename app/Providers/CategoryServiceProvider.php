@@ -5,9 +5,10 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use App\Repo\Category\CategoryInterface;
 use App\Repo\Category\CategoryRepository;
+use App\Repo\Category\APICategoryRepository;
 
 use App\Http\Controllers\Category\UserCategoryController;
-
+use App\Http\Controllers\API\APICategoryController;
 class CategoryServiceProvider extends ServiceProvider
 {
     /**
@@ -30,5 +31,9 @@ class CategoryServiceProvider extends ServiceProvider
         $this->app->when(UserCategoryController::class)
           ->needs(CategoryInterface::class)
           ->give(CategoryRepository::class);
+
+        $this->app->when(APICategoryController::class)
+          ->needs(CategoryInterface::class)
+          ->give(APICategoryRepository::class);
     }
 }

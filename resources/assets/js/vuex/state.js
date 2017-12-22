@@ -2,7 +2,11 @@
 export const state = {
 successLogin: false,
   filterCategories: false,
+  categoryId: null,
   categories:[],
+  subcategoryId: null,
+  subcategories: [],
+  furthercategories:[],
 	dialog: {
 		register: false,
 		login: false

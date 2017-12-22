@@ -5,14 +5,15 @@
         <v-layout>
           <v-flex xs12 sm12>
             <v-select
-               prepend-icon="add_box"
-              v-bind:items="provinces"
-              v-model="province"
+              prepend-icon="add_box"
+              v-bind:items="subcategories"
+              v-model="subcategory"
               multiple 
               label="Sub-categories"
               autocomplete
               item-value="id"
               item-text="name"
+              @click="changeSubCategory"
             ></v-select>
           </v-flex>
         </v-layout>
@@ -22,23 +23,40 @@
 </template>
 
 <script>
+
+  import axios from 'axios'
   export default {
     data () {
       return {
-        province: null,
+        subcategory: null,
         
       }
     },
     computed: {
-        provinces(){
+        subcategories(){
 
-            return this.$store.getters.provinces
+            return this.$store.getters.subcategories
+        },
+        categoryId(){
+
+            return this.$store.getters.categoryId
         }
+
     },
     watch: {
-        province(){
+        subcategory(){
+
+            let data = this
+            axios.post(api_further_categories,{
+              subcategoryIds: this.subcategory
+            })
+            .then( function(response){
+                
+            })
+            .catch( function(error){
 
 
+            })
         }
     }
   }

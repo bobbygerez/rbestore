@@ -46,9 +46,20 @@ export const store = new Vuex.Store({
 		},
 
 		//CATEGORIES
+		categoryId(state, value){
+			state.categoryId = value
+		},	
 		categories(state, value){
 			state.categories = value
 		},
+		subcategoryId(state, value){
+			state.subcategoryId = value
+		},
+		subcategories(state, value){
+			state.subcategories = value
+		},
+
+
 		//PROVINCES
 		provinces(state, value){
 			state.provinces = value
@@ -88,8 +99,18 @@ export const store = new Vuex.Store({
 		filterCategories(store, value){
 			store.commit('filterCategories', value)
 		},
+
+		categoryId(store, value){
+			store.commit('categoryId', value)
+		},
+		subcategoryId(store, value){
+			store.commit('subcategoryId', value)
+		},
 		categories(store, value){
 			store.commit('categories', value)
+		},
+		subcategories(store, value){
+			store.commit('subcategories', value)
 		}
 
 	},
@@ -116,8 +137,17 @@ export const store = new Vuex.Store({
 		filterCategories(){
 			return store.state.filterCategories
 		},
+		categoryId(){
+			return store.state.categoryId
+		},
+		subcategoryId(){
+			return store.state.subcategoryId
+		},
 		categories(){
 			return store.state.categories
+		},
+		subcategories(){
+			return store.state.subcategories
 		}
 	}
 	

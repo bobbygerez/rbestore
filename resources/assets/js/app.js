@@ -15,7 +15,9 @@ window.api_getUser = 'http://localhost/rbestore/public/api/user?token=';
 window.api_logout = 'http://localhost/rbestore/public/api/auth/logout?token=';
 window.api_categories = 'http://localhost/rbestore/public/api/categories';
 window.api_further_categories = 'http://localhost/rbestore/public/api/further_categories';
+window.api_items = 'http://localhost/rbestore/public/api/items';
 window.api_province = 'http://localhost/rbestore/public/api/province';
+
 /******** USE FOR SHIFTING SERVER AND LOCAL DEVELOPMENT (APACHE SERVER) ***********/
 
 var login = {
@@ -80,10 +82,27 @@ var province = {
 
 }
 
+var items = {
+
+    created: function(){
+
+        let data = this
+        axios.get(api_items)
+        .then( function(response){
+             data.$store.dispatch('items', response.data.items);
+        })
+        .catch( function(error){
+
+
+        })
+    }
+
+}
+
 const app = new Vue({
     el: '#app',
     store,
-    mixins: [login, categories, province],
+    mixins: [login, categories, province, items],
     components: {
     	Master
     }

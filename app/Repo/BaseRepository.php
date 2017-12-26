@@ -29,5 +29,15 @@ class BaseRepository{
 		return $this->modelName->whereIn($field, $values);
 	}
 
+	public function paginate($value){
+
+		return $this->modelName->paginate($value);
+	}
+
+	public function with($relation){
+
+		return $this->modelName->with($relation);
+	}
+
 	
 }

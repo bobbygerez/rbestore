@@ -6,8 +6,8 @@
           <v-flex xs12 sm12>
             <v-select
               prepend-icon="drag_handle"
-              v-bind:items="provinces"
-              v-model="province"
+              v-bind:items="furtherCategories"
+              v-model="furtherCat"
               multiple 
               label="More Categories"
               autocomplete
@@ -22,22 +22,35 @@
 </template>
 
 <script>
+
+  import axios from 'axios'
   export default {
     data () {
       return {
-        province: null,
+        furtherCat: null,
         
       }
     },
     computed: {
-        provinces(){
+        furtherCategories(){
 
-            return this.$store.getters.provinces
+            return this.$store.getters.furtherCategories
         }
     },
     watch: {
-        province(){
+        furtherCat(){
 
+            let data = this
+            axios.post(api_items,{
+              furtherCatId: this.furtherCat
+            })
+            .then( function(response){
+                
+            })
+            .catch( function(error){
+
+
+            })
 
         }
     }

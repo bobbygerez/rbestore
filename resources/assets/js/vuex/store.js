@@ -58,7 +58,15 @@ export const store = new Vuex.Store({
 		subcategories(state, value){
 			state.subcategories = value
 		},
+		furtherCategories(state, value){
+			state.furtherCategories = value
+		},
 
+
+		//ITEMS
+		items(state, value){
+			state.items = value
+		},
 
 		//PROVINCES
 		provinces(state, value){
@@ -111,6 +119,15 @@ export const store = new Vuex.Store({
 		},
 		subcategories(store, value){
 			store.commit('subcategories', value)
+		},
+		furtherCategories(store, value){
+			store.commit('furtherCategories', value)
+		},
+		
+
+		//ITEMS
+		items(store, value){
+			store.commit('items', value);
 		}
 
 	},
@@ -148,6 +165,12 @@ export const store = new Vuex.Store({
 		},
 		subcategories(){
 			return store.state.subcategories
+		},
+		furtherCategories(){
+			return store.state.furtherCategories
+		},
+		items(){
+			return store.state.items
 		}
 	}
 	

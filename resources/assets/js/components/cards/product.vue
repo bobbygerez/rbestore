@@ -1,6 +1,7 @@
 <template>
-  <v-layout row>
-    <v-flex xs12 sm6 offset-sm3>
+  <v-layout row wrap>
+
+    <v-flex xs6 sm6 md3 lg3 xl3 >
       <v-card>
         <v-card-media
           src="/static/doc-images/cards/sunshine.jpg"
@@ -28,6 +29,8 @@
         </v-slide-y-transition>
       </v-card>
     </v-flex>
+   
+    
   </v-layout>
 </template>
 
@@ -35,6 +38,8 @@
   export default {
     data: () => ({
       show: false
-    })
+    }),
+
+    
   }
 </script>

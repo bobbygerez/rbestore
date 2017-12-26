@@ -110,25 +110,20 @@
     </v-toolbar>
       <v-content>
         <v-container fluid grid-list-md>
-          <v-layout row wrap>
-            <v-flex d-flex xs12 sm6 md3>
-              <categories></categories>
-            </v-flex>
-            <v-flex d-flex xs12 sm6 md3>
-              <provinces></provinces>
-            </v-flex>
-            <v-flex d-flex xs12 sm6 md3>
-              <cities></cities>
-            </v-flex>
-            
-            <v-flex d-flex xs12 sm6 md3>
-              <v-card color="blue lighten-2" dark>
-                <v-card-text
-                  v-text="lorem.slice(0, 100)">
-                </v-card-text>
-              </v-card>
-            </v-flex>
-          </v-layout>
+       <!--    PRODUCT HERE -->
+
+            <product
+               v-for="(item, index) in items"
+                v-bind:item="item"
+                v-bind:index="index"
+                v-bind:key="item.id"
+
+            >
+              
+
+            </product>
+
+       <!-- END PRODUCT HERE -->
         </v-container>
       </v-content>
     
@@ -405,8 +400,12 @@
               value: value
             })
           }
-         }
+         },
           
+          items(){
+
+          return this.$store.getters.items
+        }
     },
 
     methods: {

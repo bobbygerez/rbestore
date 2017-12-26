@@ -43,11 +43,10 @@ class APICategoryController extends Controller
         $request = app()->make('request');
         $furtherCat = collect($request->subcategoryIds)->reverse()->values();
 
-       
-
-
         return response()->json([
                 'furtherCategories' => $this->furtherCategory->whereIn('subcategory_id', $furtherCat)
             ]);
     }
+
+    
 }

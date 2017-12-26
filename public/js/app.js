@@ -11904,7 +11904,9 @@ window.api_getUser = 'http://localhost/rbestore/public/api/user?token=';
 window.api_logout = 'http://localhost/rbestore/public/api/auth/logout?token=';
 window.api_categories = 'http://localhost/rbestore/public/api/categories';
 window.api_further_categories = 'http://localhost/rbestore/public/api/further_categories';
+window.api_items = 'http://localhost/rbestore/public/api/items';
 window.api_province = 'http://localhost/rbestore/public/api/province';
+
 /******** USE FOR SHIFTING SERVER AND LOCAL DEVELOPMENT (APACHE SERVER) ***********/
 
 var login = {
@@ -11954,10 +11956,22 @@ var province = {
 
 };
 
+var items = {
+
+    created: function created() {
+
+        var data = this;
+        __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get(api_items).then(function (response) {
+            data.$store.dispatch('items', response.data.items);
+        }).catch(function (error) {});
+    }
+
+};
+
 var app = new __WEBPACK_IMPORTED_MODULE_1_vue___default.a({
     el: '#app',
     store: __WEBPACK_IMPORTED_MODULE_4__vuex_store_js__["a" /* store */],
-    mixins: [login, categories, province],
+    mixins: [login, categories, province, items],
     components: {
         Master: __WEBPACK_IMPORTED_MODULE_3__layouts_google_contacts_vue___default.a
     }
@@ -30148,11 +30162,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_cards_product_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__components_cards_product_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_dialog_filterCategories_vue__ = __webpack_require__(52);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_dialog_filterCategories_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6__components_dialog_filterCategories_vue__);
-//
-//
-//
-//
-//
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -30467,7 +30478,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     };
   },
 
-  computed: {
+  computed: _defineProperty({
     items: function items() {
       return this.$store.getters.items;
     },
@@ -30556,7 +30567,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       }
     }
 
-  },
+  }, 'items', function items() {
+
+    return this.$store.getters.items;
+  }),
 
   methods: {
     itemClick: function itemClick(value) {
@@ -31421,6 +31435,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -31428,6 +31445,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       show: false
     };
   }
+
 });
 
 /***/ }),
@@ -31440,11 +31458,11 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "v-layout",
-    { attrs: { row: "" } },
+    { attrs: { row: "", wrap: "" } },
     [
       _c(
         "v-flex",
-        { attrs: { xs12: "", sm6: "", "offset-sm3": "" } },
+        { attrs: { xs6: "", sm6: "", md3: "", lg3: "", xl3: "" } },
         [
           _c(
             "v-card",
@@ -31759,7 +31777,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 
 
@@ -31787,7 +31804,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var data = this;
             __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post(api_further_categories, {
                 subcategoryIds: this.subcategory
-            }).then(function (response) {}).catch(function (error) {});
+            }).then(function (response) {
+
+                data.$store.dispatch('furtherCategories', response.data.furtherCategories);
+            }).catch(function (error) {});
         }
     }
 });
@@ -31829,7 +31849,6 @@ var render = function() {
                           "item-value": "id",
                           "item-text": "name"
                         },
-                        on: { click: _vm.changeSubCategory },
                         model: {
                           value: _vm.subcategory,
                           callback: function($$v) {
@@ -31918,6 +31937,8 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
 //
 //
 //
@@ -31941,24 +31962,32 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  data: function data() {
-    return {
-      province: null
+    data: function data() {
+        return {
+            furtherCat: null
 
-    };
-  },
+        };
+    },
 
-  computed: {
-    provinces: function provinces() {
+    computed: {
+        furtherCategories: function furtherCategories() {
 
-      return this.$store.getters.provinces;
+            return this.$store.getters.furtherCategories;
+        }
+    },
+    watch: {
+        furtherCat: function furtherCat() {
+
+            var data = this;
+            __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post(api_items, {
+                furtherCatId: this.furtherCat
+            }).then(function (response) {}).catch(function (error) {});
+        }
     }
-  },
-  watch: {
-    province: function province() {}
-  }
 });
 
 /***/ }),
@@ -31991,7 +32020,7 @@ var render = function() {
                       _c("v-select", {
                         attrs: {
                           "prepend-icon": "drag_handle",
-                          items: _vm.provinces,
+                          items: _vm.furtherCategories,
                           multiple: "",
                           label: "More Categories",
                           autocomplete: "",
@@ -31999,11 +32028,11 @@ var render = function() {
                           "item-text": "name"
                         },
                         model: {
-                          value: _vm.province,
+                          value: _vm.furtherCat,
                           callback: function($$v) {
-                            _vm.province = $$v
+                            _vm.furtherCat = $$v
                           },
-                          expression: "province"
+                          expression: "furtherCat"
                         }
                       })
                     ],
@@ -32436,56 +32465,12 @@ var render = function() {
           _c(
             "v-container",
             { attrs: { fluid: "", "grid-list-md": "" } },
-            [
-              _c(
-                "v-layout",
-                { attrs: { row: "", wrap: "" } },
-                [
-                  _c(
-                    "v-flex",
-                    { attrs: { "d-flex": "", xs12: "", sm6: "", md3: "" } },
-                    [_c("categories")],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "v-flex",
-                    { attrs: { "d-flex": "", xs12: "", sm6: "", md3: "" } },
-                    [_c("provinces")],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "v-flex",
-                    { attrs: { "d-flex": "", xs12: "", sm6: "", md3: "" } },
-                    [_c("cities")],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "v-flex",
-                    { attrs: { "d-flex": "", xs12: "", sm6: "", md3: "" } },
-                    [
-                      _c(
-                        "v-card",
-                        { attrs: { color: "blue lighten-2", dark: "" } },
-                        [
-                          _c("v-card-text", {
-                            domProps: {
-                              textContent: _vm._s(_vm.lorem.slice(0, 100))
-                            }
-                          })
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  )
-                ],
-                1
-              )
-            ],
-            1
+            _vm._l(_vm.items, function(item, index) {
+              return _c("product", {
+                key: item.id,
+                attrs: { item: item, index: index }
+              })
+            })
           )
         ],
         1
@@ -32943,6 +32928,10 @@ var store = new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
 		state.subcategoryId = value;
 	}), _defineProperty(_mutations, 'subcategories', function subcategories(state, value) {
 		state.subcategories = value;
+	}), _defineProperty(_mutations, 'furtherCategories', function furtherCategories(state, value) {
+		state.furtherCategories = value;
+	}), _defineProperty(_mutations, 'items', function items(state, value) {
+		state.items = value;
 	}), _defineProperty(_mutations, 'provinces', function provinces(state, value) {
 		state.provinces = value;
 	}), _defineProperty(_mutations, 'filterCategories', function filterCategories(state, value) {
@@ -32988,8 +32977,12 @@ var store = new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
 		store.commit('categories', value);
 	}), _defineProperty(_actions, 'subcategories', function subcategories(store, value) {
 		store.commit('subcategories', value);
+	}), _defineProperty(_actions, 'furtherCategories', function furtherCategories(store, value) {
+		store.commit('furtherCategories', value);
+	}), _defineProperty(_actions, 'items', function items(store, value) {
+		store.commit('items', value);
 	}), _actions),
-	getters: {
+	getters: _defineProperty({
 		users: function users() {
 
 			return store.state.users;
@@ -33023,8 +33016,13 @@ var store = new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
 		},
 		subcategories: function subcategories() {
 			return store.state.subcategories;
+		},
+		furtherCategories: function furtherCategories() {
+			return store.state.furtherCategories;
 		}
-	}
+	}, 'items', function items() {
+		return store.state.items;
+	})
 
 });
 
@@ -33979,15 +33977,17 @@ var index_esm = {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return state; });
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-var state = {
+var state = _defineProperty({
   successLogin: false,
   filterCategories: false,
   categoryId: null,
   categories: [],
   subcategoryId: null,
   subcategories: [],
-  furthercategories: [],
+  furtherCategories: [],
+  items: [],
   dialog: {
     register: false,
     login: false
@@ -34002,13 +34002,11 @@ var state = {
     email: '',
     mobile: '',
     password: ''
-  },
-  items: [{ icon: 'queue',
-    'icon-alt': 'queue',
-    text: 'Categories'
-  }, { icon: 'settings', text: 'Settings' }, { icon: 'chat_bubble', text: 'Send feedback' }, { icon: 'help', text: 'Help' }, { icon: 'phonelink', text: 'App downloads' }, { icon: 'keyboard', text: 'Go to the old version' }]
-
-};
+  }
+}, 'items', [{ icon: 'queue',
+  'icon-alt': 'queue',
+  text: 'Categories'
+}, { icon: 'settings', text: 'Settings' }, { icon: 'chat_bubble', text: 'Send feedback' }, { icon: 'help', text: 'Help' }, { icon: 'phonelink', text: 'App downloads' }, { icon: 'keyboard', text: 'Go to the old version' }]);
 
 /***/ }),
 /* 65 */

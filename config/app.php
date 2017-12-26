@@ -182,6 +182,7 @@ return [
         App\Providers\CategoryServiceProvider::class,
         App\Providers\SubCategoryServiceProvider::class,
         App\Providers\FurtherCategoryServiceProvider::class,
+        App\Providers\ItemServiceProvider::class,
 
     ],
 

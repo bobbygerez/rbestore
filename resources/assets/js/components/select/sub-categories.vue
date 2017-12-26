@@ -13,7 +13,6 @@
               autocomplete
               item-value="id"
               item-text="name"
-              @click="changeSubCategory"
             ></v-select>
           </v-flex>
         </v-layout>
@@ -52,6 +51,7 @@
             })
             .then( function(response){
                 
+                data.$store.dispatch('furtherCategories', response.data.furtherCategories)
             })
             .catch( function(error){
 

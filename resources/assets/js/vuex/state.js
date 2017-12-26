@@ -6,7 +6,8 @@ successLogin: false,
   categories:[],
   subcategoryId: null,
   subcategories: [],
-  furthercategories:[],
+  furtherCategories:[],
+  items: [],
 	dialog: {
 		register: false,
 		login: false

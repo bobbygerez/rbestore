@@ -1,22 +1,39 @@
 <template>
-  <v-layout row wrap>
 
     <v-flex xs6 sm6 md3 lg3 xl3 >
-      <v-card>
+      <v-card 
+        :class="cardME"
+        v-on:mouseover="productHover"
+        v-on:mouseleave="productLeave"
+
+      >
         <v-card-media
-          src="/static/doc-images/cards/sunshine.jpg"
+          :src="item.images[0].path"
           height="200px"
         >
         </v-card-media>
+
+        <!--   <v-card-media
+          v-for="(image, index) in item.images"
+          v-bind:item="image"
+          v-bind:index="index"
+          v-bind:key="image.id"
+          v-if="image.is_primary"
+          :src="image.path"
+          height="200px"
+        >
+        </v-card-media> -->
+
+
         <v-card-title primary-title>
           <div>
-            <div class="headline">Top western road trips</div>
-            <span class="grey--text">1,000 miles of wonder</span>
+            <div class="headline">{{ item.name }}</div>
+            <v-btn flat color="purple">Explore</v-btn>
+
           </div>
         </v-card-title>
         <v-card-actions>
-          <v-btn flat>Share</v-btn>
-          <v-btn flat color="purple">Explore</v-btn>
+          <v-btn flat>Details</v-btn>
           <v-spacer></v-spacer>
           <v-btn icon @click.native="show = !show">
             <v-icon>{{ show ? 'keyboard_arrow_down' : 'keyboard_arrow_up' }}</v-icon>
@@ -24,22 +41,38 @@
         </v-card-actions>
         <v-slide-y-transition>
           <v-card-text v-show="show">
-            I'm a thing. But, like most politicians, he promised more than he could deliver. You won't have time for sleeping, soldier, not with all the bed making you'll be doing. Then we'll go with that data file! Hey, you add a one and two zeros to that or we walk! You're going to do his laundry? I've got to find a way to escape.
+           {{ item.short_desc}}
           </v-card-text>
         </v-slide-y-transition>
       </v-card>
     </v-flex>
    
     
-  </v-layout>
 </template>
 
 <script>
   export default {
+    props: ['item', 'index'],
     data: () => ({
-      show: false
+      show: false,
+      cardME: "ma-2 elevation-1"
     }),
+    methods: {
+
+      productHover(){
+        this.cardME = "ma-2 elevation-6"
+      },
+      productLeave(){
+        this.cardME = "ma-2 elevation-1"
+      }
+    }
 
     
   }
 </script>
+<style type="text/css">
+  
+  .headline{
+    font-size: 16px !important;
+  }
+</style>

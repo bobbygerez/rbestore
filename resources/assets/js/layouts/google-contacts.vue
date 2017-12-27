@@ -111,17 +111,20 @@
       <v-content>
         <v-container fluid grid-list-md>
        <!--    PRODUCT HERE -->
+          <v-layout row wrap>
 
-            <product
-               v-for="(item, index) in items"
-                v-bind:item="item"
-                v-bind:index="index"
-                v-bind:key="item.id"
 
-            >
-              
+              <product
+                 v-for="(product, index) in products.data"
+                  v-bind:item="product"
+                  v-bind:index="index"
+                  v-bind:key="product.id"
+                   
+              >
 
-            </product>
+              </product>
+        </v-layout>
+
 
        <!-- END PRODUCT HERE -->
         </v-container>
@@ -308,8 +311,8 @@
 
     computed: {
 
-        items(){
-          return this.$store.getters.items
+        products(){
+          return this.$store.getters.products
         },
         dialog: {
             get(){
@@ -409,6 +412,8 @@
     },
 
     methods: {
+
+     
       itemClick(value){
 
         if( value == 'Categories'){

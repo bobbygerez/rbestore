@@ -7,7 +7,7 @@ successLogin: false,
   subcategoryId: null,
   subcategories: [],
   furtherCategories:[],
-  items: [],
+  products: [],
 	dialog: {
 		register: false,
 		login: false

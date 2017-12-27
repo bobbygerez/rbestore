@@ -82,14 +82,14 @@ var province = {
 
 }
 
-var items = {
+var products = {
 
     created: function(){
 
         let data = this
         axios.get(api_items)
         .then( function(response){
-             data.$store.dispatch('items', response.data.items);
+             data.$store.dispatch('products', response.data.items);
         })
         .catch( function(error){
 
@@ -102,7 +102,7 @@ var items = {
 const app = new Vue({
     el: '#app',
     store,
-    mixins: [login, categories, province, items],
+    mixins: [login, categories, province, products],
     components: {
     	Master
     }

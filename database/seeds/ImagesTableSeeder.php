@@ -16,7 +16,7 @@ class ImagesTableSeeder extends Seeder
         for ($i=0; $i < 50; $i++) { 
         	
         	Image::create([
-        			'path' => 'images/public/' . rand(1, 68) . '.jpg',
+        			'path' => 'images/uploads/' . rand(1, 68) . '.jpg',
         			'imageable_id' => rand(1, 30),
         			'imageable_type' => 'App\\Item',
         			'body' => 'text ' . $i

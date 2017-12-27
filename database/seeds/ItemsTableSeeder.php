@@ -12,6 +12,7 @@ class ItemsTableSeeder extends Seeder
      */
     public function run()
     {
+        $faker = Faker\Factory::create();
         
         for ($i=0; $i < 30; $i++) { 
         	
@@ -21,8 +22,10 @@ class ItemsTableSeeder extends Seeder
         			'category_id' => rand(1, 8),
         			'subcategory_id' => rand(1, 26),
         			'further_category_id' => rand(1, 99),
-        			'name' => 'item ' . $i,
-        			'short_desc' => 'description ' . $i
+        			'name' =>  $faker->text($maxNbChars = 35),
+                    'amount' => $faker->randomFloat($nbMaxDecimals = 2, $min = 50, $max = 99000),
+                    'discount' => $faker->numberBetween($min = 1, $max = 99),
+        			'short_desc' => $faker->text($maxNbChars = 100) 
         		]);
         }
     }

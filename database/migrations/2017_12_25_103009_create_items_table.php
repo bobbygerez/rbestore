@@ -36,6 +36,8 @@ class CreateItemsTable extends Migration
                 ->on('further_categories');
 
             $table->string('name');
+            $table->decimal('amount')->default(0);
+            $table->integer('discount')->default(0);
             $table->string('short_desc')->nullable();
             $table->string('long_desc')->nullable();
 

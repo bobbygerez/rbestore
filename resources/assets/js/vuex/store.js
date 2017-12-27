@@ -64,8 +64,8 @@ export const store = new Vuex.Store({
 
 
 		//ITEMS
-		items(state, value){
-			state.items = value
+		products(state, value){
+			state.products = value
 		},
 
 		//PROVINCES
@@ -126,8 +126,8 @@ export const store = new Vuex.Store({
 		
 
 		//ITEMS
-		items(store, value){
-			store.commit('items', value);
+		products(store, value){
+			store.commit('products', value);
 		}
 
 	},
@@ -169,8 +169,8 @@ export const store = new Vuex.Store({
 		furtherCategories(){
 			return store.state.furtherCategories
 		},
-		items(){
-			return store.state.items
+		products(){
+			return store.state.products
 		}
 	}
 	

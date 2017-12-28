@@ -1,6 +1,6 @@
 
 export const state = {
-successLogin: false,
+  successLogin: false,
   filterCategories: false,
   categoryId: null,
   categories:[],
@@ -8,6 +8,19 @@ successLogin: false,
   subcategories: [],
   furtherCategories:[],
   products: [],
+
+  //PRODUCTS PAGINATION
+  current_page: 1,
+  last_page: null,
+  from: null,
+  last_page_url: null,
+  next_page_url: null,
+  per_page: null,
+  prev_page_url: null,
+  to: null,
+  total: null,
+
+
 	dialog: {
 		register: false,
 		login: false

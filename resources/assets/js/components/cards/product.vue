@@ -1,6 +1,6 @@
 <template>
 
-    <v-flex xs6 sm6 md3 lg3 xl3 >
+    <v-flex xs6 sm4 md3 lg3 xl3 >
       <v-card 
         :class="cardME"
         v-on:mouseover="productHover"
@@ -28,12 +28,13 @@
         <v-card-title primary-title>
           <div>
             <div class="headline">{{ item.name }}</div>
-            <v-btn flat color="purple">Explore</v-btn>
-
+            <span class="gray--text" >Posted: {{ item.created_at }}</span>
+            <br />
+            <span class="red--text text--darken-4" >{{ item.amount }}</span>
           </div>
         </v-card-title>
         <v-card-actions>
-          <v-btn flat>Details</v-btn>
+          <v-btn flat >View more</v-btn>
           <v-spacer></v-spacer>
           <v-btn icon @click.native="show = !show">
             <v-icon>{{ show ? 'keyboard_arrow_down' : 'keyboard_arrow_up' }}</v-icon>
@@ -55,15 +56,15 @@
     props: ['item', 'index'],
     data: () => ({
       show: false,
-      cardME: "ma-2 elevation-1"
+      cardME: "elevation-1"
     }),
     methods: {
 
       productHover(){
-        this.cardME = "ma-2 elevation-6"
+        this.cardME = "elevation-6"
       },
       productLeave(){
-        this.cardME = "ma-2 elevation-1"
+        this.cardME = "elevation-1"
       }
     }
 
@@ -72,7 +73,9 @@
 </script>
 <style type="text/css">
   
-  .headline{
-    font-size: 16px !important;
+  .gray--text{
+    font-size: 12px;
   }
+ 
+
 </style>

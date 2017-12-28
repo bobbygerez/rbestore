@@ -68,6 +68,32 @@ export const store = new Vuex.Store({
 			state.products = value
 		},
 
+		//PAGES
+		current_page(state, value){
+			state.current_page = value
+		},
+		next_page_url(state, value){
+			state.next_page_url = value
+		},
+		last_page_url(state, value){
+			state.last_page_url = value
+		},
+		from(state, value){
+			state.from = value
+		},
+		last_page(state, value){
+			state.last_page = value
+		},
+		per_page(state, value){
+			state.per_page = value
+		},
+		to(state, value){
+			state.to = value
+		},
+		total(state, value){
+			state.total = value
+		},	
+
 		//PROVINCES
 		provinces(state, value){
 			state.provinces = value
@@ -127,8 +153,20 @@ export const store = new Vuex.Store({
 
 		//ITEMS
 		products(store, value){
-			store.commit('products', value);
+			store.commit('products', value)
+			store.commit('next_page_url', value.next_page_url)
+			store.commit('last_page_url', value.last_page_url)
+			store.commit('from', value.from)
+			store.commit('last_page', value.last_page)
+			store.commit('per_page', value.per_page)
+			store.commit('to', value.to)
+			store.commit('total', value.total)
+		},
+		current_page(store, value){
+			store.commit('current_page', value);
 		}
+		
+
 
 	},
 	getters: {
@@ -171,6 +209,38 @@ export const store = new Vuex.Store({
 		},
 		products(){
 			return store.state.products
+		},
+		current_page(){
+
+			return store.state.current_page
+		},
+		next_page_url(){
+
+			return store.state.next_page_url
+		},
+		last_page_url(){
+
+			return store.state.last_page_url
+		},
+		from(){
+
+			return store.state.from
+		},
+		last_page(){
+
+			return store.state.last_page
+		},
+		per_page(){
+
+			return store.state.per_page
+		},
+		to(){
+
+			return store.state.to
+		},
+		total(){
+
+			return store.state.total
 		}
 	}
 	

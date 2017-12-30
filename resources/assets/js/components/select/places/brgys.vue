@@ -5,14 +5,14 @@
         <v-layout>
           <v-flex>
             <v-select
-              prepend-icon="pin_drop"
-              v-bind:items="cities"
-              v-model="city"
+              prepend-icon="drag_handle"
+              v-bind:items="brgys"
+              v-model="brgy"
               multiple 
-              label="Select City"
+              label="Select Barangay"
               autocomplete
-              item-value="citymunCode"
-              item-text="citymunDesc"
+              item-value="brgyCode"
+              item-text="brgyDesc"
             ></v-select>
           </v-flex>
         </v-layout>
@@ -28,29 +28,21 @@ import axios from 'axios'
   export default {
     data () {
       return {
-        city: null,
+        brgy: null,
         
       }
     },
     computed: {
-        cities(){
+        brgys(){
 
-            return this.$store.getters.cities
+            return this.$store.getters.brgys
         }
     },
     watch: {
-        city(){
+        brgy(){
           let data = this
 
-          axios.post(api_brgy + '/city',{
-            cityId: this.city
-          }).then((response) => {
-
-            data.$store.dispatch('brgys', response.data.brgys)
-          })
-
-          .catch()
-
+          
         }
     }
   }

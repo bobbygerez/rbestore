@@ -98,6 +98,12 @@ export const store = new Vuex.Store({
 		provinces(state, value){
 			state.provinces = value
 		},
+		cities(state, value){
+			state.cities = value
+		},
+		brgys(state, value){
+			state.brgys = value
+		},
 		filterCategories(state, value){
 			state.filterCategories = value
 		},
@@ -137,6 +143,12 @@ export const store = new Vuex.Store({
 		},
 		provinces(store, value){
 			store.commit('provinces', value)
+		},
+		cities(store, value){
+			store.commit('cities', value)
+		},
+		brgys(store, value){
+			store.commit('brgys', value)
 		},
 		filterCategories(store, value){
 			store.commit('filterCategories', value)
@@ -261,6 +273,12 @@ export const store = new Vuex.Store({
 		},
 		provinces(){
 			return store.state.provinces
+		},
+		cities(){
+			return store.state.cities
+		},
+		brgys(){
+			return store.state.brgys
 		},
 		filterCategories(){
 			return store.state.filterCategories

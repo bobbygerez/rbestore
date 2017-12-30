@@ -13,7 +13,7 @@ class ProvinceController extends Controller
     public function index(){
 
     	 return response()->json([
-                'provinces' => Province::all()
+                'provinces' => Province::orderBy('provDesc')->get()
             ]);
     }
 

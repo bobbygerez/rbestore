@@ -33,6 +33,11 @@ export const state = {
 		login: false
 	},
   provinces: [],
+  cities:[],
+  cityId:null,
+  brgys: [],
+  brgyId: null,
+  
 	users: {
 
 		firstname: '',

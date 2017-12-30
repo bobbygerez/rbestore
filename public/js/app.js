@@ -11949,16 +11949,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /******** USE FOR SHIFTING SERVER AND LOCAL DEVELOPMENT (APACHE SERVER) ***********/
-window.api_register = 'http://localhost/rbestore/public/api/auth/register';
-window.api_login = 'http://localhost/rbestore/public/api/auth/login';
-window.api_getUser = 'http://localhost/rbestore/public/api/user?token=';
-window.api_logout = 'http://localhost/rbestore/public/api/auth/logout?token=';
-window.api_categories = 'http://localhost/rbestore/public/api/categories';
-window.api_further_categories = 'http://localhost/rbestore/public/api/further_categories';
-window.api_items = 'http://localhost/rbestore/public/api/items';
-window.api_items = 'http://localhost/rbestore/public/api/items';
-window.api_items_further_cat = 'http://localhost/rbestore/public/api/items/further_categories';
-window.api_province = 'http://localhost/rbestore/public/api/province';
+
+var baseUrl = 'http://localhost/rbestore/public/api/';
+
+window.api_register = baseUrl + 'auth/register';
+window.api_login = baseUrl + 'auth/login';
+window.api_getUser = baseUrl + 'user?token=';
+window.api_logout = baseUrl + 'auth/logout?token=';
+window.api_categories = baseUrl + 'categories';
+window.api_further_categories = baseUrl + 'further_categories';
+window.api_items = baseUrl + 'items';
+window.api_items_further_cat = baseUrl + 'items/further_categories';
+window.api_province = baseUrl + 'province';
+window.api_city = baseUrl + 'city';
+window.api_brgy = baseUrl + 'barangay';
 
 /******** USE FOR SHIFTING SERVER AND LOCAL DEVELOPMENT (APACHE SERVER) ***********/
 
@@ -35592,6 +35596,10 @@ var store = new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
 		state.total = value;
 	}), _defineProperty(_mutations, 'provinces', function provinces(state, value) {
 		state.provinces = value;
+	}), _defineProperty(_mutations, 'cities', function cities(state, value) {
+		state.cities = value;
+	}), _defineProperty(_mutations, 'brgys', function brgys(state, value) {
+		state.brgys = value;
 	}), _defineProperty(_mutations, 'filterCategories', function filterCategories(state, value) {
 		state.filterCategories = value;
 	}), _defineProperty(_mutations, 'filterPlaces', function filterPlaces(state, value) {
@@ -35625,6 +35633,12 @@ var store = new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
 		},
 		provinces: function provinces(store, value) {
 			store.commit('provinces', value);
+		},
+		cities: function cities(store, value) {
+			store.commit('cities', value);
+		},
+		brgys: function brgys(store, value) {
+			store.commit('brgys', value);
 		},
 		filterCategories: function filterCategories(store, value) {
 			store.commit('filterCategories', value);
@@ -35726,6 +35740,12 @@ var store = new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
 		},
 		provinces: function provinces() {
 			return store.state.provinces;
+		},
+		cities: function cities() {
+			return store.state.cities;
+		},
+		brgys: function brgys() {
+			return store.state.brgys;
 		},
 		filterCategories: function filterCategories() {
 			return store.state.filterCategories;
@@ -36779,6 +36799,11 @@ var state = {
     login: false
   },
   provinces: [],
+  cities: [],
+  cityId: null,
+  brgys: [],
+  brgyId: null,
+
   users: {
 
     firstname: '',
@@ -37551,8 +37576,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_select_places_province_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_select_places_province_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_select_places_city_vue__ = __webpack_require__(100);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_select_places_city_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_select_places_city_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_select_further_categories_vue__ = __webpack_require__(58);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_select_further_categories_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__components_select_further_categories_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_select_places_brgys_vue__ = __webpack_require__(103);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_select_places_brgys_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__components_select_places_brgys_vue__);
 //
 //
 //
@@ -37598,7 +37623,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		};
 	},
 	components: {
-		province: __WEBPACK_IMPORTED_MODULE_0__components_select_places_province_vue___default.a, subCategories: subCategories, furtherCategories: __WEBPACK_IMPORTED_MODULE_2__components_select_further_categories_vue___default.a
+		province: __WEBPACK_IMPORTED_MODULE_0__components_select_places_province_vue___default.a, city: __WEBPACK_IMPORTED_MODULE_1__components_select_places_city_vue___default.a, brgys: __WEBPACK_IMPORTED_MODULE_2__components_select_places_brgys_vue___default.a
 	},
 
 	computed: {
@@ -37678,19 +37703,9 @@ var render = function() {
                         1
                       ),
                       _vm._v(" "),
-                      _c(
-                        "v-flex",
-                        { attrs: { xs12: "" } },
-                        [_c("subCategories")],
-                        1
-                      ),
+                      _c("v-flex", { attrs: { xs12: "" } }, [_c("city")], 1),
                       _vm._v(" "),
-                      _c(
-                        "v-flex",
-                        { attrs: { xs12: "" } },
-                        [_c("furtherCategories")],
-                        1
-                      )
+                      _c("v-flex", { attrs: { xs12: "" } }, [_c("brgys")], 1)
                     ],
                     1
                   )
@@ -37785,6 +37800,8 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
 //
 //
 //
@@ -37807,24 +37824,36 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+
+
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  data: function data() {
-    return {
-      province: null
+          data: function data() {
+                    return {
+                              province: null
 
-    };
-  },
+                    };
+          },
 
-  computed: {
-    provinces: function provinces() {
+          computed: {
+                    provinces: function provinces() {
 
-      return this.$store.getters.provinces;
-    }
-  },
-  watch: {
-    province: function province() {}
-  }
+                              return this.$store.getters.provinces;
+                    }
+          },
+          watch: {
+                    province: function province() {
+
+                              var data = this;
+                              __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post(api_city + '/province', {
+                                        provinceId: this.province
+                              }).then(function (response) {
+
+                                        data.$store.dispatch('cities', response.data.cities);
+                              }).catch(function (response) {});
+                    }
+          }
 });
 
 /***/ }),
@@ -37855,11 +37884,11 @@ var render = function() {
                     [
                       _c("v-select", {
                         attrs: {
-                          "prepend-icon": "queue",
+                          "prepend-icon": "place",
                           items: _vm.provinces,
                           label: "Select Province",
                           autocomplete: "",
-                          "item-value": "id",
+                          "item-value": "provCode",
                           "item-text": "provDesc"
                         },
                         model: {
@@ -37950,9 +37979,8 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
 //
 //
 //
@@ -37977,22 +38005,34 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
+
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      province: null
+      city: null
 
     };
   },
 
   computed: {
-    provinces: function provinces() {
+    cities: function cities() {
 
-      return this.$store.getters.provinces;
+      return this.$store.getters.cities;
     }
   },
   watch: {
-    province: function province() {}
+    city: function city() {
+      var data = this;
+
+      __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post(api_brgy + '/city', {
+        cityId: this.city
+      }).then(function (response) {
+
+        data.$store.dispatch('brgys', response.data.brgys);
+      }).catch();
+    }
   }
 });
 
@@ -38021,34 +38061,23 @@ var render = function() {
                 [
                   _c(
                     "v-flex",
-                    { attrs: { xs12: "", sm4: "" } },
-                    [
-                      _c("v-subheader", {
-                        domProps: { textContent: _vm._s("City") }
-                      })
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "v-flex",
-                    { attrs: { xs12: "", sm8: "" } },
                     [
                       _c("v-select", {
                         attrs: {
-                          items: _vm.provinces,
+                          "prepend-icon": "pin_drop",
+                          items: _vm.cities,
                           multiple: "",
-                          label: "Select",
+                          label: "Select City",
                           autocomplete: "",
-                          "item-value": "id",
-                          "item-text": "name"
+                          "item-value": "citymunCode",
+                          "item-text": "citymunDesc"
                         },
                         model: {
-                          value: _vm.province,
+                          value: _vm.city,
                           callback: function($$v) {
-                            _vm.province = $$v
+                            _vm.city = $$v
                           },
-                          expression: "province"
+                          expression: "city"
                         }
                       })
                     ],
@@ -38074,6 +38103,180 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-af49f39c", module.exports)
+  }
+}
+
+/***/ }),
+/* 103 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(104)
+/* template */
+var __vue_template__ = __webpack_require__(105)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\select\\places\\brgys.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-6cb2f88c", Component.options)
+  } else {
+    hotAPI.reload("data-v-6cb2f88c", Component.options)
+' + '  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 104 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      brgy: null
+
+    };
+  },
+
+  computed: {
+    brgys: function brgys() {
+
+      return this.$store.getters.brgys;
+    }
+  },
+  watch: {
+    brgy: function brgy() {
+      var data = this;
+    }
+  }
+});
+
+/***/ }),
+/* 105 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "v-card",
+    { staticClass: "p-0  m-0", attrs: { color: "grey lighten-4", flat: "" } },
+    [
+      _c(
+        "v-card-text",
+        { staticClass: "pt-0  mt-0" },
+        [
+          _c(
+            "v-container",
+            { staticClass: "pt-0 mt-0" },
+            [
+              _c(
+                "v-layout",
+                [
+                  _c(
+                    "v-flex",
+                    [
+                      _c("v-select", {
+                        attrs: {
+                          "prepend-icon": "drag_handle",
+                          items: _vm.brgys,
+                          multiple: "",
+                          label: "Select Barangay",
+                          autocomplete: "",
+                          "item-value": "brgyCode",
+                          "item-text": "brgyDesc"
+                        },
+                        model: {
+                          value: _vm.brgy,
+                          callback: function($$v) {
+                            _vm.brgy = $$v
+                          },
+                          expression: "brgy"
+                        }
+                      })
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ],
+        1
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-6cb2f88c", module.exports)
   }
 }
 

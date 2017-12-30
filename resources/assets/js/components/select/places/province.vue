@@ -5,12 +5,12 @@
         <v-layout>
           <v-flex>
             <v-select
-               prepend-icon="queue"
+               prepend-icon="place"
               v-bind:items="provinces"
               v-model="province"
               label="Select Province"
               autocomplete
-              item-value="id"
+              item-value="provCode"
               item-text="provDesc"
             ></v-select>
           </v-flex>
@@ -21,6 +21,9 @@
 </template>
 
 <script>
+
+import axios from 'axios'
+
   export default {
     data () {
       return {
@@ -37,6 +40,18 @@
     watch: {
         province(){
 
+          let data = this
+          axios.post(api_city + '/province',{
+              provinceId: this.province
+          }).then((response)=>{
+
+            data.$store.dispatch('cities', response.data.cities)
+
+          })
+
+          .catch((response) => {
+
+          })
 
         }
     }

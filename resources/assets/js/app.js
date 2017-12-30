@@ -12,16 +12,20 @@ import {routes} from './router/route.js'
 
 
 /******** USE FOR SHIFTING SERVER AND LOCAL DEVELOPMENT (APACHE SERVER) ***********/
-window.api_register = 'http://localhost/rbestore/public/api/auth/register';
-window.api_login = 'http://localhost/rbestore/public/api/auth/login';
-window.api_getUser = 'http://localhost/rbestore/public/api/user?token=';
-window.api_logout = 'http://localhost/rbestore/public/api/auth/logout?token=';
-window.api_categories = 'http://localhost/rbestore/public/api/categories';
-window.api_further_categories = 'http://localhost/rbestore/public/api/further_categories';
-window.api_items = 'http://localhost/rbestore/public/api/items';
-window.api_items = 'http://localhost/rbestore/public/api/items';
-window.api_items_further_cat = 'http://localhost/rbestore/public/api/items/further_categories';
-window.api_province = 'http://localhost/rbestore/public/api/province';
+
+var baseUrl = 'http://localhost/rbestore/public/api/';
+
+window.api_register = baseUrl + 'auth/register';
+window.api_login = baseUrl + 'auth/login';
+window.api_getUser = baseUrl + 'user?token=';
+window.api_logout = baseUrl + 'auth/logout?token=';
+window.api_categories = baseUrl + 'categories';
+window.api_further_categories = baseUrl + 'further_categories';
+window.api_items = baseUrl + 'items';
+window.api_items_further_cat = baseUrl +'items/further_categories';
+window.api_province = baseUrl +'province';
+window.api_city = baseUrl +'city';
+window.api_brgy = baseUrl +'barangay';
 
 /******** USE FOR SHIFTING SERVER AND LOCAL DEVELOPMENT (APACHE SERVER) ***********/
 

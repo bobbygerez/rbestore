@@ -13,10 +13,10 @@
               <province></province>
             </v-flex>
             <v-flex xs12>
-              <subCategories></subCategories>
+              <city></city>
             </v-flex>
             <v-flex xs12>
-              <furtherCategories></furtherCategories>
+              <brgys></brgys>
             </v-flex>
 
           </v-layout>
@@ -33,7 +33,7 @@
 <script type="text/javascript">
 	import province from '../../components/select/places/province.vue'
 	import city from '../../components/select/places/city.vue'
-	import furtherCategories from '../../components/select/further-categories.vue'
+	import brgys from '../../components/select/places/brgys.vue'
 	export default {
 
 		data: () =>({
@@ -41,7 +41,7 @@
 			  valid: true,
 		}),
 		 components: {
-		     province,subCategories, furtherCategories
+		     province,city, brgys
 		    },
 
 		 computed: {

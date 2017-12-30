@@ -35,6 +35,10 @@ class CreateItemsTable extends Migration
             $table->foreign('further_category_id')->references('id')
                 ->on('further_categories');
 
+            $table->integer('provCode')->unsigned()->nullable();
+            $table->integer('citymunCode')->unsigned()->nullable();
+            $table->integer('brgyCode')->unsigned()->nullable();
+            
             $table->string('name');
             $table->decimal('amount')->default(0);
             $table->integer('discount')->default(0);

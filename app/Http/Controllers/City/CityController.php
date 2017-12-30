@@ -16,10 +16,15 @@ class CityController extends Controller
             ]);
 	}
 
-    public function show($id)
-    {
+
+    public function getCities(){
+
+        $request = app()->make('request');
+
         return response()->json([
-                'cities' => City::where('province_id', $id)->get()
+
+                'cities' => City::where('provCode', $request->provinceId)->orderBy('citymunDesc')->get()
+
             ]);
     }
 }

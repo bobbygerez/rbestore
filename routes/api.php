@@ -11,6 +11,8 @@ Route::post('further_categories', 'API\APICategoryController@furtherCategories')
 Route::get('items', 'API\APIItemsController@index');
 Route::post('items/further_categories', 'API\APIItemsController@furtherCategories');
 Route::get('province', 'Province\ProvinceController@index');
+Route::post('city/province', 'City\CityController@getCities');
+Route::post('barangay/city', 'Barangay\BarangayController@getBarangays');
 Route::group(['middleware' => 'jwt.auth'], function () {
     Route::get('user', 'API\UserController@getAuthUser');
 });

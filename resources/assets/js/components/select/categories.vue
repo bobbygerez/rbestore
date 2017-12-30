@@ -45,7 +45,18 @@
           this.$store.dispatch('categoryId', this.categoryId)
           axios.get(api_categories + '/' + this.categoryId + '/subcategories')
           .then( function(response){
-              data.$store.dispatch('subcategories', response.data.subcategories);
+              data.$store.dispatch('subcategories', response.data.subcategories)
+              data.$store.dispatch('products', response.data.items)
+              data.$store.dispatch('breadCrumbsItems', [
+              {
+                text: 'Home',
+                disabled: false
+              },
+              {
+                text: response.data.category.name,
+                disabled: false
+              },
+              ])
           })
           .catch( function(error){
 

@@ -7,6 +7,7 @@ use App\Repo\FurtherCategory\FurtherCategoryInterface;
 use App\Repo\FurtherCategory\FurtherCategoryRepository;
 
 use App\Http\Controllers\API\APICategoryController;
+use App\Http\Controllers\API\APIItemsController;
 
 class FurtherCategoryServiceProvider extends ServiceProvider
 {
@@ -28,6 +29,10 @@ class FurtherCategoryServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->when(APICategoryController::class)
+          ->needs(FurtherCategoryInterface::class)
+          ->give(FurtherCategoryRepository::class);
+
+        $this->app->when(APIItemsController::class)
           ->needs(FurtherCategoryInterface::class)
           ->give(FurtherCategoryRepository::class);
     }

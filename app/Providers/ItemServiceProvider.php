@@ -7,6 +7,7 @@ use App\Repo\Item\ItemInterface;
 use App\Repo\Item\ItemRepository;
 
 use App\Http\Controllers\API\APIItemsController;
+use App\Http\Controllers\API\APICategoryController;
 
 class ItemServiceProvider extends ServiceProvider
 {
@@ -29,6 +30,10 @@ class ItemServiceProvider extends ServiceProvider
     {
         
          $this->app->when(APIItemsController::class)
+          ->needs(ItemInterface::class)
+          ->give(ItemRepository::class);
+
+        $this->app->when(APICategoryController::class)
           ->needs(ItemInterface::class)
           ->give(ItemRepository::class);
 

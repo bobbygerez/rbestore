@@ -12,5 +12,7 @@ class SubCategoryRepository extends BaseRepository implements SubCategoryInterfa
 
         $this->modelName = new SubCategory();
     }
+
+    
 	
 }

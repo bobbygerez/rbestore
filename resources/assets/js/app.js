@@ -1,12 +1,15 @@
 import axios from 'axios'
 import Vue from 'vue'
+import VueRouter from 'vue-router'
 
 import Vuetify from 'vuetify'
 import Master from './layouts/google-contacts.vue'
-Vue.use(Vuetify)
 
 
 import { store } from './vuex/store.js'
+import {routes} from './router/route.js'
+
+
 
 /******** USE FOR SHIFTING SERVER AND LOCAL DEVELOPMENT (APACHE SERVER) ***********/
 window.api_register = 'http://localhost/rbestore/public/api/auth/register';
@@ -16,6 +19,8 @@ window.api_logout = 'http://localhost/rbestore/public/api/auth/logout?token=';
 window.api_categories = 'http://localhost/rbestore/public/api/categories';
 window.api_further_categories = 'http://localhost/rbestore/public/api/further_categories';
 window.api_items = 'http://localhost/rbestore/public/api/items';
+window.api_items = 'http://localhost/rbestore/public/api/items';
+window.api_items_further_cat = 'http://localhost/rbestore/public/api/items/further_categories';
 window.api_province = 'http://localhost/rbestore/public/api/province';
 
 /******** USE FOR SHIFTING SERVER AND LOCAL DEVELOPMENT (APACHE SERVER) ***********/
@@ -99,11 +104,24 @@ var products = {
 
 }
 
+
+
+
+Vue.use(VueRouter)
+Vue.use(Vuetify)
+
+const router = new VueRouter({
+  routes
+})
+
 const app = new Vue({
     el: '#app',
     store,
+    router,
     mixins: [login, categories, province, products],
     components: {
     	Master
     }
 });
+
+

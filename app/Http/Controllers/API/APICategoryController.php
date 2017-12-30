@@ -8,18 +8,21 @@ use App\Repo\Category\CategoryInterface;
 use App\Repo\SubCategory\SubCategoryInterface;
 use App\Repo\FurtherCategory\FurtherCategoryInterface;
 
+use App\Repo\Item\ItemInterface;
 
 class APICategoryController extends Controller
 {
     protected $category;
     protected $subcategory;
     protected $furtherCategory;
+    protected $item;
 
-    public function __construct(CategoryInterface $category, SubCategoryInterface $subcategory, FurtherCategoryInterface $furtherCategory){
+    public function __construct(CategoryInterface $category, SubCategoryInterface $subcategory, FurtherCategoryInterface $furtherCategory, ItemInterface $item){
 
         $this->category = $category;
         $this->subcategory = $subcategory;
         $this->furtherCategory = $furtherCategory;
+        $this->item = $item;
     }
    
    	public function index()
@@ -34,7 +37,9 @@ class APICategoryController extends Controller
 
     	
     	 return response()->json([
-                'subcategories' => $this->subcategory->where('category_id', $id)->get()
+                'category' => $this->category->where('id', $id)->first(),
+                'subcategories' => $this->subcategory->where('category_id', $id)->get(),
+                'items' => $this->item->where('category_id', $id)->with('images')->paginate(10)
             ]);
     }
 
@@ -44,7 +49,9 @@ class APICategoryController extends Controller
         $furtherCat = collect($request->subcategoryIds)->reverse()->values();
 
         return response()->json([
-                'furtherCategories' => $this->furtherCategory->whereIn('subcategory_id', $furtherCat)
+                'subcategories' => $this->subcategory->getNameBreadCrumbs($furtherCat),
+                'furtherCategories' => $this->furtherCategory->whereIn('subcategory_id', $furtherCat),
+                'items' => $this->item->whereIn('subcategory_id', $furtherCat)->with('images')->paginate(10)
             ]);
     }
 

@@ -23,8 +23,7 @@ class Item extends Model
     }
 
     public function getCreatedAtAttribute($value){
-
-
-        return Carbon::parse($value)->toDayDateTimeString();
+        return  Carbon::parse($value)->diffForHumans();
+        
     }
 }

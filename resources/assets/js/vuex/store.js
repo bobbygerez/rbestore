@@ -100,6 +100,11 @@ export const store = new Vuex.Store({
 		},
 		filterCategories(state, value){
 			state.filterCategories = value
+		},
+
+		//BREADCRUMBS
+		breadCrumbsItems(state, value){
+			state.breadCrumbsItems = value
 		}
 
 	},
@@ -164,7 +169,70 @@ export const store = new Vuex.Store({
 		},
 		current_page(store, value){
 			store.commit('current_page', value);
+		},
+
+		//BREADCRUMBS
+		breadCrumbsItems(store, value){
+			
+			store.commit('breadCrumbsItems', value)
+		},
+
+		subCatBreadCrumbs(store, subcategories){
+
+			var breadCrumbsItems = store.state.breadCrumbsItems
+
+                  for (var key in breadCrumbsItems) {
+                    if (key > 1 ) {
+                        delete breadCrumbsItems[key]
+                    }
+
+                  }
+
+            for (var i = subcategories.length - 1; i >= 0; i--) {
+                  breadCrumbsItems.push(subcategories[i])
+             }
+
+            var breadCrumbsItems = store.state.breadCrumbsItems
+
+            var cleanArray = [];
+            	for(var key in breadCrumbsItems){
+            		if(breadCrumbsItems[key] !== null || breadCrumbsItems[key] !== undefined){
+            			cleanArray.push(breadCrumbsItems[key])
+            		}
+            	}
+
+			store.commit('breadCrumbsItems', cleanArray)
+
+
+		},
+		furtherCatBreadCrumbs(store, furtherCategories){
+
+			var breadCrumbsItems = store.state.breadCrumbsItems
+			var subCatIds = store.state.subcategoryId.length
+			var total = 1 + subCatIds;
+
+                  for (var key in breadCrumbsItems) {
+                    if (key >  total ) {
+                        delete breadCrumbsItems[key]
+                   	 }
+
+                  	}
+
+                   for (var i = furtherCategories.length - 1; i >= 0; i--) {
+                  		breadCrumbsItems.push(furtherCategories[i])
+             		}
+
+            var cleanArray = [];
+            	for(var key in breadCrumbsItems){
+            		if(breadCrumbsItems[key] !== null || breadCrumbsItems[key] !== undefined){
+            			cleanArray.push(breadCrumbsItems[key])
+            		}
+            	}
+
+            store.commit('breadCrumbsItems', cleanArray)
 		}
+
+
 		
 
 
@@ -210,6 +278,9 @@ export const store = new Vuex.Store({
 		products(){
 			return store.state.products
 		},
+
+
+		//PRODUCT PAGES
 		current_page(){
 
 			return store.state.current_page
@@ -241,6 +312,12 @@ export const store = new Vuex.Store({
 		total(){
 
 			return store.state.total
+		},
+
+
+		//BREADCRUMBS
+		breadCrumbsItems(){
+			return store.state.breadCrumbsItems
 		}
 	}
 	

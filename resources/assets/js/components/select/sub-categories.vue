@@ -46,12 +46,18 @@
         subcategory(){
 
             let data = this
+            this.$store.dispatch('subcategoryId', this.subcategory)
             axios.post(api_further_categories,{
               subcategoryIds: this.subcategory
             })
             .then( function(response){
                 
                 data.$store.dispatch('furtherCategories', response.data.furtherCategories)
+                data.$store.dispatch('products', response.data.items)
+                data.$store.dispatch('subCatBreadCrumbs', response.data.subcategories)
+               
+                
+
             })
             .catch( function(error){
 

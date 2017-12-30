@@ -23,8 +23,7 @@
         </v-container>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn flat  @click="dialogCancel">Cancel</v-btn>
-          <v-btn flat @click="submit" class="blue--text text--darken-3">submit</v-btn>
+          <v-btn flat  @click="dialogCancel">Close</v-btn>
         </v-card-actions>
         </v-form>
       </v-card>
@@ -62,9 +61,6 @@
 
 		 	 dialogCancel(){
           		this.$store.dispatch('filterCategories', false);
-		      },
-		      submit(){
-
 		      }
 		      
 		 }

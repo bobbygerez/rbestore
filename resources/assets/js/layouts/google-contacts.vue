@@ -109,28 +109,8 @@
       
     </v-toolbar>
       <v-content>
-
-        <v-container fluid grid-list-md>
-       <!--    PRODUCT HERE -->
-
-        <product-bread-crumbs></product-bread-crumbs>
-          <v-layout row wrap>
-              <product
-                 v-for="(product, index) in products.data"
-                  v-bind:item="product"
-                  v-bind:index="index"
-                  v-bind:key="product.id"
-                   
-              >
-
-              </product>
-
-        </v-layout>
-
-
-        </v-container>
-        <product-page></product-page>
-       <!-- END PRODUCT HERE -->
+     
+          <router-view></router-view>
         
       </v-content>
     
@@ -277,14 +257,12 @@
   import provinces from '../components/select/provinces.vue'
   import cities from '../components/select/cities.vue'
   import categories from '../components/select/categories.vue'
-  import product from '../components/cards/product.vue'
   import filterCategories from '../components/dialog/filterCategories.vue'
-  import productPage from '../components/pagination/productPage.vue'
-  import productBreadCrumbs from '../components/breadcrumbs/productBreadCrumbs.vue'
+ 
 
   export default {
     components: {
-      mainMenu, provinces, product, cities, categories, filterCategories, productPage, productBreadCrumbs
+      mainMenu, provinces, cities, categories, filterCategories
     },
     data: () => ({
         lorem: `Lorem ipsum dolor sit amet, mel at clita quando. Te sit oratio vituperatoribus, nam ad ipsum posidonium mediocritatem, explicari dissentiunt cu mea. Repudiare disputationi vim in, mollis iriure nec cu, alienum argumentum ius ad. Pri eu justo aeque torquatos.`,
@@ -317,9 +295,7 @@
 
     computed: {
 
-        products(){
-          return this.$store.getters.products
-        },
+        
         dialog: {
             get(){
 

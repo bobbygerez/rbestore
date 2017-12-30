@@ -28,13 +28,12 @@
         <v-card-title primary-title>
           <div>
             <div class="headline">{{ item.name }}</div>
-            <span class="gray--text" >Posted: {{ item.created_at }}</span>
-            <br />
-            <span class="red--text text--darken-4" >{{ item.amount }}</span>
+             <span class="grey--text">Posted: {{ item.created_at }}</span>
           </div>
         </v-card-title>
         <v-card-actions>
-          <v-btn flat >View more</v-btn>
+          <v-btn flat color="purple">{{ item.amount }}</v-btn>
+          <v-btn flat >Details</v-btn>
           <v-spacer></v-spacer>
           <v-btn icon @click.native="show = !show">
             <v-icon>{{ show ? 'keyboard_arrow_down' : 'keyboard_arrow_up' }}</v-icon>
@@ -71,11 +70,3 @@
     
   }
 </script>
-<style type="text/css">
-  
-  .gray--text{
-    font-size: 12px;
-  }
- 
-
-</style>

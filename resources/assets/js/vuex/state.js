@@ -1,5 +1,11 @@
 
 export const state = {
+  breadCrumbsItems: [
+          {
+            text: 'Home',
+            disabled: false
+          }
+        ],
   successLogin: false,
   filterCategories: false,
   categoryId: null,

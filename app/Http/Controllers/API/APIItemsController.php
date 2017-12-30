@@ -6,15 +6,18 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Repo\Item\ItemInterface;
 use Illuminate\Pagination\LengthAwarePaginator;
+use App\Repo\FurtherCategory\FurtherCategoryInterface;
 
 class APIItemsController extends Controller
 {
     
 	protected $item;
+    protected $furtherCat;
 
-    public function __construct(ItemInterface $item){
+    public function __construct(ItemInterface $item, FurtherCategoryInterface $furtherCat){
 
     	$this->item = $item;
+        $this->furtherCat = $furtherCat;
 
     }
 
@@ -26,6 +29,18 @@ class APIItemsController extends Controller
 
     			'items' => $this->item->with('images')->paginate(10)
     		]);
+    }
+
+    public function furtherCategories(){
+
+        $request = app()->make('request');
+        $furtherCatRequest = collect($request->furtherCatId)->reverse()->values();
+
+        return response()->json([
+                 'further_categories' => $this->furtherCat->getNameBreadCrumbs($furtherCatRequest),
+                 'items' => $this->item->whereIn('further_category_id', $furtherCatRequest)->with('images')->paginate(10)
+
+            ]);
     }
 
 

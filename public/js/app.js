@@ -34635,7 +34635,10 @@ var render = function() {
                         [
                           _c("v-pagination", {
                             staticClass: "ma-0",
-                            attrs: { length: _vm.lastPage, "total-visible": 7 },
+                            attrs: {
+                              length: _vm.lastPage,
+                              "total-visible": 10
+                            },
                             model: {
                               value: _vm.currentPage,
                               callback: function($$v) {
@@ -37829,31 +37832,36 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-          data: function data() {
-                    return {
-                              province: null
+    data: function data() {
+        return {
+            province: null
 
-                    };
-          },
+        };
+    },
 
-          computed: {
-                    provinces: function provinces() {
+    computed: {
+        provinces: function provinces() {
 
-                              return this.$store.getters.provinces;
-                    }
-          },
-          watch: {
-                    province: function province() {
+            return this.$store.getters.provinces;
+        },
+        categoryId: function categoryId() {
 
-                              var data = this;
-                              __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post(api_city + '/province', {
-                                        provinceId: this.province
-                              }).then(function (response) {
+            return this.$store.getters.categoryId;
+        }
+    },
+    watch: {
+        province: function province() {
 
-                                        data.$store.dispatch('cities', response.data.cities);
-                              }).catch(function (response) {});
-                    }
-          }
+            var data = this;
+            __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post(api_city + '/province', {
+                provinceId: this.province,
+                categoryId: this.categoryId
+            }).then(function (response) {
+
+                data.$store.dispatch('cities', response.data.cities);
+            }).catch(function (response) {});
+        }
+    }
 });
 
 /***/ }),

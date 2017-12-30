@@ -26,4 +26,8 @@ class Item extends Model
         return  Carbon::parse($value)->diffForHumans();
         
     }
+
+    public function province(){
+
+    }
 }

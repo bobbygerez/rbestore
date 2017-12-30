@@ -8,6 +8,8 @@ use App\Repo\Item\ItemRepository;
 
 use App\Http\Controllers\API\APIItemsController;
 use App\Http\Controllers\API\APICategoryController;
+use App\Http\Controllers\City\CityController;
+
 
 class ItemServiceProvider extends ServiceProvider
 {
@@ -34,6 +36,10 @@ class ItemServiceProvider extends ServiceProvider
           ->give(ItemRepository::class);
 
         $this->app->when(APICategoryController::class)
+          ->needs(ItemInterface::class)
+          ->give(ItemRepository::class);
+
+        $this->app->when(CityController::class)
           ->needs(ItemInterface::class)
           ->give(ItemRepository::class);
 

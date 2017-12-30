@@ -13,11 +13,11 @@ class ImagesTableSeeder extends Seeder
     public function run()
     {
         
-        for ($i=0; $i < 50; $i++) { 
+        for ($i=0; $i < 1000; $i++) { 
         	
         	Image::create([
         			'path' => 'images/uploads/' . rand(1, 68) . '.jpg',
-        			'imageable_id' => rand(1, 30),
+        			'imageable_id' => rand(1, 1000),
         			'imageable_type' => 'App\\Item',
         			'body' => 'text ' . $i
 

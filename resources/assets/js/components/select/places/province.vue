@@ -35,6 +35,10 @@ import axios from 'axios'
         provinces(){
 
             return this.$store.getters.provinces
+        },
+        categoryId(){
+
+            return this.$store.getters.categoryId
         }
     },
     watch: {
@@ -42,7 +46,8 @@ import axios from 'axios'
 
           let data = this
           axios.post(api_city + '/province',{
-              provinceId: this.province
+              provinceId: this.province,
+              categoryId: this.categoryId
           }).then((response)=>{
 
             data.$store.dispatch('cities', response.data.cities)

@@ -27,7 +27,7 @@ class APIItemsController extends Controller
 
     	return response()->json([
 
-    			'items' => $this->item->with('images')->paginate(10)
+    			'items' => $this->item->with('images')->orderBy('created_at', 'DESC')->paginate(10)
     		]);
     }
 

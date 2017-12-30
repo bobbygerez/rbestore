@@ -29,5 +29,7 @@ class Item extends Model
 
     public function province(){
 
+
+
     }
 }

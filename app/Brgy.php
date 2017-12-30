@@ -4,8 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class City extends Model
+class Brgy extends Model
 {
-    
-    protected $table = 'refcitymun';
+    protected $table = 'refbrgy';
 }

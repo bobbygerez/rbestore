@@ -3,19 +3,15 @@
     <v-card-text class="pt-0  mt-0">
       <v-container class="pt-0 mt-0">
         <v-layout>
-          <v-flex xs12 sm4 >
-            <v-subheader v-text="'Province'"></v-subheader>
-          </v-flex>
-          <v-flex xs12 sm8>
+          <v-flex>
             <v-select
-
+               prepend-icon="queue"
               v-bind:items="provinces"
               v-model="province"
-              multiple 
-              label="Select"
+              label="Select Province"
               autocomplete
               item-value="id"
-              item-text="name"
+              item-text="provDesc"
             ></v-select>
           </v-flex>
         </v-layout>

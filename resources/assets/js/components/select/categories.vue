@@ -9,7 +9,7 @@
               prepend-icon="queue"
               v-bind:items="categories"
               v-model="categoryId"
-              label="Categories"
+              label="Select Category"
               autocomplete
               item-value="id"
               item-text="name"

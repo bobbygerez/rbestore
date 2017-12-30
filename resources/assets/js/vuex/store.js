@@ -101,6 +101,9 @@ export const store = new Vuex.Store({
 		filterCategories(state, value){
 			state.filterCategories = value
 		},
+		filterPlaces(state, value){
+			state.filterPlaces = value
+		},
 
 		//BREADCRUMBS
 		breadCrumbsItems(state, value){
@@ -138,7 +141,9 @@ export const store = new Vuex.Store({
 		filterCategories(store, value){
 			store.commit('filterCategories', value)
 		},
-
+		filterPlaces(store, value){
+			store.commit('filterPlaces', value)
+		},
 		categoryId(store, value){
 			store.commit('categoryId', value)
 		},
@@ -259,6 +264,9 @@ export const store = new Vuex.Store({
 		},
 		filterCategories(){
 			return store.state.filterCategories
+		},
+		filterPlaces(){
+			return store.state.filterPlaces
 		},
 		categoryId(){
 			return store.state.categoryId

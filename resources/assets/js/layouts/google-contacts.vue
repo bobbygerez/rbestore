@@ -77,11 +77,9 @@
         <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
         RBeStore
       </v-toolbar-title>
-      <v-text-field
-        solo
-        prepend-icon="search"
-        placeholder="Search"
-      ></v-text-field>
+        
+
+        <search-product></search-product>
       <v-spacer></v-spacer>
 
 
@@ -109,8 +107,10 @@
       
     </v-toolbar>
       <v-content>
-     
-          <router-view></router-view>
+          
+           <v-fade-transition mode="out-in">
+              <router-view></router-view>
+            </v-fade-transition>
         
       </v-content>
     
@@ -247,6 +247,7 @@
     </v-dialog>
 
     <filter-categories></filter-categories>
+    <filter-places></filter-places>
   </v-app>
 </template>
 
@@ -254,15 +255,14 @@
 
   import axios from 'axios'
   import mainMenu from '../components/users/main-menu.vue'
-  import provinces from '../components/select/provinces.vue'
-  import cities from '../components/select/cities.vue'
   import categories from '../components/select/categories.vue'
   import filterCategories from '../components/dialog/filterCategories.vue'
- 
+  import filterPlaces from '../components/dialog/filterPlaces.vue'
+  import searchProduct from '../components/textfield/searchProduct.vue'
 
   export default {
     components: {
-      mainMenu, provinces, cities, categories, filterCategories
+      mainMenu, categories, filterCategories, searchProduct, filterPlaces
     },
     data: () => ({
         lorem: `Lorem ipsum dolor sit amet, mel at clita quando. Te sit oratio vituperatoribus, nam ad ipsum posidonium mediocritatem, explicari dissentiunt cu mea. Repudiare disputationi vim in, mollis iriure nec cu, alienum argumentum ius ad. Pri eu justo aeque torquatos.`,
@@ -398,8 +398,11 @@
 
       itemClick(value){
 
-        if( value == 'Categories'){
+        if( value === 'Categories'){
           this.$store.dispatch('filterCategories', true);
+        }
+        if( value === 'Places'){
+          this.$store.dispatch('filterPlaces', true);
         }
       },
       dialogCancel(){

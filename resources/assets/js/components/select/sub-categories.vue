@@ -9,7 +9,7 @@
               v-bind:items="subcategories"
               v-model="subcategory"
               multiple 
-              label="Sub-categories"
+              label="Select Sub-categories"
               autocomplete
               item-value="id"
               item-text="name"

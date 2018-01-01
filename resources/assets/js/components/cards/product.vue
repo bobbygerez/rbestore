@@ -1,6 +1,6 @@
 <template>
 
-    <v-flex xs6 sm4 md3 lg3 xl3 >
+    <v-flex xs12 sm6 md3 lg3 xl3 >
       <v-card 
         :class="cardME"
         v-on:mouseover="productHover"
@@ -27,8 +27,10 @@
 
         <v-card-title primary-title>
           <div>
-            <div class="headline">{{ item.name }}</div>
-             <span class="grey--text">Posted: {{ item.created_at }}</span>
+            <div class="title">{{ item.name }}</div>
+             <span class="grey--text">{{ item.created_at }} | {{ item.province.provDesc }} | {{ item.city.citymunDesc }} | {{ item.brgy.brgyDesc }}</span>
+             <br />
+             <router-link :to="'user/' + item.user_name.uuid">{{ item.user_name.firstname }} {{ item.user_name.lastname }}</router-link>
           </div>
         </v-card-title>
         <v-card-actions>

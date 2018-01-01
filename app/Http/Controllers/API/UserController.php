@@ -34,4 +34,11 @@ class UserController extends Controller
 
        return $this->user->logout($request);
     }
+
+    public function getUserInfo(Request $request){
+
+        return response()->json([
+                'user' => $this->user->where('uuid', $request->uuid)->exclude(['email'])->first()
+            ]);
+    }
 }

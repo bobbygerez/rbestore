@@ -53,5 +53,7 @@ class UserRepository extends BaseRepository implements UserInterface{
         return response()->json(['result' => 'logout']);
     }
 
+    
+
 	
 }

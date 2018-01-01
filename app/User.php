@@ -26,4 +26,10 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+    protected $columns = array('firstname','lastname', 'mobile', 'jobtitle','company','email');
+
+    public function scopeExclude($query,$value = array()) 
+    {
+        return $query->select( array_diff( $this->columns,(array) $value) );
+    }
 }

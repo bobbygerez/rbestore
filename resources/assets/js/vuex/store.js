@@ -20,6 +20,9 @@ export const store = new Vuex.Store({
 		jobTitle(state, jobTitle){
 			state.users.jobTitle = jobTitle
 		},
+		jobtitle(state, jobTitle){
+			state.users.jobTitle = jobTitle
+		},
 		email(state, email){
 			state.users.email = email
 		},
@@ -114,6 +117,9 @@ export const store = new Vuex.Store({
 		//BREADCRUMBS
 		breadCrumbsItems(state, value){
 			state.breadCrumbsItems = value
+		},
+		navBreadCrumbs(state, value){
+			state.navBreadCrumbs = value
 		}
 
 	},
@@ -121,6 +127,13 @@ export const store = new Vuex.Store({
 		users(store, value){
 			
 			store.commit(value['fieldName'], value['value'])
+		},
+		userInfo(store, user){
+
+			for (var key in user){
+				store.commit(key, user[key]);
+			}
+
 		},
 
 		//DIALOG
@@ -189,6 +202,11 @@ export const store = new Vuex.Store({
 		},
 
 		//BREADCRUMBS
+
+		navBreadCrumbs(store, value){
+			
+			store.commit('navBreadCrumbs', value)
+		},
 		breadCrumbsItems(store, value){
 			
 			store.commit('breadCrumbsItems', value)
@@ -344,6 +362,9 @@ export const store = new Vuex.Store({
 		//BREADCRUMBS
 		breadCrumbsItems(){
 			return store.state.breadCrumbsItems
+		},
+		navBreadCrumbs(){
+			return store.state.navBreadCrumbs
 		}
 	}
 	

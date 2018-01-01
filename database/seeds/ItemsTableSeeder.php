@@ -23,7 +23,7 @@ class ItemsTableSeeder extends Seeder
         for ($i=0; $i < 1000; $i++) { 
         	
         	Item::create([
-        			'user_id' => rand(1,2),
+        			'user_id' => rand(1,100),
         			'unit_id' => rand(1, 10),
         			'category_id' => rand(1, 8),
         			'subcategory_id' => rand(1, 26),

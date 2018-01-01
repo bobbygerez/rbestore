@@ -39,7 +39,8 @@ class APICategoryController extends Controller
     	 return response()->json([
                 'category' => $this->category->where('id', $id)->first(),
                 'subcategories' => $this->subcategory->where('category_id', $id)->get(),
-                'items' => $this->item->where('category_id', $id)->with('images')->paginate(10)
+                'items' => $this->item->where('category_id', $id)->with(['images', 'province', 'userName', 'city', 'brgy'])
+                        ->paginate(10)
             ]);
     }
 
@@ -51,7 +52,7 @@ class APICategoryController extends Controller
         return response()->json([
                 'subcategories' => $this->subcategory->getNameBreadCrumbs($furtherCat),
                 'furtherCategories' => $this->furtherCategory->whereIn('subcategory_id', $furtherCat),
-                'items' => $this->item->whereIn('subcategory_id', $furtherCat)->with('images')->paginate(10)
+                'items' => $this->item->whereIn('subcategory_id', $furtherCat)->with(['images', 'province', 'userName', 'city', 'brgy'])->paginate(10)
             ]);
     }
 

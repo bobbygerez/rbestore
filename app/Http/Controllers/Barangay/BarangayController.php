@@ -16,7 +16,7 @@ class BarangayController extends Controller
 
     	return response()->json([
 
-                'brgys' => Brgy::where('citymunCode', $request->cityId)->orderBy('brgyDesc')->get()
+                'brgys' => Brgy::whereIn('citymunCode', $request->cityId)->orderBy('brgyDesc')->get()
 
             ]);
     }

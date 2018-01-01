@@ -8,6 +8,9 @@ use App\Repo\Item\ItemInterface;
 use Illuminate\Pagination\LengthAwarePaginator;
 use App\Repo\FurtherCategory\FurtherCategoryInterface;
 
+
+use Jenssegers\Optimus\Optimus;
+
 class APIItemsController extends Controller
 {
     
@@ -27,7 +30,8 @@ class APIItemsController extends Controller
 
     	return response()->json([
 
-    			'items' => $this->item->with('images')->orderBy('created_at', 'DESC')->paginate(10)
+    			'items' => $this->item->with(['images', 'province', 'userName', 'city', 'brgy'])
+                            ->orderBy('created_at', 'DESC')->paginate(10)
     		]);
     }
 
@@ -38,9 +42,14 @@ class APIItemsController extends Controller
 
         return response()->json([
                  'further_categories' => $this->furtherCat->getNameBreadCrumbs($furtherCatRequest),
-                 'items' => $this->item->whereIn('further_category_id', $furtherCatRequest)->with('images')->paginate(10)
+                 'items' => $this->item->whereIn('further_category_id', $furtherCatRequest)->with(['images', 'province', 'userName', 'city', 'brgy'])->paginate(10)
 
             ]);
+    }
+
+    public function getSample(Optimus $optimus){
+
+         return $optimus->decode(5);
     }
 
 

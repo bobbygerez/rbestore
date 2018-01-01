@@ -6,6 +6,13 @@ export const state = {
             disabled: false
           }
         ],
+  navBreadCrumbs:[
+      {
+        text: 'Home',
+        to: '/',
+        disabled: false
+      }
+  ],
   successLogin: false,
   filterCategories: false,
   filterPlaces: false,

@@ -26,6 +26,7 @@ window.api_items_further_cat = baseUrl +'items/further_categories';
 window.api_province = baseUrl +'province';
 window.api_city = baseUrl +'city';
 window.api_brgy = baseUrl +'barangay';
+window.api_user = baseUrl +'user/';
 
 /******** USE FOR SHIFTING SERVER AND LOCAL DEVELOPMENT (APACHE SERVER) ***********/
 

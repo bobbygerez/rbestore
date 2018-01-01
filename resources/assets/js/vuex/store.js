@@ -70,6 +70,17 @@ export const store = new Vuex.Store({
 		products(state, value){
 			state.products = value
 		},
+		userProduct(state, value){
+			state.userProduct = value
+		},
+
+
+		//USER PAGES
+		user_current_page(state, value){
+			state.user_current_page = value
+		},
+
+
 
 		//PAGES
 		current_page(state, value){
@@ -185,7 +196,10 @@ export const store = new Vuex.Store({
 			store.commit('furtherCategories', value)
 		},
 		
-
+		//USER ITEMS
+		user_current_page(store, value){
+			store.commit('user_current_page', value)
+		},
 		//ITEMS
 		products(store, value){
 			store.commit('products', value)
@@ -196,6 +210,9 @@ export const store = new Vuex.Store({
 			store.commit('per_page', value.per_page)
 			store.commit('to', value.to)
 			store.commit('total', value.total)
+		},
+		userProduct(store, value){
+			store.commit('userProduct', value)
 		},
 		current_page(store, value){
 			store.commit('current_page', value);
@@ -322,6 +339,17 @@ export const store = new Vuex.Store({
 		products(){
 			return store.state.products
 		},
+		userProduct(){
+			return store.state.userProduct
+		},
+
+		//USER PRODUCT PAGES
+		user_current_page(){
+
+			return store.state.user_current_page
+		},
+
+
 
 
 		//PRODUCT PAGES

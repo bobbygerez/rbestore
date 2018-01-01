@@ -15,6 +15,8 @@
       </v-breadcrumbs-item>
 
     </v-breadcrumbs>
+
+     <p  class="headline mt-0 text-lg-center" >Displaying from {{ userProduct.from }} to  {{ userProduct.to }} out of {{ userProduct.total }} </p>
     </v-flex>
     
   </v-layout>
@@ -30,8 +32,8 @@
       navBreadCrumbs(){
         return this.$store.getters.navBreadCrumbs
       },
-      user(){
-        return this.$store.getters.users
+      userProduct(){
+        return this.$store.getters.userProduct
       }
       
 

@@ -75,7 +75,7 @@
     >
       <v-toolbar-title style="width: 300px" class="ml-0 pl-3 ">
         <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
-        RBeStore
+        RBEPH
       </v-toolbar-title>
         
 

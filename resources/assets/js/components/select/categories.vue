@@ -50,10 +50,12 @@
               data.$store.dispatch('breadCrumbsItems', [
               {
                 text: 'Home',
+                to: '/',
                 disabled: false
               },
               {
                 text: response.data.category.name,
+                to: response.data.category.name,
                 disabled: false
               },
               ])

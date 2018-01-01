@@ -28,13 +28,9 @@
         <v-card-title primary-title>
           <div>
             <div class="title">{{ item.name }}</div>
-             <span class="grey--text">
-             <v-icon class="title">place</v-icon>{{ item.created_at }} 
-              {{ item.province.provDesc }}, {{ item.city.citymunDesc }}, {{ item.brgy.brgyDesc }}
-             ({{ item.user_name.mobile }})</span>
+             <span class="grey--text">{{ item.created_at }} | {{ item.province.provDesc }} | {{ item.city.citymunDesc }} | {{ item.brgy.brgyDesc }}</span>
              <br />
-             <v-icon class="title">person</v-icon>
-             <router-link :to="'user/' + item.user_name.uuid"> {{ item.user_name.firstname }} {{ item.user_name.lastname }} </router-link>
+             <router-link :to="'user/' + item.user_name.uuid">{{ item.user_name.firstname }} {{ item.user_name.lastname }}</router-link>
           </div>
         </v-card-title>
         <v-card-actions>

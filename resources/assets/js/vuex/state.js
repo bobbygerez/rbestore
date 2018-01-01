@@ -3,16 +3,11 @@ export const state = {
   breadCrumbsItems: [
           {
             text: 'Home',
+            to: '/',
             disabled: false
           }
         ],
-  navBreadCrumbs:[
-      {
-        text: 'Home',
-        to: '/',
-        disabled: false
-      }
-  ],
+  navBreadCrumbs:[],
   successLogin: false,
   filterCategories: false,
   filterPlaces: false,
@@ -21,7 +16,15 @@ export const state = {
   subcategoryId: null,
   subcategories: [],
   furtherCategories:[],
+
+
+  //PRODUCTS
   products: [],
+  userProduct: [],
+
+
+  //USER PRODUCT PAGINATION
+  user_current_page: 1,
 
   //PRODUCTS PAGINATION
   current_page: 1,

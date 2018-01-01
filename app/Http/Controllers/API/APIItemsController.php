@@ -30,8 +30,8 @@ class APIItemsController extends Controller
 
     	return response()->json([
 
-    			'items' => $this->item->with(['images', 'province', 'userName', 'city', 'brgy'])
-                            ->orderBy('created_at', 'DESC')->paginate(10)
+    			'items' => $this->item->with(['images', 'province', 'userName', 'city', 'brgy'])->OrdPag()
+                            
     		]);
     }
 
@@ -42,7 +42,7 @@ class APIItemsController extends Controller
 
         return response()->json([
                  'further_categories' => $this->furtherCat->getNameBreadCrumbs($furtherCatRequest),
-                 'items' => $this->item->whereIn('further_category_id', $furtherCatRequest)->with(['images', 'province', 'userName', 'city', 'brgy'])->paginate(10)
+                 'items' => $this->item->whereIn('further_category_id', $furtherCatRequest)->withProduct()
 
             ]);
     }

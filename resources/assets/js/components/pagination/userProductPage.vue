@@ -18,30 +18,27 @@
   import axios from 'axios'
   export default {
     
-    created(){
-      this.$store.dispatch('user_current_page', 1)
-    },
     computed: {
       currentPage: {
 
         get(){
-          return this.$store.getters.current_page
+          return this.$store.getters.user_current_page
         },
         set(val){
 
-          this.$store.dispatch('current_page', val)
+          this.$store.dispatch('user_current_page', val)
         }
       },
       lastPage(){
-        return this.$store.getters.last_page
+        return this.$store.getters.userProduct.last_page
       }
     },
     watch: {
       currentPage(){
         let data = this
-        axios.get(api_items + '?page=' + this.currentPage)
+         axios.get(api_user + this.$route.params.uuid + '?page=' + this.currentPage)
         .then( function(response){
-             data.$store.dispatch('products', response.data.items);
+             data.$store.dispatch('userProduct', response.data.items);
         })
         .catch( function(error){
 

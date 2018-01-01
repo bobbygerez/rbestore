@@ -2,22 +2,27 @@
 	<v-container fluid grid-list-md>
 	  <bread-crumbs></bread-crumbs>
       <v-layout row wrap>
-      	<v-flex>
-             <h1>{{ name }}</h1>
-        </v-flex>
+             <user-product
+                 v-for="(product, index) in userProduct.data"
+                  v-bind:item="product"
+                  v-bind:index="index"
+                  v-bind:key="product.id"
+                   
+              >
+              </user-product>
      </v-layout>
+     <user-product-page></user-product-page>
    </v-container>
 </template>
 
 <script type="text/javascript">
 	import axios from 'axios'
 	import breadCrumbs from '../../components/breadCrumbs/navBreadCrumbs.vue'
+	import userProduct from '../../components/cards/userProduct.vue'
+	import userProductPage from '../../components/pagination/userProductPage.vue'
+
 	export default{
 
-		data: () => ({
-		      name: null,
-		      
-		    }),
 
 		created() {
 
@@ -26,11 +31,14 @@
 
 		},
 		components: {
-			breadCrumbs
+			breadCrumbs, userProduct, userProductPage
 		},
 		computed: {
 			users(){
 				return this.$store.getters.users
+			},
+			userProduct(){
+				return this.$store.getters.userProduct
 			}
 		},
 		methods: {
@@ -51,6 +59,7 @@
 								text: response.data.user.firstname + ' ' + response.data.user.lastname,
 								disabled: false,
 							}])
+						data.$store.dispatch('userProduct', response.data.items)
 					})
 					.catch((response) => {
 

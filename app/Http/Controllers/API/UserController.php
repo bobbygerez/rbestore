@@ -5,14 +5,17 @@ namespace App\Http\Controllers\API;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Repo\User\UserInterface;
+use App\Repo\Item\ItemInterface;
 
 
 class UserController extends Controller
 {
     private $user;
+    protected $item;
 
-    public function __construct(UserInterface $user){
+    public function __construct(UserInterface $user, ItemInterface $item){
         $this->user = $user;
+        $this->item = $item;
     }
    
     public function register(Request $request){
@@ -38,7 +41,8 @@ class UserController extends Controller
     public function getUserInfo(Request $request){
 
         return response()->json([
-                'user' => $this->user->where('uuid', $request->uuid)->exclude(['email'])->first()
+                'user' => $this->user->where('uuid', $request->uuid)->exclude(['email'])->first(),
+                'items' => $this->item->getUserItems($request)->withProduct()
             ]);
     }
 }

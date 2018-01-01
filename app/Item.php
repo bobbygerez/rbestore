@@ -45,6 +45,17 @@ class Item extends Model
 
     public function userName(){
 
-        return $this->hasOne('App\User', 'id', 'user_id')->select(['id', 'firstname', 'lastname', 'uuid']);
+        return $this->hasOne('App\User', 'id', 'user_id')->select(['id', 'firstname', 'lastname', 'uuid', 'mobile']);
+    }
+
+    public function scopeWithProduct($query){
+
+        return $query->with(['images', 'province', 'userName', 'city', 'brgy'])
+                            ->orderBy('created_at', 'DESC')->paginate(3);
+    }
+
+    public function scopeOrdPag($query){
+
+        return $query->orderBy('created_at', 'DESC')->paginate(10);
     }
 }

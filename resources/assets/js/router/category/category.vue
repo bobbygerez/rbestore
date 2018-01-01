@@ -21,21 +21,26 @@
 <script type="text/javascript">
 
   import productBreadCrumbs from '../../components/breadcrumbs/productBreadCrumbs.vue'
-  import productPage from '../../components/pagination/productPage.vue'
-  import product from '../../components/cards/product.vue'
+   import productPage from '../../components/pagination/productPage.vue'
+    import product from '../../components/cards/product.vue'
 
    export default {
       components: {
         productBreadCrumbs, productPage, product
       },
       created(){
-
-        this.$store.dispatch('current_page', 1)
-        this.$store.dispatch('breadCrumbsItemsPush',{
-          text: 'Home',
-          to: '/',
-          disabled: false
-        })
+        this.$store.dispatch('breadCrumbsItems',[
+            {
+              text: 'Home',
+              to: '/',
+              disabled: false
+            },
+            {
+              text: this.$route.params.cat,
+              to: this.$route.params.cat,
+              disabled: false
+            }
+          ])
       },
       computed: {
 

@@ -220,6 +220,10 @@ export const store = new Vuex.Store({
 
 		//BREADCRUMBS
 
+		breadCrumbsItemsPush(store, value){
+			store.commit('breadCrumbsItems', [])
+			store.state.breadCrumbsItems.push(value)
+		},
 		navBreadCrumbs(store, value){
 			
 			store.commit('navBreadCrumbs', value)

@@ -18,7 +18,7 @@ class APISubCategoryRepository extends BaseRepository implements SubCategoryInte
     	$collection = $this->modelName->whereIn('id', $furtherCat)->get();
 
     	return $collection->map(function ($item, $key) {
-		    return [ 'text' => $item->name, 'disabled' => false];
+		    return [ 'text' => $item->name, 'to' => $item->name, 'disabled' => true];
 		});
     }
 	

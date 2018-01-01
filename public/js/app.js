@@ -33544,6 +33544,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     };
   },
+  created: function created() {
+    this.$store.dispatch('current_page', 1);
+  },
 
   computed: {
     categories: function categories() {
@@ -33568,6 +33571,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           to: response.data.category.name,
           disabled: false
         }]);
+        data.$router.push(response.data.category.name);
       }).catch(function (error) {});
     }
   }
@@ -36341,6 +36345,9 @@ var store = new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
 		store.commit('userProduct', value);
 	}), _defineProperty(_actions, 'current_page', function current_page(store, value) {
 		store.commit('current_page', value);
+	}), _defineProperty(_actions, 'breadCrumbsItemsPush', function breadCrumbsItemsPush(store, value) {
+		store.commit('breadCrumbsItems', []);
+		store.state.breadCrumbsItems.push(value);
 	}), _defineProperty(_actions, 'navBreadCrumbs', function navBreadCrumbs(store, value) {
 
 		store.commit('navBreadCrumbs', value);
@@ -37457,11 +37464,7 @@ var index_esm = {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return state; });
 
 var state = {
-  breadCrumbsItems: [{
-    text: 'Home',
-    to: '/',
-    disabled: false
-  }],
+  breadCrumbsItems: [],
   navBreadCrumbs: [],
   successLogin: false,
   filterCategories: false,
@@ -37527,11 +37530,14 @@ var state = {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__dashboard_profile_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__dashboard_profile_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__dashboard_home_vue__ = __webpack_require__(83);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__dashboard_home_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__dashboard_home_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__category_category_vue__ = __webpack_require__(110);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__category_category_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__category_category_vue__);
 // import Layouts from '../layouts/google-contacts.vue'
 
 
 
-var routes = [{ path: '/', component: __WEBPACK_IMPORTED_MODULE_1__dashboard_home_vue___default.a }, { path: '/user/:uuid', component: __WEBPACK_IMPORTED_MODULE_0__dashboard_profile_vue___default.a }];
+
+var routes = [{ path: '/', component: __WEBPACK_IMPORTED_MODULE_1__dashboard_home_vue___default.a }, { path: '/user/:uuid', component: __WEBPACK_IMPORTED_MODULE_0__dashboard_profile_vue___default.a }, { path: '/:cat', component: __WEBPACK_IMPORTED_MODULE_2__category_category_vue___default.a }];
 
 /***/ }),
 /* 77 */
@@ -37943,6 +37949,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   components: {
     productBreadCrumbs: __WEBPACK_IMPORTED_MODULE_0__components_breadcrumbs_productBreadCrumbs_vue___default.a, productPage: __WEBPACK_IMPORTED_MODULE_1__components_pagination_productPage_vue___default.a, product: __WEBPACK_IMPORTED_MODULE_2__components_cards_product_vue___default.a
   },
+  created: function created() {
+
+    this.$store.dispatch('current_page', 1);
+    this.$store.dispatch('breadCrumbsItemsPush', {
+      text: 'Home',
+      to: '/',
+      disabled: false
+    });
+  },
+
   computed: {
     products: function products() {
       return this.$store.getters.products;
@@ -38024,7 +38040,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -38073,7 +38088,10 @@ var render = function() {
               _vm._l(_vm.breadCrumbsItems, function(item) {
                 return _c(
                   "v-breadcrumbs-item",
-                  { key: item.text, attrs: { disabled: item.disabled } },
+                  {
+                    key: item.text,
+                    attrs: { disabled: item.disabled, to: item.to, exact: true }
+                  },
                   [_vm._v("\n      " + _vm._s(item.text) + "\n    ")]
                 )
               })
@@ -39042,6 +39060,156 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-6ff7b9b0", module.exports)
+  }
+}
+
+/***/ }),
+/* 110 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = __webpack_require__(111)
+/* template */
+var __vue_template__ = __webpack_require__(112)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\router\\category\\category.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-e8e51570", Component.options)
+  } else {
+    hotAPI.reload("data-v-e8e51570", Component.options)
+' + '  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 111 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_breadcrumbs_productBreadCrumbs_vue__ = __webpack_require__(85);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_breadcrumbs_productBreadCrumbs_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_breadcrumbs_productBreadCrumbs_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_pagination_productPage_vue__ = __webpack_require__(88);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_pagination_productPage_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_pagination_productPage_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_cards_product_vue__ = __webpack_require__(91);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_cards_product_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__components_cards_product_vue__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    productBreadCrumbs: __WEBPACK_IMPORTED_MODULE_0__components_breadcrumbs_productBreadCrumbs_vue___default.a, productPage: __WEBPACK_IMPORTED_MODULE_1__components_pagination_productPage_vue___default.a, product: __WEBPACK_IMPORTED_MODULE_2__components_cards_product_vue___default.a
+  },
+  created: function created() {
+    this.$store.dispatch('breadCrumbsItems', [{
+      text: 'Home',
+      to: '/',
+      disabled: false
+    }, {
+      text: this.$route.params.cat,
+      to: this.$route.params.cat,
+      disabled: false
+    }]);
+  },
+
+  computed: {
+    products: function products() {
+      return this.$store.getters.products;
+    }
+  }
+
+});
+
+/***/ }),
+/* 112 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "v-container",
+    { attrs: { fluid: "", "grid-list-md": "" } },
+    [
+      _c("product-bread-crumbs"),
+      _vm._v(" "),
+      _c(
+        "v-layout",
+        { attrs: { row: "", wrap: "" } },
+        _vm._l(_vm.products.data, function(product, index) {
+          return _c("product", {
+            key: product.id,
+            attrs: { item: product, index: index }
+          })
+        })
+      ),
+      _vm._v(" "),
+      _c("product-page")
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-e8e51570", module.exports)
   }
 }
 

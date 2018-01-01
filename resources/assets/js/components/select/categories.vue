@@ -32,6 +32,9 @@
         
       }
     },
+    created(){
+      this.$store.dispatch('current_page', 1)
+    },
     computed: {
         categories(){
 
@@ -59,11 +62,13 @@
                 disabled: false
               },
               ])
+              data.$router.push(response.data.category.name)
           })
           .catch( function(error){
 
 
           })
+
         }
     }
   }

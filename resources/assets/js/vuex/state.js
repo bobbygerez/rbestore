@@ -1,12 +1,6 @@
 
 export const state = {
-  breadCrumbsItems: [
-          {
-            text: 'Home',
-            to: '/',
-            disabled: false
-          }
-        ],
+  breadCrumbsItems: [],
   navBreadCrumbs:[],
   successLogin: false,
   filterCategories: false,

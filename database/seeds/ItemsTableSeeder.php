@@ -20,7 +20,7 @@ class ItemsTableSeeder extends Seeder
         $brgyCode = Brgy::orderBy('brgyCode')->select(['brgyCode'])->get();
 
 
-        for ($i=0; $i < 1000; $i++) { 
+        for ($i=0; $i < 10000; $i++) { 
         	
         	Item::create([
         			'user_id' => rand(1,100),

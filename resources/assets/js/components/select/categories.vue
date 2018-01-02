@@ -39,6 +39,15 @@
         categories(){
 
             return this.$store.getters.categories
+        },
+        provinceId(){
+            return this.$store.getters.provinceId
+        },
+        cityId(){
+            return this.$store.getters.cityId
+        },
+        brgyId(){
+            return this.$store.getters.brgyId
         }
     },
     watch: {
@@ -46,7 +55,12 @@
 
           let data = this
           this.$store.dispatch('categoryId', this.categoryId)
-          axios.get(api_categories + '/' + this.categoryId + '/subcategories')
+          axios.post(api_categories + '/selection',{
+              categoryId: this.categoryId,
+              provinceId: this.provinceId,
+              cityId: this.cityId,
+              brgyId: this.brgyId
+          })
           .then( function(response){
               data.$store.dispatch('subcategories', response.data.subcategories)
               data.$store.dispatch('products', response.data.items)

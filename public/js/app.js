@@ -33682,42 +33682,56 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  data: function data() {
-    return {
-      categoryId: null
+    data: function data() {
+        return {
+            categoryId: null
 
-    };
-  },
-  created: function created() {
-    this.$store.dispatch('productCurrentPage', 1);
-  },
+        };
+    },
+    created: function created() {
+        this.$store.dispatch('productCurrentPage', 1);
+    },
 
-  computed: {
-    categories: function categories() {
+    computed: {
+        categories: function categories() {
 
-      return this.$store.getters.categories;
+            return this.$store.getters.categories;
+        },
+        provinceId: function provinceId() {
+            return this.$store.getters.provinceId;
+        },
+        cityId: function cityId() {
+            return this.$store.getters.cityId;
+        },
+        brgyId: function brgyId() {
+            return this.$store.getters.brgyId;
+        }
+    },
+    watch: {
+        categoryId: function categoryId() {
+
+            var data = this;
+            this.$store.dispatch('categoryId', this.categoryId);
+            __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post(api_categories + '/selection', {
+                categoryId: this.categoryId,
+                provinceId: this.provinceId,
+                cityId: this.cityId,
+                brgyId: this.brgyId
+            }).then(function (response) {
+                data.$store.dispatch('subcategories', response.data.subcategories);
+                data.$store.dispatch('products', response.data.items);
+                data.$store.dispatch('breadCrumbsItems', [{
+                    text: 'Home',
+                    to: '/',
+                    disabled: true
+                }, {
+                    text: response.data.category.name,
+                    to: response.data.category.name,
+                    disabled: true
+                }]);
+            }).catch(function (error) {});
+        }
     }
-  },
-  watch: {
-    categoryId: function categoryId() {
-
-      var data = this;
-      this.$store.dispatch('categoryId', this.categoryId);
-      __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get(api_categories + '/' + this.categoryId + '/subcategories').then(function (response) {
-        data.$store.dispatch('subcategories', response.data.subcategories);
-        data.$store.dispatch('products', response.data.items);
-        data.$store.dispatch('breadCrumbsItems', [{
-          text: 'Home',
-          to: '/',
-          disabled: true
-        }, {
-          text: response.data.category.name,
-          to: response.data.category.name,
-          disabled: true
-        }]);
-      }).catch(function (error) {});
-    }
-  }
 });
 
 /***/ }),
@@ -34680,6 +34694,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         province: function province() {
 
             var data = this;
+            this.$store.dispatch('provinceId', this.province);
             __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post(api_city + '/province', {
                 provinceId: this.province,
                 categoryId: this.categoryId,
@@ -36428,10 +36443,16 @@ var store = new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
 		state.user_current_page = value;
 	}), _defineProperty(_mutations, 'provinces', function provinces(state, value) {
 		state.provinces = value;
+	}), _defineProperty(_mutations, 'provinceId', function provinceId(state, value) {
+		state.provinceId = value;
 	}), _defineProperty(_mutations, 'cities', function cities(state, value) {
 		state.cities = value;
+	}), _defineProperty(_mutations, 'cityId', function cityId(state, value) {
+		state.cityId = value;
 	}), _defineProperty(_mutations, 'brgys', function brgys(state, value) {
 		state.brgys = value;
+	}), _defineProperty(_mutations, 'brgyId', function brgyId(state, value) {
+		state.brgyId = value;
 	}), _defineProperty(_mutations, 'filterCategories', function filterCategories(state, value) {
 		state.filterCategories = value;
 	}), _defineProperty(_mutations, 'filterPlaces', function filterPlaces(state, value) {
@@ -36471,14 +36492,26 @@ var store = new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
 		categories: function categories(store, value) {
 			store.commit('categories', value);
 		},
+
+
+		//PLACES
 		provinces: function provinces(store, value) {
 			store.commit('provinces', value);
+		},
+		provinceId: function provinceId(store, value) {
+			store.commit('provinceId', value);
 		},
 		cities: function cities(store, value) {
 			store.commit('cities', value);
 		},
+		cityId: function cityId(store, value) {
+			store.commit('cityId', value);
+		},
 		brgys: function brgys(store, value) {
 			store.commit('brgys', value);
+		},
+		brgyId: function brgyId(store, value) {
+			store.commit('brgyId', value);
 		},
 		filterCategories: function filterCategories(store, value) {
 			store.commit('filterCategories', value);
@@ -36586,14 +36619,26 @@ var store = new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
 
 			return store.state.items;
 		},
+
+
+		//PLACES
 		provinces: function provinces() {
 			return store.state.provinces;
+		},
+		provinceId: function provinceId() {
+			return store.state.provinceId;
 		},
 		cities: function cities() {
 			return store.state.cities;
 		},
+		cityId: function cityId() {
+			return store.state.cityId;
+		},
 		brgys: function brgys() {
 			return store.state.brgys;
+		},
+		brgyId: function brgyId() {
+			return store.state.brgyId;
 		},
 		filterCategories: function filterCategories() {
 			return store.state.filterCategories;
@@ -37627,6 +37672,7 @@ var state = {
     login: false
   },
   provinces: [],
+  provinceId: null,
   cities: [],
   cityId: null,
   brgys: [],
@@ -37662,7 +37708,6 @@ var state = {
 // import Layouts from '../layouts/google-contacts.vue'
 
 
-// import Category from './category/category.vue'
 
 var routes = [{ path: '/', component: __WEBPACK_IMPORTED_MODULE_1__dashboard_home_vue___default.a }, { path: '/user/:uuid', component: __WEBPACK_IMPORTED_MODULE_0__dashboard_profile_vue___default.a }];
 
@@ -38678,6 +38723,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     subcategory: function subcategory() {
       return this.$store.getters.subcategoryId;
+    },
+    furtherCatId: function furtherCatId() {
+      return this.$store.getters.furtherCatId;
+    },
+    categoryId: function categoryId() {
+      return this.$store.getters.categoryId;
+    },
+    provinceId: function provinceId() {
+      return this.$store.getters.provinceId;
+    },
+    cityId: function cityId() {
+      return this.$store.getters.cityId;
+    },
+    brgyId: function brgyId() {
+      return this.$store.getters.brgyId;
     }
   },
   watch: {
@@ -38689,6 +38749,32 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           subcategoryIds: this.subcategory
         }).then(function (response) {
           data.$store.dispatch('products', response.data.items);
+        }).catch(function (error) {});
+      } else if (this.products.path === 'http://localhost/rbestore/public/api/items/further_categories') {
+        __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post(this.products.path + '?page=' + this.currentPage, {
+          furtherCatId: this.furtherCatId
+        }).then(function (response) {
+          data.$store.dispatch('products', response.data.items);
+          data.$store.dispatch('furtherCatBreadCrumbs', response.data.further_categories);
+        }).catch(function (error) {});
+      } else if (this.products.path === 'http://localhost/rbestore/public/api/categories/selection') {
+        __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post(api_categories + '/selection' + '?page=' + this.currentPage, {
+          categoryId: this.categoryId,
+          provinceId: this.provinceId,
+          cityId: this.cityId,
+          brgyId: this.brgyId
+        }).then(function (response) {
+          data.$store.dispatch('subcategories', response.data.subcategories);
+          data.$store.dispatch('products', response.data.items);
+          data.$store.dispatch('breadCrumbsItems', [{
+            text: 'Home',
+            to: '/',
+            disabled: true
+          }, {
+            text: response.data.category.name,
+            to: response.data.category.name,
+            disabled: true
+          }]);
         }).catch(function (error) {});
       } else {
         __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get(this.products.path + '?page=' + this.currentPage).then(function (response) {
@@ -38898,7 +38984,12 @@ var render = function() {
                         _vm._s(_vm.item.brgy.brgyDesc) +
                         "\n         (" +
                         _vm._s(_vm.item.user_name.mobile) +
-                        ")"
+                        ") " +
+                        _vm._s(_vm.item.category.name) +
+                        " " +
+                        _vm._s(_vm.item.subcategory.name) +
+                        " " +
+                        _vm._s(_vm.item.further_category.name)
                     )
                   ],
                   1

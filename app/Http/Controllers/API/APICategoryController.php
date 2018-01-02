@@ -33,14 +33,13 @@ class APICategoryController extends Controller
             ]);
     }
 
-    public function getSubCategory($id){
+    public function getSubCategory(){
 
-    	
+    	$request = app()->make('request');
     	 return response()->json([
-                'category' => $this->category->where('id', $id)->first(),
-                'subcategories' => $this->subcategory->where('category_id', $id)->get(),
-                'items' => $this->item->where('category_id', $id)->with(['images', 'province', 'userName', 'city', 'brgy'])
-                        ->paginate(10)
+                'category' => $this->category->where('id', $request->categoryId)->first(),
+                'subcategories' => $this->subcategory->where('category_id', $request->categoryId)->get(),
+                'items' => $this->item->category($request)
             ]);
     }
 
@@ -52,7 +51,7 @@ class APICategoryController extends Controller
         return response()->json([
                 'subcategories' => $this->subcategory->getNameBreadCrumbs($furtherCat),
                 'furtherCategories' => $this->furtherCategory->whereIn('subcategory_id', $furtherCat),
-                'items' => $this->item->whereIn('subcategory_id', $furtherCat)->with(['images', 'province', 'userName', 'city', 'brgy'])->paginate(10)
+                'items' => $this->item->whereIn('subcategory_id', $furtherCat)->withProduct()
             ]);
     }
 

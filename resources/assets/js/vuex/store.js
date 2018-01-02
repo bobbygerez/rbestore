@@ -91,11 +91,20 @@ export const store = new Vuex.Store({
 		provinces(state, value){
 			state.provinces = value
 		},
+		provinceId(state, value){
+			state.provinceId = value
+		},
 		cities(state, value){
 			state.cities = value
 		},
+		cityId(state, value){
+			state.cityId = value
+		},
 		brgys(state, value){
 			state.brgys = value
+		},
+		brgyId(state, value){
+			state.brgyId = value
 		},
 		filterCategories(state, value){
 			state.filterCategories = value
@@ -144,14 +153,26 @@ export const store = new Vuex.Store({
 		categories(store, value){
 			store.commit('categories', value)
 		},
+
+
+		//PLACES
 		provinces(store, value){
 			store.commit('provinces', value)
+		},
+		provinceId(store, value){
+			store.commit('provinceId', value)
 		},
 		cities(store, value){
 			store.commit('cities', value)
 		},
+		cityId(store, value){
+			store.commit('cityId', value)
+		},
 		brgys(store, value){
 			store.commit('brgys', value)
+		},
+		brgyId(store, value){
+			store.commit('brgyId', value)
 		},
 		filterCategories(store, value){
 			store.commit('filterCategories', value)
@@ -293,15 +314,29 @@ export const store = new Vuex.Store({
 
 			return store.state.items
 		},
+
+		//PLACES
 		provinces(){
 			return store.state.provinces
+		},
+		provinceId(){
+			return store.state.provinceId
 		},
 		cities(){
 			return store.state.cities
 		},
+		cityId(){
+			return store.state.cityId
+		},	
 		brgys(){
 			return store.state.brgys
 		},
+		brgyId(){
+			return store.state.brgyId
+		},
+
+
+
 		filterCategories(){
 			return store.state.filterCategories
 		},

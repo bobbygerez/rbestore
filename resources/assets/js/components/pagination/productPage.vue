@@ -40,6 +40,21 @@
       },
       subcategory(){
         return this.$store.getters.subcategoryId
+      },
+      furtherCatId(){
+        return this.$store.getters.furtherCatId
+      },
+      categoryId(){
+        return this.$store.getters.categoryId
+      },
+      provinceId(){
+        return this.$store.getters.provinceId
+      },
+      cityId(){
+        return this.$store.getters.cityId
+      },
+      brgyId(){
+        return this.$store.getters.brgyId
       }
     },
     watch: {
@@ -52,6 +67,48 @@
           })
           .then( function(response){
                data.$store.dispatch('products', response.data.items);
+          })
+          .catch( function(error){
+
+
+          })
+        }
+        else if (this.products.path === 'http://localhost/rbestore/public/api/items/further_categories'){
+           axios.post(this.products.path + '?page=' + this.currentPage,{
+                furtherCatId: this.furtherCatId
+              })
+              .then( function(response){
+                  data.$store.dispatch('products', response.data.items)
+                  data.$store.dispatch('furtherCatBreadCrumbs', response.data.further_categories)
+              })
+              .catch( function(error){
+
+
+              })
+        }
+        else if(this.products.path === 'http://localhost/rbestore/public/api/categories/selection'){
+           axios.post(api_categories + '/selection' + '?page=' + this.currentPage,{
+              categoryId: this.categoryId,
+              provinceId: this.provinceId,
+              cityId: this.cityId,
+              brgyId: this.brgyId
+          })
+          .then( function(response){
+              data.$store.dispatch('subcategories', response.data.subcategories)
+              data.$store.dispatch('products', response.data.items)
+              data.$store.dispatch('breadCrumbsItems', [
+              {
+                text: 'Home',
+                to: '/',
+                disabled: true
+              },
+              {
+                text: response.data.category.name,
+                to: response.data.category.name,
+                disabled: true
+              },
+              ])
+              
           })
           .catch( function(error){
 

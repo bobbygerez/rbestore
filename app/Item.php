@@ -48,10 +48,23 @@ class Item extends Model
         return $this->hasOne('App\User', 'id', 'user_id')->select(['id', 'firstname', 'lastname', 'uuid', 'mobile']);
     }
 
+    public function category(){
+
+        return $this->hasOne('App\Category', 'id', 'category_id');
+    }
+
+    public function subcategory(){
+        return $this->hasOne('App\Subcategory', 'id', 'subcategory_id');
+    }
+
+    public function furtherCategory(){
+        return $this->hasOne('App\FurtherCategory', 'id', 'further_category_id');
+    }
+
     public function scopeWithProduct($query){
 
-        return $query->with(['images', 'province', 'userName', 'city', 'brgy'])
-                            ->orderBy('created_at', 'DESC')->paginate(3);
+        return $query->with(['images', 'province', 'userName', 'city', 'brgy', 'category', 'subcategory', 'furtherCategory'])
+                            ->orderBy('created_at', 'DESC')->paginate(10);
     }
 
     public function scopeOrdPag($query){

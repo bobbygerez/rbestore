@@ -30,7 +30,7 @@ class APIItemsController extends Controller
 
     	return response()->json([
 
-    			'items' => $this->item->with(['images', 'province', 'userName', 'city', 'brgy'])->OrdPag()
+    			'items' => $this->item->with(['images', 'province', 'userName', 'city', 'brgy', 'category', 'subcategory', 'furtherCategory'])->OrdPag()
                             
     		]);
     }

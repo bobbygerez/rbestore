@@ -110,8 +110,6 @@ var products = {
 }
 
 
-
-
 Vue.use(VueRouter)
 Vue.use(Vuetify)
 

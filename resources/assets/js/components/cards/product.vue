@@ -31,7 +31,7 @@
              <span class="grey--text">
              <v-icon class="title">place</v-icon>{{ item.created_at }} 
               {{ item.province.provDesc }}, {{ item.city.citymunDesc }}, {{ item.brgy.brgyDesc }}
-             ({{ item.user_name.mobile }})</span>
+             ({{ item.user_name.mobile }}) {{ item.category.name }} {{ item.subcategory.name }} {{ item.further_category.name }}</span>
              <br />
              <v-icon class="title">person</v-icon>
              <router-link :to="'user/' + item.user_name.uuid"> {{ item.user_name.firstname }} {{ item.user_name.lastname }} </router-link>

@@ -13,7 +13,7 @@
         {{ item.text }}
       </v-breadcrumbs-item>
     </v-breadcrumbs>
-       <p  class="headline mt-0 text-lg-center" >Displaying from {{ fromm }} to  {{ to }} out of {{ total }} </p>
+       <p  class="headline mt-0 text-lg-center" >Displaying from {{ products.from }} to  {{ products.to }} out of {{ products.total }} </p>
     </v-flex>
   </v-layout>
 </template>
@@ -28,14 +28,8 @@
       breadCrumbsItems(){
         return this.$store.getters.breadCrumbsItems
       },
-      fromm(){
-        return this.$store.getters.from
-      },
-      to(){
-        return this.$store.getters.to
-      },
-      total(){
-        return this.$store.getters.total
+      products(){
+        return this.$store.getters.products
       }
 
     }

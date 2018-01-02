@@ -30,10 +30,8 @@
       },
       created(){
 
-        this.$store.dispatch('current_page', 1)
         this.$store.dispatch('breadCrumbsItemsPush',{
           text: 'Home',
-          to: '/',
           disabled: false
         })
       },

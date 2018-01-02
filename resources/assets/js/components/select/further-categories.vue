@@ -31,6 +31,9 @@
         
       }
     },
+    created(){
+      this.$store.dispatch('productCurrentPage', 1)
+    },
     computed: {
         furtherCategories(){
 
@@ -45,6 +48,8 @@
         furtherCat(){
 
             let data = this
+
+            this.$store.dispatch('furtherCatId', this.furtherCat)
 
             if (this.furtherCat.length > 0) {
 

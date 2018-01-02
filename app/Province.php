@@ -12,4 +12,6 @@ class Province extends Model
 
     	return ucwords($value);
     }
+
+    
 }

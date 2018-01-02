@@ -5,11 +5,15 @@ export const state = {
   successLogin: false,
   filterCategories: false,
   filterPlaces: false,
+
+
+  //CATEGORIES
   categoryId: null,
   categories:[],
   subcategoryId: null,
   subcategories: [],
   furtherCategories:[],
+  furtherCatId:null,
 
 
   //PRODUCTS
@@ -19,18 +23,6 @@ export const state = {
 
   //USER PRODUCT PAGINATION
   user_current_page: 1,
-
-  //PRODUCTS PAGINATION
-  current_page: 1,
-  last_page: null,
-  from: null,
-  last_page_url: null,
-  next_page_url: null,
-  per_page: null,
-  prev_page_url: null,
-  to: null,
-  total: null,
-
 
 	dialog: {
 		register: false,

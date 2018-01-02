@@ -33,7 +33,7 @@
       }
     },
     created(){
-      this.$store.dispatch('current_page', 1)
+      this.$store.dispatch('productCurrentPage', 1)
     },
     computed: {
         categories(){
@@ -54,15 +54,15 @@
               {
                 text: 'Home',
                 to: '/',
-                disabled: false
+                disabled: true
               },
               {
                 text: response.data.category.name,
                 to: response.data.category.name,
-                disabled: false
+                disabled: true
               },
               ])
-              data.$router.push(response.data.category.name)
+              
           })
           .catch( function(error){
 

@@ -31,6 +31,9 @@
         
       }
     },
+    created(){
+      this.$store.dispatch('productCurrentPage', 1)
+    },
     computed: {
         subcategories(){
 
@@ -47,22 +50,53 @@
 
             let data = this
             this.$store.dispatch('subcategoryId', this.subcategory)
-            axios.post(api_further_categories,{
-              subcategoryIds: this.subcategory
-            })
-            .then( function(response){
-                
-                data.$store.dispatch('furtherCategories', response.data.furtherCategories)
-                data.$store.dispatch('products', response.data.items)
-                data.$store.dispatch('subCatBreadCrumbs', response.data.subcategories)
-               
-                
 
-            })
-            .catch( function(error){
+              if (this.subcategory.length > 0) {
+
+                axios.post(api_further_categories, {
+                  subcategoryIds: this.subcategory
+                })
+                .then( function(response){
+                    
+                    data.$store.dispatch('furtherCategories', response.data.furtherCategories)
+                    data.$store.dispatch('products', response.data.items)
+                    data.$store.dispatch('subCatBreadCrumbs', response.data.subcategories)
+                   
+                    
+
+                })
+                .catch( function(error){
 
 
-            })
+                })
+            }
+            else {
+
+                axios.get(api_categories + '/' + this.categoryId + '/subcategories')
+                .then( function(response){
+                    data.$store.dispatch('subcategories', response.data.subcategories)
+                    data.$store.dispatch('products', response.data.items)
+                    data.$store.dispatch('breadCrumbsItems', [
+                    {
+                      text: 'Home',
+                      to: '/',
+                      disabled: true
+                    },
+                    {
+                      text: response.data.category.name,
+                      to: response.data.category.name,
+                      disabled: true
+                    },
+                    ])
+                    
+                })
+                .catch( function(error){
+
+
+                })
+                data.$store.dispatch('furtherCategories', [])
+            }
+            
         }
     }
   }

@@ -32,7 +32,7 @@ class CityController extends Controller
         return response()->json([
 
                 'cities' => City::where('provCode', $request->provinceId)->orderBy('citymunDesc')->get(),
-                'items' => City::orderBy('citymunCode')->select(['citymunCode'])->get()
+                'items' => $this->item->withProvince($request)
 
             ]);
     }

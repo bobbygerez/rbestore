@@ -25,28 +25,50 @@
       currentPage: {
 
         get(){
-          return this.$store.getters.current_page
+          return this.$store.getters.products.current_page
         },
         set(val){
 
-          this.$store.dispatch('current_page', val)
+          this.$store.dispatch('productCurrentPage', val)
         }
       },
       lastPage(){
-        return this.$store.getters.last_page
+        return this.$store.getters.products.last_page
+      },
+      products(){
+        return this.$store.getters.products
+      },
+      subcategory(){
+        return this.$store.getters.subcategoryId
       }
     },
     watch: {
       currentPage(){
         let data = this
-        axios.get(api_items + '?page=' + this.currentPage)
-        .then( function(response){
-             data.$store.dispatch('products', response.data.items);
-        })
-        .catch( function(error){
+
+        if(this.products.path === 'http://localhost/rbestore/public/api/further_categories'){
+          axios.post(this.products.path + '?page=' + this.currentPage,{
+             subcategoryIds: this.subcategory
+          })
+          .then( function(response){
+               data.$store.dispatch('products', response.data.items);
+          })
+          .catch( function(error){
 
 
-        })
+          })
+        }
+        else{
+          axios.get(this.products.path + '?page=' + this.currentPage)
+          .then( function(response){
+               data.$store.dispatch('products', response.data.items);
+          })
+          .catch( function(error){
+
+
+          })
+        }
+        
       }
     }
   }

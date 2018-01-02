@@ -64,11 +64,17 @@ export const store = new Vuex.Store({
 		furtherCategories(state, value){
 			state.furtherCategories = value
 		},
+		furtherCatId(state, value){
+			state.furtherCatId = value
+		},
 
 
 		//ITEMS
 		products(state, value){
 			state.products = value
+		},
+		productCurrentPage(state, value){
+			state.products.current_page = value
 		},
 		userProduct(state, value){
 			state.userProduct = value
@@ -80,33 +86,6 @@ export const store = new Vuex.Store({
 			state.user_current_page = value
 		},
 
-
-
-		//PAGES
-		current_page(state, value){
-			state.current_page = value
-		},
-		next_page_url(state, value){
-			state.next_page_url = value
-		},
-		last_page_url(state, value){
-			state.last_page_url = value
-		},
-		from(state, value){
-			state.from = value
-		},
-		last_page(state, value){
-			state.last_page = value
-		},
-		per_page(state, value){
-			state.per_page = value
-		},
-		to(state, value){
-			state.to = value
-		},
-		total(state, value){
-			state.total = value
-		},	
 
 		//PROVINCES
 		provinces(state, value){
@@ -180,6 +159,9 @@ export const store = new Vuex.Store({
 		filterPlaces(store, value){
 			store.commit('filterPlaces', value)
 		},
+
+
+		//CATEGORIES
 		categoryId(store, value){
 			store.commit('categoryId', value)
 		},
@@ -195,6 +177,9 @@ export const store = new Vuex.Store({
 		furtherCategories(store, value){
 			store.commit('furtherCategories', value)
 		},
+		furtherCatId(store, value){
+			store.commit('furtherCatId', value)
+		},
 		
 		//USER ITEMS
 		user_current_page(store, value){
@@ -203,20 +188,18 @@ export const store = new Vuex.Store({
 		//ITEMS
 		products(store, value){
 			store.commit('products', value)
-			store.commit('next_page_url', value.next_page_url)
-			store.commit('last_page_url', value.last_page_url)
-			store.commit('from', value.from)
-			store.commit('last_page', value.last_page)
-			store.commit('per_page', value.per_page)
-			store.commit('to', value.to)
-			store.commit('total', value.total)
+		
+		},
+
+		productCurrentPage(store, value){
+			store.commit('productCurrentPage', value)
 		},
 		userProduct(store, value){
 			store.commit('userProduct', value)
 		},
-		current_page(store, value){
-			store.commit('current_page', value);
-		},
+		// current_page(store, value){
+		// 	store.commit('current_page', value);
+		// },
 
 		//BREADCRUMBS
 
@@ -325,6 +308,10 @@ export const store = new Vuex.Store({
 		filterPlaces(){
 			return store.state.filterPlaces
 		},
+
+
+
+		//CATEGORIES
 		categoryId(){
 			return store.state.categoryId
 		},
@@ -340,6 +327,13 @@ export const store = new Vuex.Store({
 		furtherCategories(){
 			return store.state.furtherCategories
 		},
+		furtherCatId(){
+			return store.state.furtherCatId
+		},
+
+
+
+
 		products(){
 			return store.state.products
 		},
@@ -351,43 +345,6 @@ export const store = new Vuex.Store({
 		user_current_page(){
 
 			return store.state.user_current_page
-		},
-
-
-
-
-		//PRODUCT PAGES
-		current_page(){
-
-			return store.state.current_page
-		},
-		next_page_url(){
-
-			return store.state.next_page_url
-		},
-		last_page_url(){
-
-			return store.state.last_page_url
-		},
-		from(){
-
-			return store.state.from
-		},
-		last_page(){
-
-			return store.state.last_page
-		},
-		per_page(){
-
-			return store.state.per_page
-		},
-		to(){
-
-			return store.state.to
-		},
-		total(){
-
-			return store.state.total
 		},
 
 

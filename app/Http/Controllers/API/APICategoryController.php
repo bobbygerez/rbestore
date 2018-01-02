@@ -47,7 +47,7 @@ class APICategoryController extends Controller
     public function furtherCategories(){
 
         $request = app()->make('request');
-        $furtherCat = collect($request->subcategoryIds)->reverse()->values();
+        $furtherCat = collect( $request->subcategoryIds)->reverse()->values();
 
         return response()->json([
                 'subcategories' => $this->subcategory->getNameBreadCrumbs($furtherCat),

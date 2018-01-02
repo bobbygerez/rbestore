@@ -10,6 +10,7 @@ use App\Http\Controllers\API\APIItemsController;
 use App\Http\Controllers\API\APICategoryController;
 use App\Http\Controllers\API\UserController;
 use App\Http\Controllers\City\CityController;
+use App\Http\Controllers\Province\ProvinceController;
 
 
 class ItemServiceProvider extends ServiceProvider
@@ -45,6 +46,10 @@ class ItemServiceProvider extends ServiceProvider
           ->give(ItemRepository::class);
 
         $this->app->when(UserController::class)
+          ->needs(ItemInterface::class)
+          ->give(ItemRepository::class);
+
+        $this->app->when(ProvinceController::class)
           ->needs(ItemInterface::class)
           ->give(ItemRepository::class);
 

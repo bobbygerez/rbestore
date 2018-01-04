@@ -51,7 +51,7 @@ class APICategoryController extends Controller
         return response()->json([
                 'subcategories' => $this->subcategory->getNameBreadCrumbs($furtherCat),
                 'furtherCategories' => $this->furtherCategory->whereIn('subcategory_id', $furtherCat),
-                'items' => $this->item->whereIn('subcategory_id', $furtherCat)->withProduct()
+                'items' => $this->item->subcategory($request)
             ]);
     }
 

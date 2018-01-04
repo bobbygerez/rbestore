@@ -13,6 +13,7 @@ import {routes} from './router/route.js'
 
 /******** USE FOR SHIFTING SERVER AND LOCAL DEVELOPMENT (APACHE SERVER) ***********/
 
+// var baseUrl = 'http://rbeph.it.nf/public/api/';
 var baseUrl = 'http://localhost/rbestore/public/api/';
 
 window.api_register = baseUrl + 'auth/register';
@@ -70,6 +71,7 @@ var categories = {
         })
         .catch( function(error){
 
+            return this.router.push(window.location.href)
 
         })
     }
@@ -86,6 +88,7 @@ var province = {
         })
         .catch( function(error){
 
+            return this.router.push(window.location.href)
 
         })
     }
@@ -103,7 +106,7 @@ var products = {
         })
         .catch( function(error){
 
-
+            return this.router.push(window.location.href)
         })
     }
 

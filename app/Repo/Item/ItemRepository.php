@@ -25,40 +25,76 @@ class ItemRepository extends BaseRepository implements ItemInterface{
 
     	$province = $this->modelName->where('provCode', $request->provinceId);
 
-    	if ($request->furtherCatId != null) {
-    		return $province->whereIn('further_category_id', $request->furtherCatId)->withProduct();
-    	}
-    	else if($request->subcategoryId != null) {
-    		return $province->whereIn('subcategory_id', $request->subcategoryId)->withProduct();
-    	}
-    	else if($request->categoryId != null) {
-    		return $province->where('category_id', $request->categoryId)->withProduct();
-    	}
+    	return $this->filterByCategory($province, $request);
     	
-    	return $province->withProduct();
-    	
+    }
+
+    public function withCities($request){
+
+        $cities = $this->modelName->whereIn('citymunCode', $request->cityId);
+        
+        return $this->filterByCategory($cities, $request);
+    }
+
+    public function withBrgy($request){
+
+         $brgy = $this->modelName->whereIn('brgyCode', $request->brgyId);
+
+         return $this->filterByCategory($brgy, $request);
+    }
+
+
+    public function filterByCategory($place, $request){
+
+        if($request->categoryId != null) {
+
+            $place = $place->where('category_id', $request->categoryId);
+        }
+
+        if($request->subcategoryId != null) {
+            $place = $place->whereIn('subcategory_id', $request->subcategoryId);
+        }
+
+        if ($request->furtherCatId != null) {
+            $place = $place->whereIn('further_category_id', $request->furtherCatId);
+        }
+
+        return $place->withProduct();
+
     }
 
 
     public function category($request){
 
         $item = $this->modelName->where('category_id', $request->categoryId);
+        return $this->filterByPlace($item, $request);
+
+    }
+
+    public function subcategory($request){
+        
+        $item = $this->modelName->whereIn('subcategory_id', $request->subcategoryIds);
+        
+        return $this->filterByPlace($item, $request);
+    }
+
+
+    public function filterByPlace($item, $request){
 
         if($request->provinceId != null){
 
             $item = $item->where('provCode', $request->provinceId);
         }
-        else if( $request->cityId != null){
+        if( $request->cityId != null){
             
-            $item = $item->where('citymunCode', $request->cityId);
+            $item = $item->whereIn('citymunCode', $request->cityId);
         }
-        else if( $request->brgyId != null){
+        if( $request->brgyId != null){
             
-            $item = $item->where('brgyCode', $request->brgyId);
+            $item = $item->whereIn('brgyCode', $request->brgyId);
         }
 
         return $item->withProduct();
-
 
     }
 

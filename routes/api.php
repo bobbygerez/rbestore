@@ -13,6 +13,7 @@ Route::post('items/further_categories', 'API\APIItemsController@furtherCategorie
 Route::get('province', 'Province\ProvinceController@index');
 Route::post('city/province', 'City\CityController@getCities');
 Route::post('barangay/city', 'Barangay\BarangayController@getBarangays');
+Route::post('barangay/items', 'Barangay\BarangayController@getItems');
 Route::get('sample', 'API\APIItemsController@getSample');
 Route::get('user/{uuid}', 'API\UserController@getUserInfo');
 Route::group(['middleware' => 'jwt.auth'], function () {

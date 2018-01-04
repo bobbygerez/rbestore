@@ -11,6 +11,7 @@ use App\Http\Controllers\API\APICategoryController;
 use App\Http\Controllers\API\UserController;
 use App\Http\Controllers\City\CityController;
 use App\Http\Controllers\Province\ProvinceController;
+use App\Http\Controllers\Barangay\BarangayController;
 
 
 class ItemServiceProvider extends ServiceProvider
@@ -41,15 +42,21 @@ class ItemServiceProvider extends ServiceProvider
           ->needs(ItemInterface::class)
           ->give(ItemRepository::class);
 
-        $this->app->when(CityController::class)
-          ->needs(ItemInterface::class)
-          ->give(ItemRepository::class);
+       
 
         $this->app->when(UserController::class)
           ->needs(ItemInterface::class)
           ->give(ItemRepository::class);
 
         $this->app->when(ProvinceController::class)
+          ->needs(ItemInterface::class)
+          ->give(ItemRepository::class);
+
+         $this->app->when(CityController::class)
+          ->needs(ItemInterface::class)
+          ->give(ItemRepository::class);
+
+          $this->app->when(BarangayController::class)
           ->needs(ItemInterface::class)
           ->give(ItemRepository::class);
 

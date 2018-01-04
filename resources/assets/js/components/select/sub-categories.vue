@@ -42,6 +42,15 @@
         categoryId(){
 
             return this.$store.getters.categoryId
+        },
+        provinceId(){
+            return this.$store.getters.provinceId
+        },
+        cityId(){
+            return this.$store.getters.cityId
+        },
+        brgyId(){
+            return this.$store.getters.brgyId
         }
 
     },
@@ -54,7 +63,10 @@
               if (this.subcategory.length > 0) {
 
                 axios.post(api_further_categories, {
-                  subcategoryIds: this.subcategory
+                  subcategoryIds: this.subcategory,
+                  provinceId: this.provinceId,
+                  cityId: this.cityId,
+                  brgyId: this.brgyId
                 })
                 .then( function(response){
                     

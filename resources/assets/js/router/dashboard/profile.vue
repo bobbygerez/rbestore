@@ -1,6 +1,7 @@
 <template>
 	<v-container fluid grid-list-md>
-	  <bread-crumbs></bread-crumbs>
+	  <user-bread-crumbs></user-bread-crumbs>
+	 
       <v-layout row wrap>
              <user-product
                  v-for="(product, index) in userProduct.data"
@@ -17,7 +18,7 @@
 
 <script type="text/javascript">
 	import axios from 'axios'
-	import breadCrumbs from '../../components/breadCrumbs/navBreadCrumbs.vue'
+	import userBreadCrumbs from '../../components/breadCrumbs/userBreadCrumbs.vue'
 	import userProduct from '../../components/cards/userProduct.vue'
 	import userProductPage from '../../components/pagination/userProductPage.vue'
 
@@ -31,7 +32,7 @@
 
 		},
 		components: {
-			breadCrumbs, userProduct, userProductPage
+			userBreadCrumbs, userProduct, userProductPage
 		},
 		computed: {
 			users(){

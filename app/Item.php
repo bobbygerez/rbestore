@@ -54,7 +54,7 @@ class Item extends Model
     }
 
     public function subcategory(){
-        return $this->hasOne('App\Subcategory', 'id', 'subcategory_id');
+        return $this->hasOne('App\SubCategory', 'id', 'subcategory_id');
     }
 
     public function furtherCategory(){
@@ -64,11 +64,11 @@ class Item extends Model
     public function scopeWithProduct($query){
 
         return $query->with(['images', 'province', 'userName', 'city', 'brgy', 'category', 'subcategory', 'furtherCategory'])
-                            ->orderBy('created_at', 'DESC')->paginate(10);
+                            ->orderBy('created_at', 'DESC')->paginate(12);
     }
 
     public function scopeOrdPag($query){
 
-        return $query->orderBy('created_at', 'DESC')->paginate(10);
+        return $query->orderBy('created_at', 'DESC')->paginate(12);
     }
 }

@@ -36,16 +36,29 @@ import axios from 'axios'
         cities(){
 
             return this.$store.getters.cities
+        },
+         categoryId(){
+
+            return this.$store.getters.categoryId
+        },
+        subcategoryId(){
+            return this.$store.getters.subcategoryId
+        },
+        furtherCatId(){
+            return this.$store.getters.furtherCatId
         }
     },
     watch: {
         city(){
           let data = this
-
+          this.$store.dispatch('cityId', this.city)
           axios.post(api_brgy + '/city',{
-            cityId: this.city
+            cityId: this.city,
+            categoryId: this.categoryId,
+            subcategoryId: this.subcategoryId,
+            furtherCatId: this.furtherCatId
           }).then((response) => {
-
+            data.$store.dispatch('products', response.data.items)
             data.$store.dispatch('brgys', response.data.brgys)
           })
 

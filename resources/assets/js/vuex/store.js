@@ -33,6 +33,10 @@ export const store = new Vuex.Store({
 			state.users.password = password
 		},
 
+
+		userProfile(state, userInfo){
+			state.userInfo = userInfo
+		},
 		//DIALOG//
 		dialogLogin(state, value){
 			state.dialog.login = value

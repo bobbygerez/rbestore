@@ -15,19 +15,25 @@
       </v-breadcrumbs-item>
 
     </v-breadcrumbs>
-
+    <public-profile></public-profile>
      <p  class="headline mt-0 text-lg-center" >Displaying from {{ userProduct.from }} to  {{ userProduct.to }} out of {{ userProduct.total }} </p>
     </v-flex>
     
   </v-layout>
 </template>
 <script>
+
+  import publicProfile from '../menu/publicProfile.vue'
+
   export default {
     data () {
       return {
         
       }
     },
+  components: {
+    publicProfile
+  },
     computed: {
       navBreadCrumbs(){
         return this.$store.getters.navBreadCrumbs

@@ -24,6 +24,7 @@ export const state = {
   //USER PRODUCT PAGINATION
   user_current_page: 1,
 
+
 	dialog: {
 		register: false,
 		login: false
@@ -45,6 +46,8 @@ export const state = {
 		mobile: '',
 		password: ''
 	},
+  userProfile:[],
+
 	items: [
         { icon: 'queue',
           'icon-alt': 'queue',

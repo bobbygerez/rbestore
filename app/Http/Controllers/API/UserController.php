@@ -41,7 +41,9 @@ class UserController extends Controller
     public function getUserInfo(Request $request){
 
         return response()->json([
-                'user' => $this->user->where('uuid', $request->uuid)->exclude(['email'])->first(),
+                'user' => $this->user->where('uuid', $request->uuid)
+                            ->with(['images'])
+                            ->exclude(['email'])->first(),
                 'items' => $this->item->getUserItems($request)->withProduct()
             ]);
     }

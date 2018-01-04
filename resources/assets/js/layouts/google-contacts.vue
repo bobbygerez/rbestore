@@ -400,9 +400,17 @@
 
         if( value === 'Categories'){
           this.$store.dispatch('filterCategories', true);
+          this.$router.push('/')
         }
         if( value === 'Places'){
           this.$store.dispatch('filterPlaces', true);
+          this.$router.push('/')
+        }
+        if( value === 'Send feedback'){
+          this.$router.push('feedback');
+        }
+        if( value === 'Help'){
+          this.$router.push('help');
         }
       },
       dialogCancel(){

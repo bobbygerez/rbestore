@@ -55,9 +55,7 @@ export const state = {
       	},
         { icon: 'place', text: 'Places' },
         { icon: 'chat_bubble', text: 'Send feedback' },
-        { icon: 'help', text: 'Help' },
-        { icon: 'phonelink', text: 'App downloads' },
-        { icon: 'keyboard', text: 'Go to the old version' }
+        { icon: 'help', text: 'Help' }
       ]
 
 }

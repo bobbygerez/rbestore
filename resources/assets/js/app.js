@@ -14,7 +14,10 @@ import {routes} from './router/route.js'
 /******** USE FOR SHIFTING SERVER AND LOCAL DEVELOPMENT (APACHE SERVER) ***********/
 
 // var baseUrl = 'http://rbeph.it.nf/public/api/';
+
 var baseUrl = 'http://localhost/rbestore/public/api/';
+window.base = 'http://localhost/rbestore/public/';
+
 
 window.api_register = baseUrl + 'auth/register';
 window.api_login = baseUrl + 'auth/login';

@@ -20,6 +20,7 @@ class UsersTableSeeder extends Seeder
         		'firstname' => 'Jhon',
         		'lastname' => 'Doe',
                 'company' => $faker->company, 
+                'jobtitle' => $faker->text($maxNbChars = 30),
         		'email' => 'jhon@rbestore.com',
                 'mobile' => '12345678931',
         		'password' => Hash::make('12345678')
@@ -31,6 +32,7 @@ class UsersTableSeeder extends Seeder
                 'firstname' => 'user 1',
                 'lastname' => 'user 1',
                 'company' => $faker->company, 
+                'jobtitle' => $faker->text($maxNbChars = 30),
                 'email' => 'user1@rbestore.com',
                 'mobile' => '12345678914',
                 'password' => Hash::make('12345678')
@@ -44,6 +46,7 @@ class UsersTableSeeder extends Seeder
                     'firstname' => $faker->firstName,
                     'lastname' => $faker->lastName,
                     'company' => $faker->company, 
+                    'jobtitle' => $faker->text($maxNbChars = 30),
                     'mobile' => $faker->bankAccountNumber,
                     'email' => $faker->safeEmail,
                     'password' => Hash::make('12345678'),

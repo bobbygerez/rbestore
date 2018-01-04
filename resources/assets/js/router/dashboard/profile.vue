@@ -35,9 +35,7 @@
 			userBreadCrumbs, userProduct, userProductPage
 		},
 		computed: {
-			users(){
-				return this.$store.getters.users
-			},
+			
 			userProduct(){
 				return this.$store.getters.userProduct
 			}
@@ -49,7 +47,7 @@
 
 				axios.get(api_user + this.$route.params.uuid)
 					.then((response)=>{
-						data.$store.dispatch('userInfo', response.data.user)
+						data.$store.dispatch('userProfile', response.data.user)
 						data.$store.dispatch('navBreadCrumbs', [
 							{
 								text: 'Home',

@@ -23,5 +23,15 @@ class ImagesTableSeeder extends Seeder
 
         		]);
         }
+
+        for ($i= 1; $i < 102; $i++) { 
+            Image::create([
+                    'path' => 'images/uploads/' . rand(1, 68) . '.jpg',
+                    'imageable_id' => $i,
+                    'imageable_type' => 'App\\User',
+                    'body' => 'text ' . $i
+
+                ]);
+        }
     }
 }

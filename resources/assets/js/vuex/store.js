@@ -34,8 +34,8 @@ export const store = new Vuex.Store({
 		},
 
 
-		userProfile(state, userInfo){
-			state.userInfo = userInfo
+		userProfile(state, userProfile){
+			state.userProfile = userProfile
 		},
 		//DIALOG//
 		dialogLogin(state, value){
@@ -137,6 +137,9 @@ export const store = new Vuex.Store({
 				store.commit(key, user[key]);
 			}
 
+		},
+		userProfile(store, userProfile){
+			store.commit('userProfile', userProfile)
 		},
 
 		//DIALOG
@@ -384,6 +387,10 @@ export const store = new Vuex.Store({
 		user_current_page(){
 
 			return store.state.user_current_page
+		},
+		userProfile(){
+
+			return store.state.userProfile
 		},
 
 

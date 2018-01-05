@@ -83,7 +83,9 @@ export const store = new Vuex.Store({
 		userProduct(state, value){
 			state.userProduct = value
 		},
-
+		productDetails(state, value){
+			state.productDetails = value
+		},
 
 		//USER PAGES
 		user_current_page(state, value){
@@ -217,6 +219,9 @@ export const store = new Vuex.Store({
 		products(store, value){
 			store.commit('products', value)
 		
+		},
+		productDetails(store, value){
+			store.commit('productDetails', value)
 		},
 
 		productCurrentPage(store, value){
@@ -381,6 +386,9 @@ export const store = new Vuex.Store({
 		},
 		userProduct(){
 			return store.state.userProduct
+		},
+		productDetails(){
+			return store.state.productDetails
 		},
 
 		//USER PRODUCT PAGES

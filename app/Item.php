@@ -9,7 +9,8 @@ class Item extends Model
 {
 
 	protected $table = 'items';
-	protected $fillable = ['name', 'short_desc', 'long_desc'];
+	protected $fillable = ['uuid', 'user_id', 'unit_id', 'category_id', 'subcategory_id', 'further_category_id',
+                            'brgyCode', 'citymunCode', 'provCode', 'amount', 'discount', 'name', 'short_desc', 'long_desc'];
 
 
     public function images(){
@@ -61,10 +62,22 @@ class Item extends Model
         return $this->hasOne('App\FurtherCategory', 'id', 'further_category_id');
     }
 
+    public function qty(){
+
+        return $this->hasMany('App\Quantity', 'item_id', 'id');
+    }
+
+
+
+    //SCOPE
+
     public function scopeWithProduct($query){
 
-        return $query->with(['images', 'province', 'userName', 'city', 'brgy', 'category', 'subcategory', 'furtherCategory'])
-                            ->orderBy('created_at', 'DESC')->paginate(12);
+        return $this->scopeWithOnly($query)->orderBy('created_at', 'DESC')->paginate(12);
+    }
+
+    public function scopeWithOnly($query){
+        return $query->with(['images', 'province', 'userName', 'city', 'brgy', 'category', 'subcategory', 'furtherCategory', 'qty']);
     }
 
     public function scopeOrdPag($query){

@@ -31,15 +31,17 @@
              <span class="grey--text">
              <v-icon class="title">place</v-icon>{{ item.created_at }} 
               {{ item.province.provDesc }}, {{ item.city.citymunDesc }}, {{ item.brgy.brgyDesc }}
-             ({{ item.user_name.mobile }}) </span>
+             ({{ item.user_name.mobile }}) <br />
+             <v-icon class="title">add_shopping_cart</v-icon>: {{ quantity }}
+             items left</span>
              <br />
              <v-icon class="title">person</v-icon>
              <router-link :to="'user/' + item.user_name.uuid"> {{ item.user_name.firstname }} {{ item.user_name.lastname }} </router-link>
           </div>
         </v-card-title>
         <v-card-actions>
-          <v-btn flat color="purple">{{ item.amount }}</v-btn>
-          <v-btn flat >Details</v-btn>
+          <v-btn color="error" dark>{{ item.amount }}</v-btn>
+          <v-btn flat :to="'product/details/' + item.uuid">Details</v-btn>
           <v-spacer></v-spacer>
           <v-btn icon @click.native="show = !show">
             <v-icon>{{ show ? 'keyboard_arrow_down' : 'keyboard_arrow_up' }}</v-icon>
@@ -63,6 +65,12 @@
       show: false,
       cardME: "elevation-1"
     }),
+    computed: {
+     quantity(){
+            return this.item.qty.map((q)=>q.qty).reduce(function(total, q) {
+                 return total + q}, 0);
+          }
+    },
     methods: {
 
       productHover(){

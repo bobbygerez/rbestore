@@ -47,7 +47,7 @@ export const state = {
 		password: ''
 	},
   userProfile:[],
-
+  productDetails: [],
 	items: [
         { icon: 'queue',
           'icon-alt': 'queue',

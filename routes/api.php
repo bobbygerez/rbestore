@@ -9,6 +9,7 @@ Route::get('categories', 'API\APICategoryController@index');
 Route::post('categories/selection', 'API\APICategoryController@getSubCategory');
 Route::post('further_categories', 'API\APICategoryController@furtherCategories');
 Route::get('items', 'API\APIItemsController@index');
+Route::get('item/details/{uuid}', 'API\APIItemsController@getItemDetails');
 Route::post('items/further_categories', 'API\APIItemsController@furtherCategories');
 Route::get('province', 'Province\ProvinceController@index');
 Route::post('city/province', 'City\CityController@getCities');

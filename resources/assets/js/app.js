@@ -26,6 +26,7 @@ window.api_logout = baseUrl + 'auth/logout?token=';
 window.api_categories = baseUrl + 'categories';
 window.api_further_categories = baseUrl + 'further_categories';
 window.api_items = baseUrl + 'items';
+window.api_item = baseUrl + 'item';
 window.api_items_further_cat = baseUrl +'items/further_categories';
 window.api_province = baseUrl +'province';
 window.api_city = baseUrl +'city';

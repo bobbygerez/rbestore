@@ -30,7 +30,7 @@ class APIItemsController extends Controller
 
     	return response()->json([
 
-    			'items' => $this->item->with(['images', 'province', 'userName', 'city', 'brgy', 'category', 'subcategory', 'furtherCategory'])->OrdPag()
+    			'items' => $this->item->with(['images', 'province', 'userName', 'city', 'brgy', 'category', 'subcategory', 'furtherCategory', 'qty'])->OrdPag()
                             
     		]);
     }
@@ -47,9 +47,12 @@ class APIItemsController extends Controller
             ]);
     }
 
-    public function getSample(Optimus $optimus){
+    public function getItemDetails($uuid){
 
-         return $optimus->decode(5);
+         return response()->json([
+
+                'item' => $this->item->getItemDetails($uuid)
+            ]);
     }
 
 

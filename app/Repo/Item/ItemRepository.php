@@ -14,6 +14,10 @@ class ItemRepository extends BaseRepository implements ItemInterface{
         $this->modelName = new Item();
     }
 
+    public function getItemDetails($uuid){
+
+        return $this->modelName->where('uuid', $uuid)->withOnly()->first();
+    }
     public function getUseritems($request){
 
     	$userId = User::where('uuid', $request->uuid)->first()->id;

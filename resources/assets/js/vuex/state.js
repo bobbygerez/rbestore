@@ -1,5 +1,6 @@
 
 export const state = {
+  drawer: false,
   breadCrumbsItems: [],
   navBreadCrumbs:[],
   successLogin: false,
@@ -19,6 +20,7 @@ export const state = {
   //PRODUCTS
   products: [],
   userProduct: [],
+  dialogColors: true,
 
 
   //USER PRODUCT PAGINATION

@@ -36,11 +36,12 @@ window.api_user = baseUrl +'user/';
 
 /******** USE FOR SHIFTING SERVER AND LOCAL DEVELOPMENT (APACHE SERVER) ***********/
 
-var login = {
+var allStartUp = {
   created: function () {
     let token = localStorage.getItem('tokenKey');
+    let data = this
     if(token != null){
-    	let data = this
+    	
     	axios.get(api_getUser + token)
     	.then(function(response){
     		
@@ -60,9 +61,22 @@ var login = {
     	});
     }
 
+    axios.get(api_startup)
+        .then( function(response){
+            data.$store.dispatch('categories', response.data.categories);
+            data.$store.dispatch('provinces', response.data.provinces);
+            data.$store.dispatch('products', response.data.items);
+        })
+        .catch( function(error){
+
+            return this.router.push(window.location.href)
+
+        })
+
 
   }
 }
+
 
 
 Vue.use(VueRouter)
@@ -76,26 +90,11 @@ const app = new Vue({
     el: '#app',
     store,
     router,
-    mixins: [login],
+    mixins: [allStartUp],
     components: {
     	Master
     },
-    created(){
-
-        let data = this
-        axios.get(api_startup)
-        .then( function(response){
-            data.$store.dispatch('categories', response.data.categories);
-            data.$store.dispatch('provinces', response.data.provinces);
-            data.$store.dispatch('products', response.data.items);
-        })
-        .catch( function(error){
-
-            return this.router.push(window.location.href)
-
-        })
-
-    }
+    
 });
 
 

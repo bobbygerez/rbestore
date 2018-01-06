@@ -33,5 +33,7 @@ class ImagesTableSeeder extends Seeder
 
                 ]);
         }
+
+        
     }
 }

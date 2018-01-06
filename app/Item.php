@@ -18,10 +18,15 @@ class Item extends Model
     	return $this->morphMany('App\Image', 'imageable');
     }
 
+    public function colors(){
+
+        return $this->belongsToMany('App\Color', 'color_item', 'item_id', 'color_id');
+    }
+
      public function getAmountAttribute($value){
 
 
-        return "Php " . number_format($value, 2, '.', ',');
+        return number_format($value, 2, '.', ',');
     }
 
     public function getCreatedAtAttribute($value){
@@ -77,7 +82,7 @@ class Item extends Model
     }
 
     public function scopeWithOnly($query){
-        return $query->with(['images', 'province', 'userName', 'city', 'brgy', 'category', 'subcategory', 'furtherCategory', 'qty']);
+        return $query->with(['images', 'province', 'userName', 'city', 'brgy', 'category', 'subcategory', 'furtherCategory', 'qty', 'colors']);
     }
 
     public function scopeOrdPag($query){

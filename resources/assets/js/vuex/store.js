@@ -8,6 +8,13 @@ Vue.use(Vuex)
 export const store = new Vuex.Store({
 	state,
 	mutations: {
+		drawer(state, value){
+			state.drawer = value
+		},
+		dialogColors(state, value){
+			state.dialogColors = value
+		},
+
 		firstname(state,firstname){
 			state.users.firstname = firstname
 		},
@@ -129,6 +136,14 @@ export const store = new Vuex.Store({
 
 	},
 	actions: {
+		drawer(store, value){
+			store.commit('drawer', value)
+		},
+
+		dialogColors(store, value){
+			store.commit('dialogColors', value)
+		},
+
 		users(store, value){
 			
 			store.commit(value['fieldName'], value['value'])
@@ -310,6 +325,13 @@ export const store = new Vuex.Store({
 
 	},
 	getters: {
+		drawer(){
+			return store.state.drawer
+		},
+
+		dialogColors(){
+			return store.state.dialogColors
+		},
 		users(){
 
 			return store.state.users

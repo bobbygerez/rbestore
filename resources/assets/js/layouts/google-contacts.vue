@@ -265,7 +265,6 @@
       mainMenu, categories, filterCategories, searchProduct, filterPlaces
     },
     data: () => ({
-        lorem: `Lorem ipsum dolor sit amet, mel at clita quando. Te sit oratio vituperatoribus, nam ad ipsum posidonium mediocritatem, explicari dissentiunt cu mea. Repudiare disputationi vim in, mollis iriure nec cu, alienum argumentum ius ad. Pri eu justo aeque torquatos.`,
         e1: true,
         e2: false,
         e3: false,
@@ -289,12 +288,30 @@
       ],
       maskMobile: '(09##) - ### - ####',
       valid: true,
-      drawer: true,
       
     }),
 
+    created(){
+      if (window.screen.width < 1264){
+          this.$store.dispatch('drawer', false)
+       }
+       else {
+          this.$store.dispatch('drawer', true)
+       }
+    },
+
     computed: {
 
+        drawer: {
+          get(){
+            return this.$store.getters.drawer
+            
+          },
+          set(value){
+              this.$store.dispatch('drawer', value)
+          }
+          
+        },
         
         dialog: {
             get(){

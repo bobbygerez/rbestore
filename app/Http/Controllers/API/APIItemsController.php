@@ -9,7 +9,7 @@ use Illuminate\Pagination\LengthAwarePaginator;
 use App\Repo\FurtherCategory\FurtherCategoryInterface;
 use App\Province;
 use App\Repo\Category\CategoryInterface;
-
+use App\Color;
 
 class APIItemsController extends Controller
 {
@@ -32,7 +32,7 @@ class APIItemsController extends Controller
 
     	return response()->json([
 
-    			'items' => $this->item->with(['images', 'province', 'userName', 'city', 'brgy', 'category', 'subcategory', 'furtherCategory', 'qty'])->OrdPag()
+    			'items' => $this->item->with(['images', 'province', 'userName', 'city', 'brgy', 'category', 'subcategory', 'furtherCategory', 'qty', 'colors'])->OrdPag()
                             
     		]);
     }
@@ -61,7 +61,7 @@ class APIItemsController extends Controller
 
         return response()->json([
 
-                'items' => $this->item->with(['images', 'province', 'userName', 'city', 'brgy', 'category', 'subcategory', 'furtherCategory', 'qty'])->OrdPag(),
+                'items' => $this->item->with(['images', 'province', 'userName', 'city', 'brgy', 'category', 'subcategory', 'furtherCategory', 'qty', 'colors.images'])->OrdPag(),
                 'provinces' => Province::orderBy('provDesc')->get(),
                 'categories' => $this->category->all()
                             

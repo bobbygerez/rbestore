@@ -11925,11 +11925,12 @@ window.api_user = baseUrl + 'user/';
 
 /******** USE FOR SHIFTING SERVER AND LOCAL DEVELOPMENT (APACHE SERVER) ***********/
 
-var login = {
+var allStartUp = {
     created: function created() {
         var token = localStorage.getItem('tokenKey');
+        var data = this;
         if (token != null) {
-            var data = this;
+
             __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get(api_getUser + token).then(function (response) {
 
                 data.$store.dispatch('successLogin', true);
@@ -11945,6 +11946,15 @@ var login = {
                 data.$store.dispatch('successLogin', false);
             });
         }
+
+        __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get(api_startup).then(function (response) {
+            data.$store.dispatch('categories', response.data.categories);
+            data.$store.dispatch('provinces', response.data.provinces);
+            data.$store.dispatch('products', response.data.items);
+        }).catch(function (error) {
+
+            return this.router.push(window.location.href);
+        });
     }
 };
 
@@ -11959,22 +11969,11 @@ var app = new __WEBPACK_IMPORTED_MODULE_1_vue___default.a({
     el: '#app',
     store: __WEBPACK_IMPORTED_MODULE_5__vuex_store_js__["a" /* store */],
     router: router,
-    mixins: [login],
+    mixins: [allStartUp],
     components: {
         Master: __WEBPACK_IMPORTED_MODULE_4__layouts_google_contacts_vue___default.a
-    },
-    created: function created() {
-
-        var data = this;
-        __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get(api_startup).then(function (response) {
-            data.$store.dispatch('categories', response.data.categories);
-            data.$store.dispatch('provinces', response.data.provinces);
-            data.$store.dispatch('products', response.data.items);
-        }).catch(function (error) {
-
-            return this.router.push(window.location.href);
-        });
     }
+
 });
 
 /***/ }),
@@ -33073,7 +33072,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   },
   data: function data() {
     return {
-      lorem: 'Lorem ipsum dolor sit amet, mel at clita quando. Te sit oratio vituperatoribus, nam ad ipsum posidonium mediocritatem, explicari dissentiunt cu mea. Repudiare disputationi vim in, mollis iriure nec cu, alienum argumentum ius ad. Pri eu justo aeque torquatos.',
       e1: true,
       e2: false,
       e3: false,
@@ -33100,13 +33098,30 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         return !!v || 'Mobile number is required';
       }],
       maskMobile: '(09##) - ### - ####',
-      valid: true,
-      drawer: true
+      valid: true
 
     };
   },
 
+  created: function created() {
+    if (window.screen.width < 1264) {
+      this.$store.dispatch('drawer', false);
+    } else {
+      this.$store.dispatch('drawer', true);
+    }
+  },
+
+
   computed: {
+
+    drawer: {
+      get: function get() {
+        return this.$store.getters.drawer;
+      },
+      set: function set(value) {
+        this.$store.dispatch('drawer', value);
+      }
+    },
 
     dialog: {
       get: function get() {
@@ -36274,6 +36289,12 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuex
 var store = new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
 	state: __WEBPACK_IMPORTED_MODULE_2__state_js__["a" /* state */],
 	mutations: (_mutations = {
+		drawer: function drawer(state, value) {
+			state.drawer = value;
+		},
+		dialogColors: function dialogColors(state, value) {
+			state.dialogColors = value;
+		},
 		firstname: function firstname(state, _firstname) {
 			state.users.firstname = _firstname;
 		},
@@ -36358,6 +36379,12 @@ var store = new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
 		state.navBreadCrumbs = value;
 	}), _mutations),
 	actions: (_actions = {
+		drawer: function drawer(store, value) {
+			store.commit('drawer', value);
+		},
+		dialogColors: function dialogColors(store, value) {
+			store.commit('dialogColors', value);
+		},
 		users: function users(store, value) {
 
 			store.commit(value['fieldName'], value['value']);
@@ -36503,6 +36530,12 @@ var store = new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
 		store.commit('breadCrumbsItems', cleanArray);
 	}), _actions),
 	getters: {
+		drawer: function drawer() {
+			return store.state.drawer;
+		},
+		dialogColors: function dialogColors() {
+			return store.state.dialogColors;
+		},
 		users: function users() {
 
 			return store.state.users;
@@ -37553,6 +37586,7 @@ var index_esm = {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return state; });
 
 var state = {
+  drawer: false,
   breadCrumbsItems: [],
   navBreadCrumbs: [],
   successLogin: false,
@@ -37570,6 +37604,7 @@ var state = {
   //PRODUCTS
   products: [],
   userProduct: [],
+  dialogColors: true,
 
   //USER PRODUCT PAGINATION
   user_current_page: 1,
@@ -38805,6 +38840,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_pagination_productPage_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_pagination_productPage_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_cards_product_vue__ = __webpack_require__(101);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_cards_product_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__components_cards_product_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_dialog_productColors_vue__ = __webpack_require__(134);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_dialog_productColors_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__components_dialog_productColors_vue__);
 //
 //
 //
@@ -38825,6 +38862,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+
 
 
 
@@ -38833,7 +38873,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    productBreadCrumbs: __WEBPACK_IMPORTED_MODULE_0__components_breadcrumbs_productBreadCrumbs_vue___default.a, productPage: __WEBPACK_IMPORTED_MODULE_1__components_pagination_productPage_vue___default.a, product: __WEBPACK_IMPORTED_MODULE_2__components_cards_product_vue___default.a
+    productBreadCrumbs: __WEBPACK_IMPORTED_MODULE_0__components_breadcrumbs_productBreadCrumbs_vue___default.a, productPage: __WEBPACK_IMPORTED_MODULE_1__components_pagination_productPage_vue___default.a, product: __WEBPACK_IMPORTED_MODULE_2__components_cards_product_vue___default.a, productColors: __WEBPACK_IMPORTED_MODULE_3__components_dialog_productColors_vue___default.a
   },
   created: function created() {
 
@@ -39242,6 +39282,10 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(129)
+}
 var normalizeComponent = __webpack_require__(0)
 /* script */
 var __vue_script__ = __webpack_require__(102)
@@ -39250,7 +39294,7 @@ var __vue_template__ = __webpack_require__(103)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
-var __vue_styles__ = null
+var __vue_styles__ = injectStyle
 /* scopeId */
 var __vue_scopeId__ = null
 /* moduleIdentifier (server only) */
@@ -39351,6 +39395,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['item', 'index'],
@@ -39360,6 +39411,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       cardME: "elevation-1"
     };
   },
+
   computed: {
     quantity: function quantity() {
       return this.item.qty.map(function (q) {
@@ -39407,8 +39459,23 @@ var render = function() {
             _c(
               "div",
               [
-                _c("div", { staticClass: "title" }, [
-                  _vm._v(_vm._s(_vm.item.name))
+                _c(
+                  "div",
+                  { staticClass: "title" },
+                  [
+                    _c(
+                      "router-link",
+                      { attrs: { to: "product/details/" + _vm.item.uuid } },
+                      [_vm._v(" " + _vm._s(_vm.item.name) + " ")]
+                    )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c("div", { staticClass: "subheading pa-1" }, [
+                  _vm._v(
+                    "\n          ₱ " + _vm._s(_vm.item.amount) + "\n        "
+                  )
                 ]),
                 _vm._v(" "),
                 _c(
@@ -39434,7 +39501,7 @@ var render = function() {
                       _vm._v("add_shopping_cart")
                     ]),
                     _vm._v(
-                      ": " + _vm._s(_vm.quantity) + "\n         items left"
+                      ": " + _vm._s(_vm.quantity) + "\n          left in stock"
                     )
                   ],
                   1
@@ -39462,26 +39529,68 @@ var render = function() {
             )
           ]),
           _vm._v(" "),
-          _c("v-card-actions", { staticClass: "ma-0" }),
-          _vm._v(" "),
           _c(
             "v-card-actions",
             [
-              _c("v-btn", { attrs: { color: "error", dark: "" } }, [
-                _vm._v(_vm._s(_vm.item.amount))
-              ]),
-              _vm._v(" "),
-              _c("v-btn", { attrs: { color: "primary" } }, [
-                _vm._v("Add Cart")
-              ]),
+              _c(
+                "v-btn",
+                { attrs: { color: "error" } },
+                [
+                  _c("v-icon", { staticClass: "title" }, [
+                    _vm._v("shopping_cart")
+                  ]),
+                  _vm._v(" Add Cart")
+                ],
+                1
+              ),
               _vm._v(" "),
               _c("v-spacer"),
               _vm._v(" "),
               _c(
                 "v-btn",
-                { attrs: { icon: "", to: "product/details/" + _vm.item.uuid } },
-                [_c("v-icon", [_vm._v("more")])],
+                {
+                  attrs: { icon: "" },
+                  nativeOn: {
+                    click: function($event) {
+                      _vm.show = !_vm.show
+                    }
+                  }
+                },
+                [
+                  _c("v-icon", [
+                    _vm._v(
+                      _vm._s(
+                        _vm.show ? "keyboard_arrow_down" : "keyboard_arrow_up"
+                      )
+                    )
+                  ])
+                ],
                 1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "v-slide-y-transition",
+            [
+              _c(
+                "v-card-text",
+                {
+                  directives: [
+                    {
+                      name: "show",
+                      rawName: "v-show",
+                      value: _vm.show,
+                      expression: "show"
+                    }
+                  ]
+                },
+                [
+                  _vm._v(
+                    "\n        " + _vm._s(_vm.item.short_desc) + "\n      "
+                  )
+                ]
               )
             ],
             1
@@ -39528,7 +39637,9 @@ var render = function() {
         })
       ),
       _vm._v(" "),
-      _c("product-page")
+      _c("product-page"),
+      _vm._v(" "),
+      _c("product-colors")
     ],
     1
   )
@@ -40036,18 +40147,63 @@ var render = function() {
             _vm._v(_vm._s(_vm.productDetails.name))
           ]),
           _vm._v(" "),
-          _c("div", [_vm._v(_vm._s(_vm.productDetails.short_desc))])
+          _c("p", { staticClass: "subheading pa-1" }, [
+            _vm._v(
+              "\n        ₱ " + _vm._s(_vm.productDetails.amount) + "\n      "
+            )
+          ]),
+          _vm._v(" "),
+          _c(
+            "span",
+            { staticClass: "grey--text" },
+            [
+              _c("v-icon", { staticClass: "title" }, [_vm._v("place")]),
+              _vm._v(
+                _vm._s(_vm.productDetails.created_at) +
+                  " \n        " +
+                  _vm._s(_vm.productDetails.province.provDesc) +
+                  ", " +
+                  _vm._s(_vm.productDetails.city.citymunDesc) +
+                  ", " +
+                  _vm._s(_vm.productDetails.brgy.brgyDesc) +
+                  "\n       (" +
+                  _vm._s(_vm.productDetails.user_name.mobile) +
+                  ") "
+              ),
+              _c("br"),
+              _vm._v(" "),
+              _c("v-icon", { staticClass: "title" }, [
+                _vm._v("add_shopping_cart")
+              ]),
+              _vm._v(": " + _vm._s(_vm.quantity) + "\n       items left")
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c("br"),
+          _vm._v(" "),
+          _c("div", { staticClass: "body-1 pa-1" }, [
+            _vm._v(
+              "\n          " +
+                _vm._s(_vm.productDetails.short_desc) +
+                "\n       "
+            )
+          ])
         ])
       ]),
       _vm._v(" "),
       _c(
         "v-card-actions",
         [
-          _c("v-btn", { attrs: { color: "error" } }, [
-            _vm._v(_vm._s(_vm.productDetails.amount))
-          ]),
-          _vm._v(" "),
-          _c("v-btn", { attrs: { color: "primary" } }, [_vm._v("Add Cart")])
+          _c(
+            "v-btn",
+            { attrs: { color: "error" } },
+            [
+              _c("v-icon", { staticClass: "title" }, [_vm._v("shopping_cart")]),
+              _vm._v("Add Cart")
+            ],
+            1
+          )
         ],
         1
       )
@@ -40088,15 +40244,270 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 
   computed: {
     productDetails: function productDetails() {
       return this.$store.getters.productDetails;
+    },
+    quantity: function quantity() {
+      return this.productDetails.qty.map(function (q) {
+        return q.qty;
+      }).reduce(function (total, q) {
+        return total + q;
+      }, 0);
     }
   }
 });
+
+/***/ }),
+/* 129 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(130);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(69)("085867f0", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-5e02a8af\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./product.vue", function() {
+     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-5e02a8af\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./product.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 130 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(68)(undefined);
+// imports
+
+
+// module
+exports.push([module.i, "\n.title a{\n  text-decoration: none;\n  color: #337ab7;\n}\n.title a:hover{\n  text-decoration: underline;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 131 */,
+/* 132 */,
+/* 133 */,
+/* 134 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = __webpack_require__(135)
+/* template */
+var __vue_template__ = __webpack_require__(136)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\dialog\\productColors.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-2e988bfc", Component.options)
+  } else {
+    hotAPI.reload("data-v-2e988bfc", Component.options)
+' + '  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 135 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+
+  computed: {
+
+    dialogColors: {
+      get: function get() {
+        return this.$store.getters.dialogColors;
+      },
+      set: function set(value) {
+        this.$store.dispatch('dialogColors', value);
+      }
+    }
+  }
+});
+
+/***/ }),
+/* 136 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "v-dialog",
+    {
+      attrs: { "max-width": "500px" },
+      model: {
+        value: _vm.dialogColors,
+        callback: function($$v) {
+          _vm.dialogColors = $$v
+        },
+        expression: "dialogColors"
+      }
+    },
+    [
+      _c(
+        "v-card",
+        [
+          _c(
+            "v-card-title",
+            [
+              _c("h4", [_vm._v("More Options")]),
+              _vm._v(" "),
+              _c("v-spacer"),
+              _vm._v(" "),
+              _c(
+                "v-menu",
+                { attrs: { bottom: "", left: "" } },
+                [
+                  _c(
+                    "v-btn",
+                    {
+                      attrs: { slot: "activator", icon: "" },
+                      slot: "activator"
+                    },
+                    [_c("v-icon", [_vm._v("more_vert")])],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-list",
+                    _vm._l(_vm.items, function(item, i) {
+                      return _c(
+                        "v-list-tile",
+                        { key: i, on: { click: function($event) {} } },
+                        [_c("v-list-tile-title", [_vm._v(_vm._s(item.title))])],
+                        1
+                      )
+                    })
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "v-card-actions",
+            [
+              _c(
+                "v-btn",
+                {
+                  attrs: { color: "primary", flat: "" },
+                  on: {
+                    click: function($event) {
+                      $event.stopPropagation()
+                      _vm.dialogColors = false
+                    }
+                  }
+                },
+                [_vm._v("Close")]
+              )
+            ],
+            1
+          )
+        ],
+        1
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-2e988bfc", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);

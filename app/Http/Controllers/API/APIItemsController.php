@@ -7,19 +7,21 @@ use App\Http\Controllers\Controller;
 use App\Repo\Item\ItemInterface;
 use Illuminate\Pagination\LengthAwarePaginator;
 use App\Repo\FurtherCategory\FurtherCategoryInterface;
+use App\Province;
+use App\Repo\Category\CategoryInterface;
 
-
-use Jenssegers\Optimus\Optimus;
 
 class APIItemsController extends Controller
 {
     
 	protected $item;
+    protected $category;
     protected $furtherCat;
 
-    public function __construct(ItemInterface $item, FurtherCategoryInterface $furtherCat){
+    public function __construct(ItemInterface $item, FurtherCategoryInterface $furtherCat, CategoryInterface $category){
 
     	$this->item = $item;
+        $this->category = $category;
         $this->furtherCat = $furtherCat;
 
     }
@@ -52,6 +54,17 @@ class APIItemsController extends Controller
          return response()->json([
 
                 'item' => $this->item->getItemDetails($uuid)
+            ]);
+    }
+
+    public function startUp(){
+
+        return response()->json([
+
+                'items' => $this->item->with(['images', 'province', 'userName', 'city', 'brgy', 'category', 'subcategory', 'furtherCategory', 'qty'])->OrdPag(),
+                'provinces' => Province::orderBy('provDesc')->get(),
+                'categories' => $this->category->all()
+                            
             ]);
     }
 

@@ -14,11 +14,12 @@ import {routes} from './router/route.js'
 /******** USE FOR SHIFTING SERVER AND LOCAL DEVELOPMENT (APACHE SERVER) ***********/
 
 // var baseUrl = 'http://rbeph.it.nf/public/api/';
+// window.base = 'http://rbeph.it.nf/public/';
 
 var baseUrl = 'http://localhost/rbestore/public/api/';
 window.base = 'http://localhost/rbestore/public/';
 
-
+window.api_startup = baseUrl + 'start-up';
 window.api_register = baseUrl + 'auth/register';
 window.api_login = baseUrl + 'auth/login';
 window.api_getUser = baseUrl + 'user?token=';
@@ -63,59 +64,6 @@ var login = {
   }
 }
 
-var categories = {
-
-    created: function(){
-
-        let data = this
-
-        axios.get(api_categories)
-        .then( function(response){
-            data.$store.dispatch('categories', response.data.categories);
-        })
-        .catch( function(error){
-
-            return this.router.push(window.location.href)
-
-        })
-    }
-}
-
-var province = {
-
-    created: function(){
-
-        let data = this
-        axios.get(api_province)
-        .then( function(response){
-            data.$store.dispatch('provinces', response.data.provinces);
-        })
-        .catch( function(error){
-
-            return this.router.push(window.location.href)
-
-        })
-    }
-
-}
-
-var products = {
-
-    created: function(){
-
-        let data = this
-        axios.get(api_items)
-        .then( function(response){
-             data.$store.dispatch('products', response.data.items);
-        })
-        .catch( function(error){
-
-            return this.router.push(window.location.href)
-        })
-    }
-
-}
-
 
 Vue.use(VueRouter)
 Vue.use(Vuetify)
@@ -128,9 +76,25 @@ const app = new Vue({
     el: '#app',
     store,
     router,
-    mixins: [login, categories, province, products],
+    mixins: [login],
     components: {
     	Master
+    },
+    created(){
+
+        let data = this
+        axios.get(api_startup)
+        .then( function(response){
+            data.$store.dispatch('categories', response.data.categories);
+            data.$store.dispatch('provinces', response.data.provinces);
+            data.$store.dispatch('products', response.data.items);
+        })
+        .catch( function(error){
+
+            return this.router.push(window.location.href)
+
+        })
+
     }
 });
 

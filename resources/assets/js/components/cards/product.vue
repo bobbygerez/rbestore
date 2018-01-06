@@ -39,19 +39,19 @@
              <router-link :to="'user/' + item.user_name.uuid"> {{ item.user_name.firstname }} {{ item.user_name.lastname }} </router-link>
           </div>
         </v-card-title>
+        <v-card-actions class="ma-0">
+          
+          
+        </v-card-actions>
         <v-card-actions>
           <v-btn color="error" dark>{{ item.amount }}</v-btn>
-          <v-btn flat :to="'product/details/' + item.uuid">Details</v-btn>
+          <v-btn color="primary" >Add Cart</v-btn>
           <v-spacer></v-spacer>
-          <v-btn icon @click.native="show = !show">
-            <v-icon>{{ show ? 'keyboard_arrow_down' : 'keyboard_arrow_up' }}</v-icon>
+          <v-btn icon :to="'product/details/' + item.uuid">
+            <v-icon>more</v-icon>
           </v-btn>
         </v-card-actions>
-        <v-slide-y-transition>
-          <v-card-text v-show="show">
-           {{ item.short_desc}}
-          </v-card-text>
-        </v-slide-y-transition>
+        
       </v-card>
     </v-flex>
    

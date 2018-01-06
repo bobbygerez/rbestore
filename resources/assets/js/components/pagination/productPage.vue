@@ -6,7 +6,7 @@
         <v-flex>
           <v-card flat>
             <v-card-text>
-              <v-pagination v-bind:length.number="lastPage" :total-visible="8" v-model="currentPage" class="ma-0"></v-pagination>
+              <v-pagination v-bind:length.number="lastPage" :total-visible="8" v-model="currentPage" class="ma-0" color="grey darken-2"></v-pagination>
             </v-card-text>
           </v-card>
         </v-flex>

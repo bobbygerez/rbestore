@@ -46,7 +46,7 @@
         </v-card-title>
 
         <v-card-actions>
-          <v-btn color="error" ><v-icon class="title">shopping_cart</v-icon> Add Cart</v-btn>
+          <v-btn color="error" @click.native="showDialogColors()"><v-icon class="title">shopping_cart</v-icon> Add Cart</v-btn>
           <v-spacer></v-spacer>
           <v-btn icon @click.native="show = !show">
             <v-icon>{{ show ? 'keyboard_arrow_down' : 'keyboard_arrow_up' }}</v-icon>
@@ -86,6 +86,9 @@
       },
       productLeave(){
         this.cardME = "elevation-1"
+      },
+      showDialogColors(){
+        this.$store.dispatch('dialogColors', true);
       }
     }
 

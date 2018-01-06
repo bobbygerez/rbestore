@@ -20,7 +20,7 @@ export const state = {
   //PRODUCTS
   products: [],
   userProduct: [],
-  dialogColors: true,
+  dialogColors: false,
 
 
   //USER PRODUCT PAGINATION

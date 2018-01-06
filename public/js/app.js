@@ -37604,7 +37604,7 @@ var state = {
   //PRODUCTS
   products: [],
   userProduct: [],
-  dialogColors: true,
+  dialogColors: false,
 
   //USER PRODUCT PAGINATION
   user_current_page: 1,
@@ -38863,7 +38863,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 
 
@@ -39427,6 +39426,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     productLeave: function productLeave() {
       this.cardME = "elevation-1";
+    },
+    showDialogColors: function showDialogColors() {
+      this.$store.dispatch('dialogColors', true);
     }
   }
 
@@ -39534,7 +39536,14 @@ var render = function() {
             [
               _c(
                 "v-btn",
-                { attrs: { color: "error" } },
+                {
+                  attrs: { color: "error" },
+                  nativeOn: {
+                    click: function($event) {
+                      _vm.showDialogColors()
+                    }
+                  }
+                },
                 [
                   _c("v-icon", { staticClass: "title" }, [
                     _vm._v("shopping_cart")
@@ -40370,6 +40379,8 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_select_colors_selectColors_vue__ = __webpack_require__(137);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_select_colors_selectColors_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_select_colors_selectColors_vue__);
 //
 //
 //
@@ -40387,16 +40398,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
+
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-
+  components: {
+    pColors: __WEBPACK_IMPORTED_MODULE_0__components_select_colors_selectColors_vue___default.a
+  },
   computed: {
 
     dialogColors: {
@@ -40436,45 +40444,25 @@ var render = function() {
         [
           _c(
             "v-card-title",
+            { staticClass: "mb-0 pb-0" },
             [
-              _c("h4", [_vm._v("More Options")]),
+              _c("h4", { staticClass: "subheading" }, [_vm._v("More Options")]),
               _vm._v(" "),
-              _c("v-spacer"),
-              _vm._v(" "),
-              _c(
-                "v-menu",
-                { attrs: { bottom: "", left: "" } },
-                [
-                  _c(
-                    "v-btn",
-                    {
-                      attrs: { slot: "activator", icon: "" },
-                      slot: "activator"
-                    },
-                    [_c("v-icon", [_vm._v("more_vert")])],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "v-list",
-                    _vm._l(_vm.items, function(item, i) {
-                      return _c(
-                        "v-list-tile",
-                        { key: i, on: { click: function($event) {} } },
-                        [_c("v-list-tile-title", [_vm._v(_vm._s(item.title))])],
-                        1
-                      )
-                    })
-                  )
-                ],
-                1
-              )
+              _c("v-spacer")
             ],
             1
           ),
           _vm._v(" "),
           _c(
+            "v-card-text",
+            { staticClass: "mt-0 mb-0 pt-0 pb-0" },
+            [_c("p-colors")],
+            1
+          ),
+          _vm._v(" "),
+          _c(
             "v-card-actions",
+            { staticClass: "mt-0 pt-0" },
             [
               _c(
                 "v-btn",
@@ -40506,6 +40494,282 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-2e988bfc", module.exports)
+  }
+}
+
+/***/ }),
+/* 137 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = __webpack_require__(138)
+/* template */
+var __vue_template__ = __webpack_require__(139)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\select\\colors\\selectColors.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-62cc7e2f", Component.options)
+  } else {
+    hotAPI.reload("data-v-62cc7e2f", Component.options)
+' + '  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 138 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    var srcs = {
+      1: '/static/doc-images/lists/1.jpg',
+      2: '/static/doc-images/lists/2.jpg',
+      3: '/static/doc-images/lists/3.jpg',
+      4: '/static/doc-images/lists/4.jpg',
+      5: '/static/doc-images/lists/5.jpg'
+    };
+
+    return {
+      e11: [],
+      people: [{ header: 'Group 1' }, { name: 'Sandra Adams', group: 'Group 1', avatar: srcs[1] }, { name: 'Ali Connors', group: 'Group 1', avatar: srcs[2] }, { name: 'Trevor Hansen', group: 'Group 1', avatar: srcs[3] }, { name: 'Tucker Smith', group: 'Group 1', avatar: srcs[2] }, { divider: true }, { header: 'Group 2' }, { name: 'Britta Holt', group: 'Group 2', avatar: srcs[4] }, { name: 'Jane Smith ', group: 'Group 2', avatar: srcs[5] }, { name: 'John Smith', group: 'Group 2', avatar: srcs[1] }, { name: 'Sandra Williams', group: 'Group 2', avatar: srcs[3] }]
+    };
+  }
+});
+
+/***/ }),
+/* 139 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "v-card",
+    { staticClass: "ma-0 pa-0", attrs: { color: "white", flat: "" } },
+    [
+      _c(
+        "v-card-text",
+        { staticClass: "ma-0 pa-0" },
+        [
+          _c(
+            "v-container",
+            { staticClass: "ma-0 pa-0", attrs: { fluid: "" } },
+            [
+              _c(
+                "v-layout",
+                { staticClass: "ma-0 pa-0", attrs: { row: "", wrap: "" } },
+                [
+                  _c(
+                    "v-flex",
+                    { attrs: { xs12: "", sm12: "" } },
+                    [
+                      _c("v-select", {
+                        attrs: {
+                          label: "Select Color",
+                          items: _vm.people,
+                          "item-text": "name",
+                          "item-value": "name",
+                          multiple: "",
+                          chips: "",
+                          "max-height": "auto",
+                          autocomplete: ""
+                        },
+                        scopedSlots: _vm._u([
+                          {
+                            key: "selection",
+                            fn: function(data) {
+                              return [
+                                _c(
+                                  "v-chip",
+                                  {
+                                    key: JSON.stringify(data.item),
+                                    staticClass: "chip--select-multi",
+                                    attrs: {
+                                      close: "",
+                                      selected: data.selected
+                                    },
+                                    on: {
+                                      input: function($event) {
+                                        data.parent.selectItem(data.item)
+                                      }
+                                    }
+                                  },
+                                  [
+                                    _c("v-avatar", [
+                                      _c("img", {
+                                        attrs: { src: data.item.avatar }
+                                      })
+                                    ]),
+                                    _vm._v(
+                                      "\n                " +
+                                        _vm._s(data.item.name) +
+                                        "\n              "
+                                    )
+                                  ],
+                                  1
+                                )
+                              ]
+                            }
+                          },
+                          {
+                            key: "item",
+                            fn: function(data) {
+                              return [
+                                typeof data.item !== "object"
+                                  ? [
+                                      _c("v-list-tile-content", {
+                                        domProps: {
+                                          textContent: _vm._s(data.item)
+                                        }
+                                      })
+                                    ]
+                                  : [
+                                      _c("v-list-tile-avatar", [
+                                        _c("img", {
+                                          attrs: { src: data.item.avatar }
+                                        })
+                                      ]),
+                                      _vm._v(" "),
+                                      _c(
+                                        "v-list-tile-content",
+                                        [
+                                          _c("v-list-tile-title", {
+                                            domProps: {
+                                              innerHTML: _vm._s(data.item.name)
+                                            }
+                                          }),
+                                          _vm._v(" "),
+                                          _c("v-list-tile-sub-title", {
+                                            domProps: {
+                                              innerHTML: _vm._s(data.item.group)
+                                            }
+                                          })
+                                        ],
+                                        1
+                                      )
+                                    ]
+                              ]
+                            }
+                          }
+                        ]),
+                        model: {
+                          value: _vm.e11,
+                          callback: function($$v) {
+                            _vm.e11 = $$v
+                          },
+                          expression: "e11"
+                        }
+                      })
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ],
+        1
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-62cc7e2f", module.exports)
   }
 }
 

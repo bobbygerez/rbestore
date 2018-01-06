@@ -9,7 +9,6 @@
                   v-bind:key="product.id"
                    
               >
-
               </product>
 
      </v-layout>

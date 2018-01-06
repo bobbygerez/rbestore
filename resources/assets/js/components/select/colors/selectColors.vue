@@ -1,11 +1,11 @@
 <template>
   <v-card color="white" flat class="ma-0 pa-0">
-    <v-card-text>
-      <v-container fluid>
-        <v-layout row wrap>
+    <v-card-text class="ma-0 pa-0">
+      <v-container fluid class="ma-0 pa-0">
+        <v-layout row wrap class="ma-0 pa-0">
           <v-flex xs12 sm12>
             <v-select
-              label="Select"
+              label="Select Color"
               v-bind:items="people"
               v-model="e11"
               item-text="name"

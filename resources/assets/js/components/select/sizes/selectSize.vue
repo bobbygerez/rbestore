@@ -5,11 +5,12 @@
         <v-layout row wrap class="ma-0 pa-0">
           <v-flex xs12 sm12>
             <v-select
-              label="Select Color"
-              v-bind:items="colors"
-              v-model="selectedColor"
+              label="Select Size"
+              v-bind:items="people"
+              v-model="e11"
               item-text="name"
-              item-value="id"
+              item-value="name"
+              multiple
               chips
               max-height="auto"
               autocomplete
@@ -23,7 +24,7 @@
                   :key="JSON.stringify(data.item)"
                 >
                   <v-avatar>
-                    <img :src="base + data.item.images[0].path">
+                    <img :src="data.item.avatar">
                   </v-avatar>
                   {{ data.item.name }}
                 </v-chip>
@@ -34,7 +35,7 @@
                 </template>
                 <template v-else>
                   <v-list-tile-avatar>
-                    <img v-bind:src="base + data.item.images[0].path"/>
+                    <img v-bind:src="data.item.avatar"/>
                   </v-list-tile-avatar>
                   <v-list-tile-content>
                     <v-list-tile-title v-html="data.item.name"></v-list-tile-title>
@@ -53,7 +54,6 @@
 <script>
   export default {
     data () {
-
       let srcs = {
         1: '/static/doc-images/lists/1.jpg',
         2: '/static/doc-images/lists/2.jpg',
@@ -63,17 +63,21 @@
       }
 
       return {
-        base: null,
-        selectedColor: null
+        e11: [],
+        people: [
+          { header: 'Group 1'},
+          { name: 'Sandra Adams', group: 'Group 1', avatar: srcs[1] },
+          { name: 'Ali Connors', group: 'Group 1', avatar: srcs[2] },
+          { name: 'Trevor Hansen', group: 'Group 1', avatar: srcs[3] },
+          { name: 'Tucker Smith', group: 'Group 1', avatar: srcs[2] },
+          { divider: true },
+          { header: 'Group 2'},
+          { name: 'Britta Holt', group: 'Group 2', avatar: srcs[4] },
+          { name: 'Jane Smith ', group: 'Group 2', avatar: srcs[5] },
+          { name: 'John Smith', group: 'Group 2', avatar: srcs[1] },
+          { name: 'Sandra Williams', group: 'Group 2', avatar: srcs[3] }
+        ]
       }
-    },
-    created(){
-      this.base = window.base;
-    },
-    computed: {
-        colors(){
-          return this.$store.getters.productDetails.colors
-        }
     }
   }
 </script>

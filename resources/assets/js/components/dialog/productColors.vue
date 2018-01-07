@@ -8,8 +8,13 @@
           <v-card-text class="mt-0 mb-0 pt-0 pb-0">
           	<p-colors></p-colors>
           </v-card-text>
+          <v-card-text class="mt-0 mb-0 pt-0 pb-0">
+          	<p-size></p-size>
+          </v-card-text>
           <v-card-actions class="mt-0 pt-0">
-            <v-btn color="primary" flat @click.stop="dialogColors = false">Close</v-btn>
+            <v-btn color="error" ><v-icon>shopping_cart</v-icon>Add Cart</v-btn>
+            <v-btn color="primary" @click.stop="dialogColors = false">Close</v-btn>
+
           </v-card-actions>
         </v-card>
      </v-dialog>
@@ -17,10 +22,11 @@
 
 <script>
  import pColors from '../../components/select/colors/selectColors.vue'
+ import pSize from '../../components/select/sizes/selectSize.vue'
 
   export default {
   	components: {
-  		pColors
+  		pColors, pSize
   	},
     computed: {
 

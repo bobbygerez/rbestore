@@ -82,7 +82,7 @@ class Item extends Model
     }
 
     public function scopeWithOnly($query){
-        return $query->with(['images', 'province', 'userName', 'city', 'brgy', 'category', 'subcategory', 'furtherCategory', 'qty', 'colors']);
+        return $query->with(['images', 'province', 'userName', 'city', 'brgy', 'category', 'subcategory', 'furtherCategory', 'qty', 'colors.images']);
     }
 
     public function scopeOrdPag($query){

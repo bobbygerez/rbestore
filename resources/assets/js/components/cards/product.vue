@@ -46,7 +46,7 @@
         </v-card-title>
 
         <v-card-actions>
-          <v-btn color="error" @click.native="showDialogColors()"><v-icon class="title">shopping_cart</v-icon> Add Cart</v-btn>
+          <add-cart-product-menu  v-on:click.native="addInfo(item.uuid)"></add-cart-product-menu>
           <v-spacer></v-spacer>
           <v-btn icon @click.native="show = !show">
             <v-icon>{{ show ? 'keyboard_arrow_down' : 'keyboard_arrow_up' }}</v-icon>
@@ -65,6 +65,8 @@
 </template>
 
 <script>
+  import axios from 'axios'
+  import addCartProductMenu from '../../components/menu/addCartProductMenu.vue'
 
   export default {
     props: ['item', 'index'],
@@ -72,7 +74,9 @@
       show: false,
       cardME: "elevation-1"
     }),
-    
+    components: {
+      addCartProductMenu
+    },
     computed: {
      quantity(){
             return this.item.qty.map((q)=>q.qty).reduce(function(total, q) {
@@ -87,7 +91,13 @@
       productLeave(){
         this.cardME = "elevation-1"
       },
-      showDialogColors(){
+      addInfo(uuid){
+        let data = this
+        axios.get(api_item + '/details/' + uuid)
+        .then(function(response){
+          data.$store.dispatch('productDetails', response.data.item)
+        })
+        .catch()
         this.$store.dispatch('dialogColors', true);
       }
     }

@@ -13,7 +13,6 @@
 
      </v-layout>
       <product-page></product-page>
-      <product-colors></product-colors>
 
    </v-container>
 
@@ -24,11 +23,10 @@
   import productBreadCrumbs from '../../components/breadcrumbs/productBreadCrumbs.vue'
   import productPage from '../../components/pagination/productPage.vue'
   import product from '../../components/cards/product.vue'
-  import productColors from '../../components/dialog/productColors.vue'
 
    export default {
       components: {
-        productBreadCrumbs, productPage, product, productColors
+        productBreadCrumbs, productPage, product
       },
       created(){
 

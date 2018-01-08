@@ -20,7 +20,7 @@ class ColorsTableSeeder extends Seeder
         foreach ($array as $key => $value) {
         	
         	$color = Color::create([
-
+                    'user_id' => rand(1, 100),
         			'name' => $value
         		]);
 

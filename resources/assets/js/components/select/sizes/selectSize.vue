@@ -10,7 +10,6 @@
               v-model="e11"
               item-text="name"
               item-value="name"
-              multiple
               chips
               max-height="auto"
               autocomplete

@@ -7,11 +7,11 @@
         v-on:mouseleave="productLeave"
 
       >
-        <v-card-media
+        <img class="center-text"
           :src="item.images[0].path"
           height="200px"
-        >
-        </v-card-media>
+        />
+        
 
         <!--   <v-card-media
           v-for="(image, index) in item.images"

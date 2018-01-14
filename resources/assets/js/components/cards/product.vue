@@ -7,10 +7,20 @@
         v-on:mouseleave="productLeave"
 
       >
-        <img class="center-text"
+      <div class="text-xl-center text-lg-center text-md-center text-sm-center">
+      <v-avatar
+              :tile="true"
+              :size="'200px'"
+              class="grey lighten-4 hiddenImage"
+            >
+              <img class="center-text imgProduct"
           :src="item.images[0].path"
-          height="200px"
+          center
         />
+      </v-avatar>
+      <v-viewer  v-bind:item="item" ></v-viewer>
+      </div>
+        
         
 
         <!--   <v-card-media
@@ -67,6 +77,7 @@
 <script>
   import axios from 'axios'
   import addCartProductMenu from '../../components/menu/addCartProductMenu.vue'
+  import vViewer from '../../components/viewer/v-viewer.vue'
 
   export default {
     props: ['item', 'index'],
@@ -75,7 +86,7 @@
       cardME: "elevation-1"
     }),
     components: {
-      addCartProductMenu
+      addCartProductMenu,vViewer
     },
     computed: {
      quantity(){
@@ -112,5 +123,8 @@
   }
   .title a:hover{
     text-decoration: underline;
+  }
+  .hiddenImage {
+    display: none
   }
 </style>

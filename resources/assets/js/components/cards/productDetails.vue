@@ -1,11 +1,11 @@
 <template>
       <v-card class="elevation-0">
-        <v-card-media src="/static/doc-images/cards/desert.jpg">
-        </v-card-media>
+        
         <v-card-title primary-title>
           <div>
+            
             <h3 class="headline mb-0">{{ productDetails.name }}</h3>
-
+            <profile-v-viewer></profile-v-viewer>
             <p class="subheading pa-1">
               &#8369; {{ productDetails.amount }}
             </p>
@@ -28,8 +28,11 @@
 </template>
 
 <script>
+  import profileVViewer from '../viewer/profile-v-viewer'
   export default {
- 
+    components: {
+      profileVViewer
+    },
     computed: {
       productDetails(){
         return this.$store.getters.productDetails

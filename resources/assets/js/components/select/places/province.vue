@@ -36,6 +36,9 @@ import axios from 'axios'
 
             return this.$store.getters.provinces
         },
+        provinceId(){
+            return this.$store.getters.provinceId
+        },
         categoryId(){
 
             return this.$store.getters.categoryId

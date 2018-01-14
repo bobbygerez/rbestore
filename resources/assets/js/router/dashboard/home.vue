@@ -13,6 +13,7 @@
 
      </v-layout>
       <product-page></product-page>
+      
 
    </v-container>
 
@@ -23,6 +24,7 @@
   import productBreadCrumbs from '../../components/breadcrumbs/productBreadCrumbs.vue'
   import productPage from '../../components/pagination/productPage.vue'
   import product from '../../components/cards/product.vue'
+
 
    export default {
       components: {
@@ -35,6 +37,7 @@
           disabled: false
         })
       },
+
       computed: {
 
         products(){

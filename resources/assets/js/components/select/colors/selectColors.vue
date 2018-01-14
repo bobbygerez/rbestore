@@ -17,7 +17,7 @@
               <template slot="selection" slot-scope="data">
                 <v-chip
                   close
-                  @input="data.parent.selectItem(data.item)"
+                  @input="clearSelected"
                   :selected="data.selected"
                   class="chip--select-multi"
                   :key="JSON.stringify(data.item)"
@@ -54,14 +54,6 @@
   export default {
     data () {
 
-      let srcs = {
-        1: '/static/doc-images/lists/1.jpg',
-        2: '/static/doc-images/lists/2.jpg',
-        3: '/static/doc-images/lists/3.jpg',
-        4: '/static/doc-images/lists/4.jpg',
-        5: '/static/doc-images/lists/5.jpg'
-      }
-
       return {
         base: null,
         selectedColor: null
@@ -74,6 +66,11 @@
         colors(){
           return this.$store.getters.productDetails.colors
         }
+    },
+    methods: {
+      clearSelected(){
+        this.selectedColor = null
+      }
     }
   }
 </script>

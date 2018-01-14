@@ -21,9 +21,9 @@ class UsersTableSeeder extends Seeder
         		'lastname' => 'Doe',
                 'company' => $faker->company, 
                 'jobtitle' => $faker->text($maxNbChars = 30),
-        		'email' => 'jhon@rbestore.com',
-                'mobile' => '12345678931',
-        		'password' => Hash::make('12345678')
+        		'email' => 'jhoaan@rbestore.com',
+                'mobile' => '123456789311',
+        		'password' => Hash::make('1234')
 
         	]);
 

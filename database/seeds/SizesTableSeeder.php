@@ -13,13 +13,18 @@ class SizesTableSeeder extends Seeder
     public function run()
     {
         $faker = Faker\Factory::create();
-        for ($i=0; $i < 1000; $i++) { 
+        // for ($i=0; $i < 1000; $i++) { 
         	
-        	Size::create([
-        			'user_id' => rand(1, 100),
-        			'name' => $faker->text($maxNbChars = 20),
-        			'desc' => $faker->text($maxNbChars = 30)
-        		]);
+        // 	Size::create([
+        // 			'user_id' => rand(1, 100),
+        // 			'name' => $faker->text($maxNbChars = 20),
+        // 			'desc' => $faker->text($maxNbChars = 30)
+        // 		]);
+        // }
+
+        for ($i=1; $i < 1000 ; $i++) { 
+            $size = Size::find($i);
+            $size->item()->attach([$i]);
         }
     }
 }

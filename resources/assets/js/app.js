@@ -9,7 +9,8 @@ import Master from './layouts/google-contacts.vue'
 import { store } from './vuex/store.js'
 import {routes} from './router/route.js'
 
-
+import Viewer from 'v-viewer'
+Vue.use(Viewer)
 
 /******** USE FOR SHIFTING SERVER AND LOCAL DEVELOPMENT (APACHE SERVER) ***********/
 

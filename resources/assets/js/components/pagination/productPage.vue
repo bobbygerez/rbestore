@@ -61,7 +61,7 @@
       currentPage(){
         let data = this
 
-        if(this.products.path === 'http://localhost/rbestore/public/api/further_categories'){
+        if(this.products.path ===  window.base + 'api/further_categories'){
           axios.post(this.products.path + '?page=' + this.currentPage,{
              subcategoryIds: this.subcategory
           })
@@ -73,7 +73,7 @@
 
           })
         }
-        else if (this.products.path === 'http://localhost/rbestore/public/api/items/further_categories'){
+        else if (this.products.path === window.base + 'api/items/further_categories'){
            axios.post(this.products.path + '?page=' + this.currentPage,{
                 furtherCatId: this.furtherCatId
               })
@@ -86,7 +86,24 @@
 
               })
         }
-        else if(this.products.path === 'http://localhost/rbestore/public/api/categories/selection'){
+        else if (this.products.path === window.base + 'api/city/province'){
+            console.log(window.base + 'api/city/province')
+           axios.post(this.products.path + '?page=' + this.currentPage,{
+                provinceId: this.provinceId,
+                categoryId: this.categoryId,
+                subcategoryId: this.subcategoryId,
+                furtherCatId: this.furtherCatId
+              })
+              .then( function(response){
+                  data.$store.dispatch('cities', response.data.cities)
+                  data.$store.dispatch('products', response.data.items)
+              })
+              .catch( function(error){
+
+
+              })
+        }
+        else if(this.products.path ===  window.base + 'api/categories/selection'){
            axios.post(api_categories + '/selection' + '?page=' + this.currentPage,{
               categoryId: this.categoryId,
               provinceId: this.provinceId,

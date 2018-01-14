@@ -23,6 +23,11 @@ class Item extends Model
         return $this->belongsToMany('App\Color', 'color_item', 'item_id', 'color_id');
     }
 
+    public function sizes(){
+
+        return $this->belongsToMany('App\Size', 'item_size', 'item_id', 'size_id');
+    }
+
      public function getAmountAttribute($value){
 
 
@@ -82,7 +87,7 @@ class Item extends Model
     }
 
     public function scopeWithOnly($query){
-        return $query->with(['images', 'province', 'userName', 'city', 'brgy', 'category', 'subcategory', 'furtherCategory', 'qty', 'colors.images']);
+        return $query->with(['images', 'province', 'userName', 'city', 'brgy', 'category', 'subcategory', 'furtherCategory', 'qty', 'colors.images', 'sizes']);
     }
 
     public function scopeOrdPag($query){

@@ -5,11 +5,11 @@
 			<details-b-c></details-b-c>
 		</v-flex>
 		
-			<v-flex xs12 sm5 md6 lg6 lx6>
+			<v-flex xs12 sm12 md8 lg8 lx8>
 				<cards-p-d></cards-p-d>
 			</v-flex>
-			<v-flex xs12 sm7 md6 lg6 lx6>
-				<product-carousel></product-carousel>
+			<v-flex xs12 sm12 md4 lg4 lx4>
+				Ads Here!
 			</v-flex>
 		</v-layout>
 	</v-container>
@@ -18,13 +18,11 @@
 <script type="text/javascript">
 	import detailsBC from '../../components/breadcrumbs/detailsBC.vue'
 	import cardsPD from '../../components/cards/productDetails.vue'
-	import productCarousel from '../../components/carousel/productCarousel.vue'
 	import axios from 'axios'
 	export default {
 
 		components: {
-
-			productCarousel, detailsBC, cardsPD
+			detailsBC, cardsPD
 		},
 		created(){
 			let data = this

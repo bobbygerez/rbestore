@@ -71,6 +71,11 @@
       clearSelected(){
         this.selectedColor = null
       }
+    },
+    watch: {
+      selectedColor(){
+        this.$store.dispatch('selectedColorId', this.selectedColor)
+      }
     }
   }
 </script>

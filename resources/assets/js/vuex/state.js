@@ -6,7 +6,7 @@ export const state = {
   successLogin: false,
   filterCategories: false,
   filterPlaces: false,
-
+  cart:null,
 
   //CATEGORIES
   categoryId: null,
@@ -21,6 +21,8 @@ export const state = {
   products: [],
   userProduct: [],
   dialogColors: false,
+  selectedColorId: null,
+  selectedSizeId: null,
 
 
   //USER PRODUCT PAGINATION

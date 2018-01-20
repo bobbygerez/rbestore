@@ -8,6 +8,9 @@ Vue.use(Vuex)
 export const store = new Vuex.Store({
 	state,
 	mutations: {
+		cart(state, value){
+			state.cart = value
+		},
 		drawer(state, value){
 			state.drawer = value
 		},
@@ -93,6 +96,12 @@ export const store = new Vuex.Store({
 		productDetails(state, value){
 			state.productDetails = value
 		},
+		selectedColorId(state, value){
+			state.selectedColorId = value
+		},
+		selectedSizeId(state, value){
+			state.selectedSizeId = value
+		},
 
 		//USER PAGES
 		user_current_page(state, value){
@@ -136,6 +145,21 @@ export const store = new Vuex.Store({
 
 	},
 	actions: {
+
+		cart(store, value){
+			var cart = store.state.cart;
+
+			if(cart === null){
+				store.commit('cart', [value]);
+			}
+			else {
+				cart.push(value);
+				var newCart = store.state.cart;
+				console.log(newCart)
+				store.commit('cart', newCart);
+			}
+            
+		},
 		drawer(store, value){
 			store.commit('drawer', value)
 		},
@@ -176,6 +200,12 @@ export const store = new Vuex.Store({
 		},
 		categories(store, value){
 			store.commit('categories', value)
+		},
+		selectedColorId(store, value){
+			store.commit('selectedColorId', value)
+		},
+		selectedSizeId(store, value){
+			store.commit('selectedSizeId', value)
 		},
 
 
@@ -405,6 +435,12 @@ export const store = new Vuex.Store({
 
 		products(){
 			return store.state.products
+		},
+		selectedColorId(){
+			return store.state.selectedColorId
+		},
+		selectedSizeId(){
+			return store.state.selectedSizeId
 		},
 		userProduct(){
 			return store.state.userProduct

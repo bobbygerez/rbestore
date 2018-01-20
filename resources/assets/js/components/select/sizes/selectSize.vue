@@ -17,7 +17,7 @@
               <template slot="selection" slot-scope="data">
                 <v-chip
                   close
-                  @input="clearE11"
+                  @input="clearSelectedSize"
                   :selected="data.selected"
                   :key="JSON.stringify(data.item)"
                 >
@@ -36,8 +36,6 @@
 <script>
   export default {
     data () {
-     
-
       return {
         selectedSize: null
       }
@@ -48,8 +46,13 @@
       }
     },
     methods: {
-      clearE11(){
-        this.e11 = null
+      clearSelectedSize(){
+        this.selectedSize = null
+      }
+    },
+    watch: {
+      selectedSize(){
+        this.$store.dispatch('selectedSizeId', this.selectedSize)
       }
     }
   }

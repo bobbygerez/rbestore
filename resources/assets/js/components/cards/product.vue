@@ -56,7 +56,7 @@
         </v-card-title>
 
         <v-card-actions>
-          <add-cart-product-menu  v-on:click.native="addInfo(item.uuid)"></add-cart-product-menu>
+          <add-cart-product-menu  v-on:click.native="addInfo(item.uuid)" v-bind:item="item"></add-cart-product-menu>
           <v-spacer></v-spacer>
           <v-btn icon @click.native="show = !show">
             <v-icon>{{ show ? 'keyboard_arrow_down' : 'keyboard_arrow_up' }}</v-icon>

@@ -8,6 +8,9 @@ Vue.use(Vuex)
 export const store = new Vuex.Store({
 	state,
 	mutations: {
+		totalItems(state, value){
+			state.totalItems = value
+		},
 		cart(state, value){
 			state.cart = value
 		},
@@ -149,6 +152,9 @@ export const store = new Vuex.Store({
 	},
 	actions: {
 
+		totalItems(store, value){
+			store.commit('totalItems', value)
+		},
 		cartQuantity(store, value){
 			store.commit('cartQuantity', value)
 		},
@@ -472,8 +478,14 @@ export const store = new Vuex.Store({
 		navBreadCrumbs(){
 			return store.state.navBreadCrumbs
 		},
+		cart(){
+			return store.state.cart
+		},
 		cartQuantity(){
 			return store.state.cartQuantity
+		},
+		totalItems(){
+			return store.state.totalItems
 		}
 	}
 	

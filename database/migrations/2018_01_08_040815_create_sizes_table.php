@@ -18,7 +18,7 @@ class CreateSizesTable extends Migration
             $table->integer('user_id')->unsigned()->nullable();
             $table->foreign('user_id')->references('id')
                 ->on('users');
-            $table->string('name');
+            $table->string('name', 2);
             $table->string('desc');
             $table->timestamps();
         });

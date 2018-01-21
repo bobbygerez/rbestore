@@ -7,6 +7,7 @@ export const state = {
   filterCategories: false,
   filterPlaces: false,
   cart:null,
+  totalItems: null,
 
 
   //CATEGORIES

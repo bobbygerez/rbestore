@@ -15,7 +15,7 @@ class ColorsTableSeeder extends Seeder
     public function run()
     {
         
-        $array = ['White', 'Yellow', 'Fuchsia', 'Red', 'Silver', 'Gray', 'Olive', 'Purple', 'Maroon', 'Aqua', 'Lime'];
+        $array = ['Wht', 'Ylw', 'Fuc', 'Red', 'Sil', 'Gry', 'Olv', 'Pur', 'Mrn', 'Aqu', 'Lim'];
 
         foreach ($array as $key => $value) {
         	

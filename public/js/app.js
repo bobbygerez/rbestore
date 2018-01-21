@@ -33835,6 +33835,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -33844,6 +33858,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       message: false,
       hints: true
     };
+  },
+  computed: {
+    totalItems: function totalItems() {
+      return this.$store.getters.totalItems;
+    },
+    cart: function cart() {
+      var cart = this.$store.getters.cart;
+      if (cart != null) {
+        return cart;
+      }
+      return [];
+    }
+  },
+  methods: {
+    add: function add() {},
+    subtract: function subtract() {}
   }
 });
 
@@ -33863,7 +33893,7 @@ var render = function() {
         "offset-y": "",
         left: "",
         "close-on-content-click": false,
-        "nudge-width": 200
+        "nudge-width": 330
       },
       model: {
         value: _vm.menu,
@@ -33881,11 +33911,24 @@ var render = function() {
           slot: "activator"
         },
         [
-          _c("v-badge", { attrs: { left: "", color: "green" } }, [
-            _c("span", { attrs: { slot: "badge" }, slot: "badge" }, [
-              _vm._v("6")
-            ])
-          ]),
+          _c(
+            "v-badge",
+            {
+              attrs: { left: "", color: "green" },
+              model: {
+                value: _vm.totalItems,
+                callback: function($$v) {
+                  _vm.totalItems = $$v
+                },
+                expression: "totalItems"
+              }
+            },
+            [
+              _c("span", { attrs: { slot: "badge" }, slot: "badge" }, [
+                _vm._v(_vm._s(_vm.totalItems))
+              ])
+            ]
+          ),
           _vm._v(" "),
           _c("v-icon", [_vm._v("shopping_cart")])
         ],
@@ -33896,114 +33939,136 @@ var render = function() {
         "v-card",
         [
           _c(
-            "v-list",
+            "v-card-text",
             [
               _c(
-                "v-list-tile",
-                { attrs: { avatar: "" } },
+                "v-container",
+                { staticClass: "ma-0 pa-0" },
                 [
-                  _c("v-list-tile-avatar", [
-                    _c("img", {
-                      attrs: { src: "/static/doc-images/john.jpg", alt: "John" }
-                    })
-                  ]),
-                  _vm._v(" "),
                   _c(
-                    "v-list-tile-content",
+                    "v-layout",
+                    { staticClass: "text-xs-left " },
                     [
-                      _c("v-list-tile-title", [_vm._v("John Leider")]),
+                      _c("v-flex", { attrs: { xl6: "", lg6: "", md6: "" } }, [
+                        _c("h2", { staticClass: "subheading" }, [
+                          _vm._v("Product")
+                        ])
+                      ]),
                       _vm._v(" "),
-                      _c("v-list-tile-sub-title", [
-                        _vm._v("Founder of Vuetify.js")
+                      _c("v-flex", { attrs: { xl2: "", lg2: "", md2: "" } }, [
+                        _c("h2", { staticClass: "subheading" }, [_vm._v("Qty")])
+                      ]),
+                      _vm._v(" "),
+                      _c("v-flex", { attrs: { xl3: "", lg3: "", md3: "" } }, [
+                        _c("h2", { staticClass: "subheading" }, [
+                          _vm._v("Price")
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("v-flex", { attrs: { xl1: "", lg1: "", md1: "" } }, [
+                        _c("h2", { staticClass: "subheading" }, [
+                          _vm._v("Remove")
+                        ])
                       ])
                     ],
                     1
                   ),
                   _vm._v(" "),
-                  _c(
-                    "v-list-tile-action",
-                    [
-                      _c(
-                        "v-btn",
-                        {
-                          class: _vm.fav ? "red--text" : "",
-                          attrs: { icon: "" },
-                          on: {
-                            click: function($event) {
-                              _vm.fav = !_vm.fav
-                            }
-                          }
-                        },
-                        [_c("v-icon", [_vm._v("favorite")])],
-                        1
-                      )
-                    ],
-                    1
-                  )
+                  _vm._l(_vm.cart, function(item, key) {
+                    return _c(
+                      "v-layout",
+                      { key: key, staticClass: "text-xs-left " },
+                      [
+                        _c(
+                          "v-flex",
+                          { attrs: { xl6: "", lg6: "", md6: "" } },
+                          [
+                            _c("v-avatar", { staticClass: "grey lighten-4" }, [
+                              _c("img", {
+                                attrs: {
+                                  src: item.item.images[0].path,
+                                  alt: "avatar"
+                                }
+                              })
+                            ]),
+                            _vm._v(" "),
+                            _c("br"),
+                            _vm._v(" "),
+                            _vm._l(item.item.colors, function(color, key) {
+                              return color.id === item.colorId
+                                ? _c("span", { staticClass: "grey--text" }, [
+                                    _vm._v(
+                                      "\n                        " +
+                                        _vm._s(color.name) +
+                                        " \n                  "
+                                    )
+                                  ])
+                                : _vm._e()
+                            }),
+                            _vm._v("\n                 -\n                  "),
+                            _vm._l(item.item.sizes, function(size, key) {
+                              return size.id === item.sizeId
+                                ? _c("span", { staticClass: "grey--text" }, [
+                                    _vm._v(
+                                      "\n                        " +
+                                        _vm._s(size.name) +
+                                        " \n                  "
+                                    )
+                                  ])
+                                : _vm._e()
+                            })
+                          ],
+                          2
+                        ),
+                        _vm._v(" "),
+                        _c("v-flex", { attrs: { xl2: "", lg2: "", md2: "" } }, [
+                          _c("h3", { staticClass: "subheading mt-3 ml-3" }, [
+                            _vm._v(_vm._s(item.quantity))
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("v-flex", { attrs: { xl3: "", lg3: "", md3: "" } }, [
+                          _c("h3", { staticClass: "subheading mt-3 ml-3" }, [
+                            _vm._v(_vm._s(item.item.amount))
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "v-flex",
+                          { attrs: { xl1: "", lg1: "", md1: "" } },
+                          [
+                            _c(
+                              "v-btn",
+                              {
+                                attrs: {
+                                  outline: "",
+                                  fab: "",
+                                  small: "",
+                                  color: "error"
+                                }
+                              },
+                              [
+                                _c("v-icon", { attrs: { dark: "" } }, [
+                                  _vm._v("remove")
+                                ])
+                              ],
+                              1
+                            )
+                          ],
+                          1
+                        )
+                      ],
+                      1
+                    )
+                  })
                 ],
-                1
+                2
               )
             ],
             1
           ),
           _vm._v(" "),
           _c("v-divider"),
-          _vm._v(" "),
-          _c(
-            "v-list",
-            [
-              _c(
-                "v-list-tile",
-                [
-                  _c(
-                    "v-list-tile-action",
-                    [
-                      _c("v-switch", {
-                        attrs: { color: "purple" },
-                        model: {
-                          value: _vm.message,
-                          callback: function($$v) {
-                            _vm.message = $$v
-                          },
-                          expression: "message"
-                        }
-                      })
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c("v-list-tile-title", [_vm._v("Enable messages")])
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "v-list-tile",
-                [
-                  _c(
-                    "v-list-tile-action",
-                    [
-                      _c("v-switch", {
-                        attrs: { color: "purple" },
-                        model: {
-                          value: _vm.hints,
-                          callback: function($$v) {
-                            _vm.hints = $$v
-                          },
-                          expression: "hints"
-                        }
-                      })
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c("v-list-tile-title", [_vm._v("Enable hints")])
-                ],
-                1
-              )
-            ],
-            1
-          ),
           _vm._v(" "),
           _c(
             "v-card-actions",
@@ -36642,6 +36707,9 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuex
 var store = new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
 	state: __WEBPACK_IMPORTED_MODULE_2__state_js__["a" /* state */],
 	mutations: (_mutations = {
+		totalItems: function totalItems(state, value) {
+			state.totalItems = value;
+		},
 		cart: function cart(state, value) {
 			state.cart = value;
 		},
@@ -36742,6 +36810,9 @@ var store = new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
 		state.navBreadCrumbs = value;
 	}), _mutations),
 	actions: (_actions = {
+		totalItems: function totalItems(store, value) {
+			store.commit('totalItems', value);
+		},
 		cartQuantity: function cartQuantity(store, value) {
 			store.commit('cartQuantity', value);
 		},
@@ -37018,8 +37089,14 @@ var store = new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
 		navBreadCrumbs: function navBreadCrumbs() {
 			return store.state.navBreadCrumbs;
 		},
+		cart: function cart() {
+			return store.state.cart;
+		},
 		cartQuantity: function cartQuantity() {
 			return store.state.cartQuantity;
+		},
+		totalItems: function totalItems() {
+			return store.state.totalItems;
 		}
 	}
 
@@ -37985,6 +38062,7 @@ var state = {
   filterCategories: false,
   filterPlaces: false,
   cart: null,
+  totalItems: null,
 
   //CATEGORIES
   categoryId: null,

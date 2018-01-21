@@ -1,6 +1,7 @@
 <template>
 	<span>
 		<span v-if="successLogin">
+
         <v-btn icon>
           <v-icon>dashboard</v-icon>
         </v-btn>
@@ -12,6 +13,7 @@
       </span>
 
       <span v-else>
+        <shopping-cart></shopping-cart>
         <v-btn icon
         @click.stop="dialogLogin"
       >
@@ -39,10 +41,14 @@
 
 <script type="text/javascript">
   
-  import axios from 'axios'
+  import axios from 'axios' 
+  import shoppingCart from '../../components/menu/shoppingCart.vue'
+
 
   export default {
-    
+    components: {
+      shoppingCart
+    },
     computed: {
       successLogin(){
         return this.$store.getters.successLogin

@@ -11,6 +11,9 @@ export const store = new Vuex.Store({
 		cart(state, value){
 			state.cart = value
 		},
+		cartQuantity(state, value){
+			state.cartQuantity = value
+		},
 		drawer(state, value){
 			state.drawer = value
 		},
@@ -146,6 +149,9 @@ export const store = new Vuex.Store({
 	},
 	actions: {
 
+		cartQuantity(store, value){
+			store.commit('cartQuantity', value)
+		},
 		cart(store, value){
 			var cart = store.state.cart;
 
@@ -155,7 +161,6 @@ export const store = new Vuex.Store({
 			else {
 				cart.push(value);
 				var newCart = store.state.cart;
-				console.log(newCart)
 				store.commit('cart', newCart);
 			}
             
@@ -466,6 +471,9 @@ export const store = new Vuex.Store({
 		},
 		navBreadCrumbs(){
 			return store.state.navBreadCrumbs
+		},
+		cartQuantity(){
+			return store.state.cartQuantity
 		}
 	}
 	

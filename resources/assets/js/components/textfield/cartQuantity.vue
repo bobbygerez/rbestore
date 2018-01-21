@@ -6,27 +6,47 @@
         :prepend-icon-cb="subtract"
         :append-icon="'add'"
         :append-icon-cb="add"
-        :value="value"
+         v-model="cartQuantity"
         :type="'number'"
+        :min="1"
+
       ></v-text-field>
 </template>
 <script type="text/javascript">
 	export default {
-		data: ()=> ({
-			value: 1
-		}),
+		
+		computed:{
+			cartQuantity: {
+				get(){
+					return this.$store.getters.cartQuantity
+				},
+				set(value){
+					if(value == "" || value <= 0){
+						this.$store.dispatch('cartQuantity', 1)
+					}
+					else{
+						this.$store.dispatch('cartQuantity', parseInt(value))
+					}
+					
+				}
+				
+			}
+		},
 		methods: {
 
 			add(){
-				this.value += 1
+				this.$store.dispatch('cartQuantity', this.cartQuantity += 1)
 			},
 			subtract(){
 
-				if (this.value != 1){
+				if (this.cartQuantity != 1){
 
-					this.value -= 1
+					this.cartQuantity -= 1
 				}
 				
+			},
+			clearQuantity(){
+				this.$store.dispatch('cartQuantity', 1)
 			}
 		}
 	}

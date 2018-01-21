@@ -94,7 +94,7 @@ const app = new Vue({
     mixins: [allStartUp],
     components: {
     	Master
-    },
+    }
     
 });
 

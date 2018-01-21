@@ -52,6 +52,9 @@
         },
         selectedSizeId(){
           return this.$store.getters.selectedSizeId
+        },
+        quantity(){
+          return this.$store.getters.cartQuantity
         }
     },
     methods: {
@@ -59,6 +62,7 @@
         this.menu = false
         this.$store.dispatch('selectedColorId', null);
         this.$store.dispatch('selectedSizeId', null);
+        this.$store.dispatch('cartQuantity', 1);
         this.$refs.selectedColor.clearSelected();
         this.$refs.selectedSize.clearSelectedSize();
       },
@@ -67,7 +71,8 @@
 
             'item': this.item,
             'colorId': this.selectedColorId,
-            'sizeId': this.selectedSizeId
+            'sizeId': this.selectedSizeId,
+            'quantity': this.quantity
 
           })
         console.log('asdf');

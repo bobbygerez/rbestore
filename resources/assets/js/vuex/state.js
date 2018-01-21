@@ -8,6 +8,7 @@ export const state = {
   filterPlaces: false,
   cart:null,
 
+
   //CATEGORIES
   categoryId: null,
   categories:[],
@@ -23,6 +24,7 @@ export const state = {
   dialogColors: false,
   selectedColorId: null,
   selectedSizeId: null,
+  cartQuantity: 1,
 
 
   //USER PRODUCT PAGINATION

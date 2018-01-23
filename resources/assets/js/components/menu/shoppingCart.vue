@@ -16,7 +16,7 @@
          <span slot="badge">{{ totalItems }}</span>
         </v-badge>
       <v-icon>shopping_cart</v-icon></v-btn>
-      <v-card>
+      <v-card v-if="cartTotal != null">
         
           <v-card-text >
             <v-container class="ma-0 pa-0">
@@ -65,6 +65,14 @@
                         <v-icon dark>remove_circle</v-icon>
                     </v-btn>
                   </v-flex>
+                  
+              </v-layout>
+              <v-layout>
+                  <v-flex xl12 lg12 md12 sm12 xs12 offset-xl6 offset-lg6 offset-md6 offset-sm6 offset-xs6>
+                      
+                       <p class="headline pt-2 borderTop" >&#8369; {{ cartTotal }}</p>
+                  </v-flex>
+                  
               </v-layout>
             </v-container>
           </v-card-text>
@@ -72,7 +80,7 @@
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn flat @click="menu = false">Cancel</v-btn>
-          <v-btn color="primary" flat @click="menu = false">Save</v-btn>
+          <v-btn color="primary" flat to="/payment/checkout">Checkout</v-btn>
         </v-card-actions>
       </v-card>
     </v-menu>
@@ -90,13 +98,11 @@
         get(){ return this.$store.getters.totalItems },
         set(){}
       },
+      cartTotal(){
+        return this.$store.getters.cartTotal
+      },
       cart(){
-        var cart  = this.$store.getters.cart
-        if (cart != null) {
-          return cart
-        }
-        return []
-        
+        return this.$store.getters.cart
       }
     },
     methods: {
@@ -112,3 +118,10 @@
     }
   }
 </script>
+
+<style type="text/css">
+  .borderTop {
+
+    border-top: 2px solid black ;
+  }
+</style>

@@ -17,6 +17,9 @@ export const store = new Vuex.Store({
 		cartQuantity(state, value){
 			state.cartQuantity = value
 		},
+		cartTotal(state, value){
+			state.cartTotal = value
+		},
 		drawer(state, value){
 			state.drawer = value
 		},
@@ -172,6 +175,9 @@ export const store = new Vuex.Store({
 		
 		cartQuantity(store, value){
 			store.commit('cartQuantity', value)
+		},
+		cartTotal(store, value){
+			store.commit('cartTotal', value)
 		},
 		cart(store, value){
 			var cart = store.state.cart;
@@ -494,7 +500,12 @@ export const store = new Vuex.Store({
 			return store.state.navBreadCrumbs
 		},
 		cart(){
-			return store.state.cart
+			
+			var cart  = store.state.cart
+	        if (cart != null) {
+	          return cart
+	        }
+	        return []
 		},
 		cartQuantity(){
 			return store.state.cartQuantity
@@ -514,6 +525,28 @@ export const store = new Vuex.Store({
 		},
 		cartSnackBar(){
 			return store.state.cartSnackBar
+		},
+		cartTotal(){
+
+			var cart = store.state.cart
+
+			if(cart != null ){
+
+				var x = cart.map(function(item){
+					return item.quantity * parseFloat(item.item.amount.replace(",", ""))
+				})
+				if(x.length > 0){
+					var y = x.reduce((a, b)=> a + b).toFixed(2)
+					//Comma in thousands
+					return y.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+				}
+
+				
+
+			}
+
+			return null;
+			
 		}
 
 	}

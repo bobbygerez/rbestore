@@ -1,5 +1,6 @@
 
 export const state = {
+  cartSnackBar: false,
   drawer: false,
   breadCrumbsItems: [],
   navBreadCrumbs:[],
@@ -7,7 +8,6 @@ export const state = {
   filterCategories: false,
   filterPlaces: false,
   cart:null,
-  totalItems: null,
 
 
   //CATEGORIES

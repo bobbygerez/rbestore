@@ -8,8 +8,8 @@ Vue.use(Vuex)
 export const store = new Vuex.Store({
 	state,
 	mutations: {
-		totalItems(state, value){
-			state.totalItems = value
+		cartSnackBar(state, value){
+			state.cartSnackBar = value
 		},
 		cart(state, value){
 			state.cart = value
@@ -152,9 +152,24 @@ export const store = new Vuex.Store({
 	},
 	actions: {
 
-		totalItems(store, value){
-			store.commit('totalItems', value)
+		cartSnackBar(store, value){
+			store.commit('cartSnackBar', value)
 		},
+		removeCartItem(store, key){
+			var cart = store.state.cart
+				delete cart[key]
+
+			var cart = store.state.cart
+			var cleanArray = [];
+            	for(var key in cart){
+            		if(cart[key] !== null || cart[key] !== undefined){
+            			cleanArray.push(cart[key])
+            		}
+            	}
+
+			store.commit('cart', cleanArray)
+		},
+		
 		cartQuantity(store, value){
 			store.commit('cartQuantity', value)
 		},
@@ -485,8 +500,22 @@ export const store = new Vuex.Store({
 			return store.state.cartQuantity
 		},
 		totalItems(){
-			return store.state.totalItems
+			var cart = store.state.cart
+			if(cart != null){
+					var x = cart.map(function(item){
+						return item.quantity
+					})
+					if (x.length > 0) {
+						return x.reduce((a, b) => a + b)
+					}
+			}
+			return null
+			
+		},
+		cartSnackBar(){
+			return store.state.cartSnackBar
 		}
+
 	}
 	
 	

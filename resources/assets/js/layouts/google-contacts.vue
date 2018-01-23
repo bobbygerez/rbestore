@@ -1,5 +1,12 @@
 <template>
   <v-app id="inspire">
+    <v-snackbar
+      v-model="cartSnackBar"
+      top
+      color="green lighten-1"
+    >
+      <p class="mt-3"><v-icon color="white">check_circle</v-icon> You have successfully added the item</p>
+    </v-snackbar>
 
     <v-navigation-drawer
       fixed
@@ -248,6 +255,7 @@
 
     <filter-categories></filter-categories>
     <filter-places></filter-places>
+    
   </v-app>
 </template>
 
@@ -302,6 +310,14 @@
 
     computed: {
 
+        cartSnackBar: {
+          get(){
+            return this.$store.getters.cartSnackBar
+          },
+          set(val){
+            this.$store.dispatch('cartSnackBar', val)
+          }
+        },
         drawer: {
           get(){
             return this.$store.getters.drawer

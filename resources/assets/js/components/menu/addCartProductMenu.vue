@@ -25,6 +25,7 @@
         </v-card-actions>
       </v-card>
     </v-menu>
+    
   </div>
 </template>
 <script>
@@ -75,7 +76,8 @@
             'quantity': this.quantity
 
           })
-        console.log('asdf');
+        this.$store.dispatch('cartSnackBar', true)
+        this.cancel()
       }
     }
   }

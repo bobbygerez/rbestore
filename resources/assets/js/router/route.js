@@ -7,6 +7,6 @@ export const routes = [
 	  { path: '/', component: Home},
 	  { path: '/user/:uuid', component: publicProfile},
 	  { path: '/product/details/:uuid', component: productDetails},
-	  { path: '/payment/checkout', component: checkOut },
+	  { path: '/checkout', component: checkOut },
 
 	]

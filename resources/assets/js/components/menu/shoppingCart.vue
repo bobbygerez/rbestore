@@ -80,7 +80,7 @@
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn flat @click="menu = false">Cancel</v-btn>
-          <v-btn color="primary" flat to="/payment/checkout">Checkout</v-btn>
+          <v-btn color="primary" flat to="/checkout" @click.native="checkOut">Checkout</v-btn>
         </v-card-actions>
       </v-card>
     </v-menu>
@@ -114,6 +114,19 @@
       },
       remove(key){
         this.$store.dispatch('removeCartItem', key)
+      },
+      checkOut(){
+        this.menu = false
+        this.$store.dispatch('navBreadCrumbs', [
+              {
+                text: 'Home',
+                to: '/',
+                disabled: false
+              },
+              {
+                text: 'Checkout',
+                disabled: false,
+              }])
       }
     }
   }

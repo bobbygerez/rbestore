@@ -15,7 +15,7 @@ Vue.use(Viewer)
 /******** USE FOR SHIFTING SERVER AND LOCAL DEVELOPMENT (APACHE SERVER) ***********/
 
 // var baseUrl = 'http://rbeph.it.nf/public/api/';
-// window.base = 'http://rbeph.it.nf/public/';
+// window.base = 'http://rbeph.it.nf/public/'; 
 
 var baseUrl = 'http://localhost/rbestore/public/api/';
 window.base = 'http://localhost/rbestore/public/';
@@ -36,11 +36,16 @@ window.api_brgy = baseUrl +'barangay';
 window.api_user = baseUrl +'user/';
 
 /******** USE FOR SHIFTING SERVER AND LOCAL DEVELOPMENT (APACHE SERVER) ***********/
-
 var allStartUp = {
   created: function () {
+
     let token = localStorage.getItem('tokenKey');
     let data = this
+    let localCart = JSON.parse(localStorage.getItem('localCart'));
+     if(localCart != null ){
+        data.$store.dispatch('storageCart', localCart)
+     }
+
     if(token != null){
     	
     	axios.get(api_getUser + token)
@@ -77,7 +82,6 @@ var allStartUp = {
 
   }
 }
-
 
 
 Vue.use(VueRouter)

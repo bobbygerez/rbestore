@@ -68,14 +68,28 @@
         this.$refs.selectedSize.clearSelectedSize();
       },
       addCart(){
-        this.$store.dispatch('cart', { 
+        var newCart =  { 
 
             'item': this.item,
             'colorId': this.selectedColorId,
             'sizeId': this.selectedSizeId,
             'quantity': this.quantity
 
-          })
+          };
+
+        this.$store.dispatch('cart', newCart)
+
+        var cart = JSON.parse(localStorage.getItem('localCart'));
+        
+
+        if(cart === null){
+          localStorage.setItem('localCart', JSON.stringify([newCart]));
+          }
+          else {
+            cart.push(newCart)
+            localStorage.setItem('localCart', JSON.stringify(cart))
+          }
+
         this.$store.dispatch('cartSnackBar', true)
         this.cancel()
       }

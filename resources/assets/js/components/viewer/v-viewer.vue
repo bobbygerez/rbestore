@@ -3,7 +3,6 @@
      <div class="images" v-viewer="{movable: false}">
       <img v-for="(src, key) in item.images" :src="src.path" :key="key">
     </div>
-      
       <v-avatar
               :tile="true"
               :size="'200px'"

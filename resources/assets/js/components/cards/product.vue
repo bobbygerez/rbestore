@@ -12,10 +12,12 @@
               :tile="true"
               :size="'200px'"
               class="grey lighten-4 hiddenImage"
+              v-if="item.images[0].path != undefined || item.images[0].path != null"
             >
               <img class="center-text imgProduct"
           :src="item.images[0].path"
           center
+
         />
       </v-avatar>
       <v-viewer  v-bind:item="item" ></v-viewer>

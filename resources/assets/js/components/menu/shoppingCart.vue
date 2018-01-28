@@ -113,6 +113,25 @@
 
       },
       remove(key){
+        
+        var cart = JSON.parse(localStorage.getItem('localCart'));
+        delete cart[key]
+
+        var cleanArray = [];
+              for(var key in cart){
+                if(cart[key] !== null || cart[key] !== undefined){
+                  cleanArray.push(cart[key])
+                }
+              }
+
+        if(cleanArray.length > 0){
+          localStorage.setItem('localCart', JSON.stringify(cleanArray));
+        }
+        else {
+          localStorage.setItem('localCart', null);
+        }
+        
+
         this.$store.dispatch('removeCartItem', key)
       },
       checkOut(){

@@ -160,9 +160,8 @@ export const store = new Vuex.Store({
 		},
 		removeCartItem(store, key){
 			var cart = store.state.cart
-				delete cart[key]
+			delete cart[key]
 
-			var cart = store.state.cart
 			var cleanArray = [];
             	for(var key in cart){
             		if(cart[key] !== null || cart[key] !== undefined){
@@ -191,6 +190,9 @@ export const store = new Vuex.Store({
 				store.commit('cart', newCart);
 			}
             
+		},
+		storageCart(store, storageCart){
+			store.commit('cart', storageCart)
 		},
 		drawer(store, value){
 			store.commit('drawer', value)

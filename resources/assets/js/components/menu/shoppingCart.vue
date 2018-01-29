@@ -68,9 +68,8 @@
                   
               </v-layout>
               <v-layout>
-                  <v-flex xl12 lg12 md12 sm12 xs12 offset-xl6 offset-lg6 offset-md6 offset-sm6 offset-xs6>
-                      
-                       <p class="headline pt-2 borderTop" >&#8369; {{ cartTotal }}</p>
+                  <v-flex xl12 lg12 md12 sm12 xs12 offset-xl4 offset-lg4 offset-md4 offset-sm4 offset-xs4>
+                       <p class="headline pt-2 borderTop grey--text ml-4" >&#8369; {{ cartTotal }}</p>
                   </v-flex>
                   
               </v-layout>

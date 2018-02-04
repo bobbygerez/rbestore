@@ -11,7 +11,7 @@
               >
               </product>
 
-     </v-layout>
+          </v-layout>
       <product-page></product-page>
       
 

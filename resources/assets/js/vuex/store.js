@@ -91,6 +91,10 @@ export const store = new Vuex.Store({
 			state.furtherCatId = value
 		},
 
+		companies(state, companies){
+			state.companies = companies
+		},
+
 
 		//ITEMS
 		products(state, value){
@@ -154,7 +158,9 @@ export const store = new Vuex.Store({
 
 	},
 	actions: {
-
+		companies(store, value){
+			store.commit('companies', value)
+		},
 		cartSnackBar(store, value){
 			store.commit('cartSnackBar', value)
 		},
@@ -389,6 +395,9 @@ export const store = new Vuex.Store({
 
 	},
 	getters: {
+		companies(){
+			return store.state.companies
+		},
 		drawer(){
 			return store.state.drawer
 		},

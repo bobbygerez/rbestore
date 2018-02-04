@@ -4,7 +4,8 @@
 Route::post('auth/register', 'API\UserController@register');
 Route::post('auth/login', 'API\UserController@login');
 Route::get('auth/logout', 'API\UserController@logout');
-Route::get('start-up', 'API\APIItemsController@startUp');
+// Route::get('start-up', 'API\APIItemsController@startUp');
+Route::get('start-up', 'API\APICompanyController@allStores');
 Route::get('subcategory/{category_id}', 'API\UserSubCategoryController@categoryId');
 Route::get('categories', 'API\APICategoryController@index');
 Route::post('categories/selection', 'API\APICategoryController@getSubCategory');

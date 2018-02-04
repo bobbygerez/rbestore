@@ -61,12 +61,20 @@ class APIItemsController extends Controller
 
         return response()->json([
 
-                'items' => $this->item->with(['images', 'province', 'userName', 'city', 'brgy', 'category', 'subcategory', 'furtherCategory', 'qty', 'colors.images', 'sizes'])->OrdPag(),
                 'provinces' => Province::orderBy('provDesc')->get(),
-                'categories' => $this->category->all()
-                            
             ]);
     }
+
+    // public function startUp(){
+
+    //     return response()->json([
+
+    //             'items' => $this->item->with(['images', 'province', 'userName', 'city', 'brgy', 'category', 'subcategory', 'furtherCategory', 'qty', 'colors.images', 'sizes'])->OrdPag(),
+    //             'provinces' => Province::orderBy('provDesc')->get(),
+    //             'categories' => $this->category->all()
+                            
+    //         ]);
+    // }
 
 
 }

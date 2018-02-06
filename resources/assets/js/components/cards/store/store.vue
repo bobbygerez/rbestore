@@ -42,9 +42,8 @@
             <div class="title">
               <router-link :to="'product/details/'"> {{ company.name }} </router-link>
             </div>
-             <span class="grey--text">
-             <v-icon class="title">place</v-icon>{{ company }} 
-             </span>
+             <v-icon class="title">person</v-icon>
+             <router-link :to="'user/'"> {{ company.user.firstname }} {{ company.user.firstname }} </router-link>
           </div>
         </v-card-title>
 

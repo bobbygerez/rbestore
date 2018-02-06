@@ -23,7 +23,8 @@ class APICompanyController extends Controller
     	return response()->json([
 
                 'provinces' => Province::orderBy('provDesc')->get(),
-                'companies' => $this->company->with(['images'])->userPlace()
+                'companies' => $this->company->whereHas('branches', 'provCode', '=', '0722')
+                                ->with(['images', 'branches', 'user'])->userPlace()
             ]);
     	
     }

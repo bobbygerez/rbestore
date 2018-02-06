@@ -12,6 +12,16 @@ class Company extends Model
     	return $this->belongsToMany('App\Brgy', 'barangay_company', 'barangay_id', 'company_id');
     }
 
+    public function branches(){
+
+        return $this->hasMany('App\Branch', 'company_id', 'id');
+    }
+
+    public function user(){
+
+        return $this->hasOne('App\User', 'id', 'user_id');
+    }
+
      public function images(){
 
     	return $this->morphMany('App\Image', 'imageable');
@@ -25,4 +35,6 @@ class Company extends Model
 
         return $query->orderBy('created_at', 'DESC')->paginate(12);
     }
+
+
 }

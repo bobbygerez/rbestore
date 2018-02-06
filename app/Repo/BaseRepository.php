@@ -39,5 +39,12 @@ class BaseRepository{
 		return $this->modelName->with($relation);
 	}
 
+	public function whereHas($table, $field, $operator, $value){
+
+		return $this->modelName->whereHas($table, function ($query) use ($field, $operator, $value){
+				    $query->where($field, $operator, $value);
+				});
+	}
+
 	
 }

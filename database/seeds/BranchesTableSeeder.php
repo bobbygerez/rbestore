@@ -12,6 +12,7 @@ class BranchesTableSeeder extends Seeder
      */
     public function run()
     {
+        Branch::truncate();
         for ($i=1; $i < 290; $i++) { 
         	
         	$faker = Faker\Factory::create();
@@ -20,9 +21,9 @@ class BranchesTableSeeder extends Seeder
 
         			'name' =>  $faker->text($maxNbChars = 35),
         			'company_id' => $i,
-        			'provCode' => '0722',
-        			'citymunCode' => '072230',
-        			'brgyCode' => '072230006',
+        			'province_id' => 40,
+        			'city_id' => 888,
+        			'brgy_id' => 23486,
         			'contact_number' => $faker->numberBetween($min = 10000, $max = 1000000),
         			'street' =>  $faker->text($maxNbChars = 50),
         		]);

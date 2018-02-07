@@ -19,9 +19,9 @@ class CreateBranchesTable extends Migration
             $table->foreign('company_id')->references('id')
                 ->on('companies');
             $table->string('name');
-            $table->string('provCode');
-            $table->string('citymunCode');
-            $table->string('brgyCode');
+            $table->integer('province_id');
+            $table->integer('city_id');
+            $table->integer('brgy_id');
             $table->string('contact_number');
             $table->string('street');
             $table->timestamps();

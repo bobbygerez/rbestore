@@ -41176,6 +41176,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 // import addCartProductMenu from '../../components/menu/addCartProductMenu.vue'
@@ -41444,7 +41452,7 @@ var render = function() {
                   "div",
                   { staticClass: "title" },
                   [
-                    _c("router-link", { attrs: { to: "product/details/" } }, [
+                    _c("router-link", { attrs: { to: "company/" } }, [
                       _vm._v(" " + _vm._s(_vm.company.name) + " ")
                     ])
                   ],
@@ -41453,15 +41461,44 @@ var render = function() {
                 _vm._v(" "),
                 _c("v-icon", { staticClass: "title" }, [_vm._v("person")]),
                 _vm._v(" "),
-                _c("router-link", { attrs: { to: "user/" } }, [
-                  _vm._v(
-                    " " +
-                      _vm._s(_vm.company.user.firstname) +
+                _c(
+                  "router-link",
+                  { attrs: { to: "user/" + _vm.company.user.uuid } },
+                  [
+                    _vm._v(
                       " " +
-                      _vm._s(_vm.company.user.firstname) +
-                      " "
-                  )
-                ])
+                        _vm._s(_vm.company.user.firstname) +
+                        " " +
+                        _vm._s(_vm.company.user.firstname) +
+                        " "
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "span",
+                  { staticClass: "grey--text" },
+                  [
+                    _c("br"),
+                    _vm._v(" "),
+                    _c("v-icon", { staticClass: "title" }, [_vm._v("place")]),
+                    _vm._v(" "),
+                    _vm._l(_vm.company.branches, function(branch) {
+                      return _c("span", [
+                        _vm._v(
+                          "\n            " +
+                            _vm._s(branch.brgy.brgyDesc) +
+                            ", " +
+                            _vm._s(branch.city.citymunDesc) +
+                            ", " +
+                            _vm._s(branch.province.provDesc) +
+                            "\n         "
+                        )
+                      ])
+                    })
+                  ],
+                  2
+                )
               ],
               1
             )

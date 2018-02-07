@@ -40,10 +40,18 @@
         <v-card-title primary-title>
           <div>
             <div class="title">
-              <router-link :to="'product/details/'"> {{ company.name }} </router-link>
+              <router-link :to="'company/'"> {{ company.name }} </router-link>
             </div>
              <v-icon class="title">person</v-icon>
-             <router-link :to="'user/'"> {{ company.user.firstname }} {{ company.user.firstname }} </router-link>
+             <router-link :to="'user/' + company.user.uuid "> {{ company.user.firstname }} {{ company.user.firstname }} </router-link>
+             <span class="grey--text">
+             <br />
+             <v-icon class="title">place</v-icon>
+             <span v-for="branch in company.branches">
+                {{ branch.brgy.brgyDesc}}, {{ branch.city.citymunDesc}}, {{ branch.province.provDesc}}
+             </span>
+            
+             </span>
           </div>
         </v-card-title>
 

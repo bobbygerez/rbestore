@@ -34,6 +34,7 @@ window.api_province = baseUrl +'province';
 window.api_city = baseUrl +'city';
 window.api_brgy = baseUrl +'barangay';
 window.api_user = baseUrl +'user/';
+window.api_company = baseUrl + 'companies'
 
 /******** USE FOR SHIFTING SERVER AND LOCAL DEVELOPMENT (APACHE SERVER) ***********/
 var allStartUp = {

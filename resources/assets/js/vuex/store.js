@@ -94,6 +94,9 @@ export const store = new Vuex.Store({
 		companies(state, companies){
 			state.companies = companies
 		},
+		companiesCurrentPage(state, currentPage){
+			state.companies.current_page = currentPage
+		},
 
 
 		//ITEMS
@@ -160,6 +163,9 @@ export const store = new Vuex.Store({
 	actions: {
 		companies(store, value){
 			store.commit('companies', value)
+		},
+		companiesCurrentPage(store, currentPage){
+			store.commit('companiesCurrentPage', currentPage)
 		},
 		cartSnackBar(store, value){
 			store.commit('cartSnackBar', value)

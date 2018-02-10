@@ -28,5 +28,12 @@ class APICompanyController extends Controller
             ]);
     	
     }
+
+    public function getCompanies(Request $request){
+
+        return response()->json([
+                'companies' => $request->company_id
+            ]);
+    }
     
 }

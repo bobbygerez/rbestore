@@ -21,7 +21,7 @@
 
 <script type="text/javascript">
 
-  import productBreadCrumbs from '../../components/breadcrumbs/productBreadCrumbs.vue'
+  import homeBC from '../../components/breadcrumbs/store/homeBC.vue'
   import productPage from '../../components/pagination/productPage.vue'
   import product from '../../components/cards/product.vue'
 

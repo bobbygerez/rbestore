@@ -9,7 +9,9 @@ export const state = {
   filterPlaces: false,
   cart:null,
 
-  companies:[],
+  companies:[
+    {current_page: 1}
+  ],
 
   //CATEGORIES
   categoryId: null,

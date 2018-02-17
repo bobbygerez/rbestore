@@ -36,5 +36,15 @@ class Company extends Model
         return $query->orderBy('created_at', 'DESC')->paginate(12);
     }
 
+    public function scopeWithRel($query){
+
+        return $query->with(['images', 'branches.province', 'branches.city', 'branches.brgy', 'user']);
+    }
+
+    public function scopeWithRelItems($query){
+
+        return $query->with(['branches.items']);
+    }
+
 
 }

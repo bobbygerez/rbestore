@@ -184,6 +184,7 @@ return [
         App\Providers\FurtherCategoryServiceProvider::class,
         App\Providers\ItemServiceProvider::class,
         App\Providers\CompanyServiceProvider::class,
+        App\Providers\BranchServiceProvider::class,
 
     ],
 

@@ -21,4 +21,22 @@ class Branch extends Model
 
     	return $this->hasOne('App\Brgy', 'id', 'brgy_id');
     }
+
+    public function items(){
+
+    	return $this->belongsToMany('App\Item', 'branch_item', 'branch_id', 'item_id');
+    }
+
+    public function company(){
+
+        return $this->belongsTo('App\Company', 'company_id', 'id');
+    }
+
+
+
+    //SCOPES
+    public function scopeWithRel($query){
+
+        return $query->with(['items.images', 'province', 'city', 'brgy']);
+    }
 }

@@ -34,8 +34,9 @@ export const store = new Vuex.Store({
 			state.users.lastname = lastname
 		},
 		company(state, company){
-			state.users.company = company
+			state.company = company
 		},
+
 		jobTitle(state, jobTitle){
 			state.users.jobTitle = jobTitle
 		},
@@ -161,6 +162,9 @@ export const store = new Vuex.Store({
 
 	},
 	actions: {
+		company(store, company){
+			store.commit('company', company)
+		},
 		companies(store, value){
 			store.commit('companies', value)
 		},
@@ -401,6 +405,9 @@ export const store = new Vuex.Store({
 
 	},
 	getters: {
+		company(){
+			return store.state.companies
+		},
 		companies(){
 			return store.state.companies
 		},

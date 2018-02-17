@@ -12,6 +12,7 @@ export const state = {
   companies:[
     {current_page: 1}
   ],
+  company: {},
 
   //CATEGORIES
   categoryId: null,

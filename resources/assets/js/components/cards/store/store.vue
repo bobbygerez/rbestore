@@ -8,19 +8,25 @@
 
       >
       <div class="text-xl-center text-lg-center text-md-center text-sm-center">
-      <v-avatar
-              :tile="true"
-              :size="'200px'"
-              class="grey lighten-4 hiddenImage"
-              v-if="company.images[0].path != undefined || company.images[0].path != null"
-            >
-              <img class="center-text imgProduct"
-          :src="company.images[0].path"
-          center
+      <router-link :to="'/company/' + company.name"> 
 
-        />
-      </v-avatar>
-      <v-viewer  v-bind:item="company" ></v-viewer>
+        <v-avatar
+                :tile="true"
+                :size="'200px'"
+                class="grey lighten-4 hiddenImage"
+                v-if="company.images[0].path != undefined || company.images[0].path != null"
+              >
+                <img class="center-text imgProduct"
+            :src="company.images[0].path"
+            center
+
+          />
+        </v-avatar> 
+
+
+      </router-link>
+        
+      <!-- <v-viewer  v-bind:item="company" ></v-viewer> -->
       </div>
         
         
@@ -40,7 +46,7 @@
         <v-card-title primary-title>
           <div>
             <div class="title">
-              <router-link :to="'company/' + company.name"> {{ company.name }} </router-link>
+              <router-link :to="'/company/' + company.name"> {{ company.name }} </router-link>
             </div>
              <v-icon class="title">person</v-icon>
              <router-link :to="'user/' + company.user.uuid "> {{ company.user.firstname }} {{ company.user.lastname }} </router-link>
@@ -97,7 +103,5 @@
   .title a:hover{
     text-decoration: underline;
   }
-  .hiddenImage {
-    display: none
-  }
+  
 </style>

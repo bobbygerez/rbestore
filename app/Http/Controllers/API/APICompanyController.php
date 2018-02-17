@@ -24,7 +24,7 @@ class APICompanyController extends Controller
 
                 'provinces' => Province::orderBy('provDesc')->get(),
                 'companies' => $this->company->whereHas('branches', 'province_id', '=', 40)
-                                ->with(['images', 'branches.province', 'branches.city', 'branches.brgy', 'user'])->userPlace()
+                                ->withRel()->userPlace()
             ]);
     	
     }
@@ -34,6 +34,17 @@ class APICompanyController extends Controller
         return response()->json([
                 'companies' => $request->company_id
             ]);
+    }
+
+    public function getBranchProduct(Request $request){
+
+        return response()->json([
+                'company' => $this->company->whereHas('branches', 'province_id', '=', 41)
+                    ->withRel()
+                    ->withRelItems()
+                    ->first()
+            ]);
+
     }
     
 }

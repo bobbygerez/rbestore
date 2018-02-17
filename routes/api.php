@@ -19,7 +19,10 @@ Route::post('barangay/city', 'Barangay\BarangayController@getBarangays');
 Route::post('barangay/items', 'Barangay\BarangayController@getItems');
 Route::get('sample', 'API\APIItemsController@getSample');
 Route::get('user/{uuid}', 'API\UserController@getUserInfo');
+
 Route::get('companies/{company_id}', 'API\APICompanyController@getCompanies');
+Route::get('company/{name}', 'API\APIBranchController@getProduct');
+
 Route::group(['middleware' => 'jwt.auth'], function () {
     Route::get('user', 'API\UserController@getAuthUser');
 });

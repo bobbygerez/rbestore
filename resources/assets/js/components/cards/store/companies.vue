@@ -13,7 +13,7 @@
         <v-avatar
                 :tile="true"
                 :size="'200px'"
-                class="grey lighten-4 hiddenImage"
+                class="grey lighten-4"
                 v-if="company.images[0].path != undefined || company.images[0].path != null"
               >
                 <img class="center-text imgProduct"
@@ -46,7 +46,7 @@
         <v-card-title primary-title>
           <div>
             <div class="title">
-              <router-link :to="'/company/' + company.name"> {{ company.name }} </router-link>
+              <router-link :to="'/company/' + company.name"> {{ company.name }}  </router-link>
             </div>
              <v-icon class="title">person</v-icon>
              <router-link :to="'user/' + company.user.uuid "> {{ company.user.firstname }} {{ company.user.lastname }} </router-link>

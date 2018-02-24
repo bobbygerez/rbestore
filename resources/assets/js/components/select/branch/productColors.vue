@@ -6,7 +6,7 @@
           <v-flex xs12 sm12>
             <v-select
               label="Select Color"
-              v-bind:items="colors"
+              v-bind:items="product.colors"
               v-model="selectedColor"
               item-text="name"
               item-value="id"
@@ -17,15 +17,15 @@
               <template slot="selection" slot-scope="data">
                 <v-chip
                   close
-                  @input="clearSelected"
                   :selected="data.selected"
+                  @input="clearSelected"
                   class="chip--select-multi"
                   :key="JSON.stringify(data.item)"
                 >
                   <v-avatar>
-                    <img :src="base + data.item.images[0].path">
+                    <img :src="base + data.item.images">
                   </v-avatar>
-                  {{ data.item.name }}
+                  {{ data.item.name}}
                 </v-chip>
               </template>
               <template slot="item" slot-scope="data">
@@ -34,11 +34,10 @@
                 </template>
                 <template v-else>
                   <v-list-tile-avatar>
-                    <img v-bind:src="base + data.item.images[0].path"/>
+                    <img v-bind:src="base + data.item.images"/>
                   </v-list-tile-avatar>
                   <v-list-tile-content>
                     <v-list-tile-title v-html="data.item.name"></v-list-tile-title>
-                    <v-list-tile-sub-title v-html="data.item.group"></v-list-tile-sub-title>
                   </v-list-tile-content>
                 </template>
               </template>
@@ -52,6 +51,8 @@
 
 <script>
   export default {
+
+    props: ['product'],
     data () {
 
       return {
@@ -61,11 +62,6 @@
     },
     created(){
       this.base = window.base;
-    },
-    computed: {
-        colors(){
-          return this.$store.getters.productDetails.colors
-        }
     },
     methods: {
       clearSelected(){

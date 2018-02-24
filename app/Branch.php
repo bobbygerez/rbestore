@@ -37,6 +37,6 @@ class Branch extends Model
     //SCOPES
     public function scopeWithRel($query){
 
-        return $query->with(['items.images', 'province', 'city', 'brgy']);
+        return $query->with(['items.images', 'items.qty', 'items.colors.images', 'items.sizes', 'province', 'city', 'brgy']);
     }
 }

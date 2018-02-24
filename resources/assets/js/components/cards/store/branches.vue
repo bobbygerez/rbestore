@@ -5,32 +5,45 @@
 			<details-b-c></details-b-c>
 		</v-flex>
 		
-			<v-flex xs12 sm12 md8 lg8 lx8>
-				<h1 class="headline ml-2">Branches</h1>
-				<branch></branch>
+			<v-flex xs12 sm12 md12 lg12 lx12>
+				<h1 class="headline text-lg-center text-md-center text-sm-center text-xs-center">Displaying from {{ branchProducts.from }} to  {{ branchProducts.to }} out of {{ branchProducts.total }} </h1>
+				
 			</v-flex>
-			<v-flex xs12 sm12 md4 lg4 lx4>
-				Ads Here!
-			</v-flex>
+			<branch-product  
+				v-for="(product, index) in branchProducts.data"
+             	v-bind:product="product"
+            	v-bind:index="index"
+             	v-bind:key="product.id">
+             		
+            </branch-product>
+			
 		</v-layout>
 	</v-container>
 </template>
 
 <script type="text/javascript">
 	import detailsBC from '../../../components/breadcrumbs/detailsBC.vue'
-	import branch from '../../../components/cards/store/branch.vue'
+	import branchProduct from '../../../components/cards/store/branchProduct.vue'
 	import axios from 'axios'
 	export default {
 
+		data: () => ({
+		      page: 1,
+		    }),
 		components: {
-			detailsBC, branch
+			detailsBC, branchProduct
+		},
+		computed:{
+			branchProducts(){
+				return this.$store.getters.branchProducts
+			}
 		},
 		created(){
 			let data = this
 			let branchProduct = this.$route.params.branchProduct
-			axios.get(window.base + '/api/company/' + branchProduct)
+			axios.get(window.base + '/api/company/' + branchProduct + '/' + this.page)
 			.then(function(response){
-				data.$store.dispatch('company', response.data.company)
+				data.$store.dispatch('branchProducts', response.data.brancProducts)
 				data.$store.dispatch('navBreadCrumbs', [
 							{
 								text: 'Home',

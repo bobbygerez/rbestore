@@ -10,10 +10,10 @@
       <v-btn color="error" dark slot="activator" @click="cancel">Buy Now</v-btn>
       <v-card>
         <v-card-text class="mt-0 mb-0 pt-0 pb-0">
-          <p-colors ref="selectedColor"></p-colors>
+          <product-colors ref="selectedColor" v-bind:product="product"></product-colors>
         </v-card-text>
         <v-card-text class="mt-0 mb-0 pt-0 pb-0">
-          <p-size ref="selectedSize"></p-size>
+          <product-size ref="selectedSize" v-bind:product="product"></product-size>
         </v-card-text>
          <v-card-text class="mt-0 mb-0 pt-0 pb-0">
           <cart-quantity></cart-quantity>
@@ -29,14 +29,14 @@
   </div>
 </template>
 <script>
- import pColors from '../../components/select/colors/selectColors.vue'
- import pSize from '../../components/select/sizes/selectSize.vue'
+ import productColors from '../../components/select/branch/productColors.vue'
+ import productSize from '../../components/select/branch/productSize.vue'
  import cartQuantity from '../../components/textfield/cartQuantity.vue'
   export default {
     components: {
-      pColors, pSize, cartQuantity
+      productSize, cartQuantity, productColors
     },
-    props: ['item'],
+    props: ['product'],
     data: () => ({
       fav: true,
       menu: false,
@@ -70,7 +70,7 @@
       addCart(){
         var newCart =  { 
 
-            'item': this.item,
+            'item': this.product,
             'colorId': this.selectedColorId,
             'sizeId': this.selectedSizeId,
             'quantity': this.quantity

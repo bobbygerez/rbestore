@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers\API;
-
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Repo\Branch\BranchInterface;
@@ -19,10 +18,7 @@ class APIBranchController extends Controller
     }
 
     public function getProduct(Request $request){
-    	return response()->json([
-                'company' => $this->branch->whereHas('company', 'name', '=', $request->name )
-                    ->withRel()
-                    ->first()
-            ]);
+
+    	return $this->branch->getProduct($request);
     }
 }

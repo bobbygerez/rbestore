@@ -2,12 +2,12 @@
 	 <v-container fluid grid-list-md>
 	 	 <home-b-c></home-b-c>
 	 	 <v-layout row wrap>
-	 		<store
+	 		<companies
 	 		 v-for="(company, index) in companies.data"
              v-bind:company="company"
              v-bind:index="index"
              v-bind:key="company.id"
-	 		></store>
+	 		></companies>
 	 	</v-layout>
 	 	<company-page></company-page>
   	 </v-container>
@@ -15,7 +15,7 @@
 </template>
 
 <script type="text/javascript">
-	import store from '../../components/cards/store/store.vue'
+	import companies from '../../components/cards/store/companies.vue'
 	import homeBC from '../../components/breadcrumbs/store/homeBC.vue'
   	import companyPage from '../../components/pagination/companyPage.vue'
 
@@ -23,7 +23,7 @@
 	export default {
 
 		components: {
-			store, homeBC, companyPage
+			companies, homeBC, companyPage
 		},
 		computed: {
 

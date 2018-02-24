@@ -98,6 +98,9 @@ export const store = new Vuex.Store({
 		companiesCurrentPage(state, currentPage){
 			state.companies.current_page = currentPage
 		},
+		branchProducts(state, branchProducts){
+			state.branchProducts = branchProducts
+		},
 
 
 		//ITEMS
@@ -162,6 +165,9 @@ export const store = new Vuex.Store({
 
 	},
 	actions: {
+		branchProducts(store, branchProducts){
+			store.commit('branchProducts', branchProducts);
+		},
 		company(store, company){
 			store.commit('company', company)
 		},
@@ -405,6 +411,10 @@ export const store = new Vuex.Store({
 
 	},
 	getters: {
+
+		branchProducts(){
+			return store.state.branchProducts
+		},
 		company(){
 			return store.state.companies
 		},

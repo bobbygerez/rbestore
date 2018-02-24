@@ -6,7 +6,7 @@
           <v-flex xs12 sm12>
             <v-select
               label="Select Size"
-              v-bind:items="sizes"
+              v-bind:items="product.sizes"
               v-model="selectedSize"
               item-text="name"
               item-value="id"
@@ -35,6 +35,7 @@
 
 <script>
   export default {
+    props: ['product'],
     data () {
       return {
         selectedSize: null

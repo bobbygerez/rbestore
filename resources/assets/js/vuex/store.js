@@ -181,6 +181,7 @@ export const store = new Vuex.Store({
 			store.commit('cartSnackBar', value)
 		},
 		removeCartItem(store, key){
+
 			var cart = store.state.cart
 			delete cart[key]
 
@@ -192,6 +193,9 @@ export const store = new Vuex.Store({
             	}
 
 			store.commit('cart', cleanArray)
+		},
+		newCart(store, newCart){
+			store.commit('cart', newCart)
 		},
 		
 		cartQuantity(store, value){

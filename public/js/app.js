@@ -36112,6 +36112,35 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -36119,6 +36148,27 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
+      headers: [{
+        text: 'Image',
+        align: 'left',
+        sortable: false,
+        value: 'img'
+      }, {
+        text: 'Qty',
+        value: 'qty',
+        align: 'left',
+        sortable: false
+      }, {
+        text: 'Price',
+        value: 'price',
+        align: 'left',
+        sortable: false
+      }, {
+        text: 'Remove',
+        value: 'remove',
+        align: 'left',
+        sortable: false
+      }],
       fav: true,
       menu: false,
       message: false,
@@ -36129,6 +36179,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     cartTable: __WEBPACK_IMPORTED_MODULE_0__data_tables_cartTable_vue___default.a
   },
   computed: {
+
     totalItems: {
       get: function get() {
         return this.$store.getters.totalItems;
@@ -36143,8 +36194,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     }
   },
   methods: {
-    add: function add() {},
-    subtract: function subtract() {},
     remove: function remove(key) {
 
       var cart = JSON.parse(localStorage.getItem('localCart'));
@@ -36163,7 +36212,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         localStorage.setItem('localCart', null);
       }
 
-      this.$store.dispatch('removeCartItem', key);
+      this.$store.dispatch('newCart', cleanArray);
     },
     checkOut: function checkOut() {
       this.menu = false;
@@ -36442,269 +36491,162 @@ var render = function() {
                         { staticClass: "text-xs-left " },
                         [
                           _c(
-                            "v-flex",
+                            "v-data-table",
                             {
                               attrs: {
-                                xl5: "",
-                                lg5: "",
-                                md5: "",
-                                sm5: "",
-                                xs5: ""
-                              }
-                            },
-                            [
-                              _c("h2", { staticClass: "subheading" }, [
-                                _vm._v("Product")
-                              ])
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "v-flex",
-                            {
-                              attrs: {
-                                xl2: "",
-                                lg2: "",
-                                md2: "",
-                                sm2: "",
-                                xs2: ""
-                              }
-                            },
-                            [
-                              _c("h2", { staticClass: "subheading" }, [
-                                _vm._v("Qty")
-                              ])
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "v-flex",
-                            {
-                              attrs: {
-                                xl3: "",
-                                lg3: "",
-                                md3: "",
-                                sm3: "",
-                                xs3: ""
-                              }
-                            },
-                            [
-                              _c("h2", { staticClass: "subheading" }, [
-                                _vm._v("Price")
-                              ])
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "v-flex",
-                            {
-                              attrs: {
-                                xl1: "",
-                                lg1: "",
-                                md1: "",
-                                sm1: "",
-                                xs1: ""
-                              }
-                            },
-                            [
-                              _c("h2", { staticClass: "subheading" }, [
-                                _vm._v("Remove")
-                              ])
-                            ]
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _vm._l(_vm.cart, function(item, key) {
-                        return _c(
-                          "v-layout",
-                          { key: key, staticClass: "text-xs-left " },
-                          [
-                            _c(
-                              "v-flex",
-                              {
-                                attrs: {
-                                  xl5: "",
-                                  lg5: "",
-                                  md5: "",
-                                  sm5: "",
-                                  xs5: ""
-                                }
+                                headers: _vm.headers,
+                                items: _vm.cart,
+                                "hide-actions": "",
+                                flat: ""
                               },
-                              [
-                                _c(
-                                  "v-avatar",
-                                  {
-                                    staticClass: "grey lighten-4",
-                                    attrs: { size: "62px" }
-                                  },
-                                  [
-                                    _c("img", {
-                                      attrs: {
-                                        src: item.item.images[0].path,
-                                        alt: "avatar"
-                                      }
-                                    })
-                                  ]
-                                ),
-                                _vm._v(" "),
-                                _c("br"),
-                                _vm._v(" "),
-                                _vm._l(item.item.colors, function(color, key) {
-                                  return color.id === item.colorId
-                                    ? _c(
-                                        "span",
-                                        { staticClass: "grey--text" },
-                                        [
-                                          _vm._v(
-                                            "\n                " +
-                                              _vm._s(color.name) +
-                                              " \n              "
-                                          )
-                                        ]
-                                      )
-                                    : _vm._e()
-                                }),
-                                _vm._v("\n              -\n              "),
-                                _vm._l(item.item.sizes, function(size, key) {
-                                  return size.id === item.sizeId
-                                    ? _c(
-                                        "span",
-                                        { staticClass: "grey--text" },
-                                        [
-                                          _vm._v(
-                                            "\n                " +
-                                              _vm._s(size.name) +
-                                              " \n              "
-                                          )
-                                        ]
-                                      )
-                                    : _vm._e()
-                                })
-                              ],
-                              2
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "v-flex",
-                              {
-                                attrs: {
-                                  xl2: "",
-                                  lg2: "",
-                                  md2: "",
-                                  sm2: "",
-                                  xs2: ""
-                                }
-                              },
-                              [
-                                _c(
-                                  "h3",
-                                  { staticClass: "subheading mt-3 ml-1" },
-                                  [_vm._v(_vm._s(item.quantity))]
-                                )
-                              ]
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "v-flex",
-                              {
-                                attrs: {
-                                  xl3: "",
-                                  lg3: "",
-                                  md3: "",
-                                  sm3: "",
-                                  xs3: ""
-                                }
-                              },
-                              [
-                                _c(
-                                  "h3",
-                                  { staticClass: "subheading mt-3 ml-1" },
-                                  [
-                                    _vm._v(
-                                      _vm._s(item.item.amount) +
-                                        " ===== " +
-                                        _vm._s(key)
-                                    )
-                                  ]
-                                )
-                              ]
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "v-flex",
-                              {
-                                attrs: {
-                                  xl1: "",
-                                  lg1: "",
-                                  md1: "",
-                                  sm1: "",
-                                  xs1: ""
-                                }
-                              },
-                              [
-                                _c(
-                                  "v-btn",
-                                  {
-                                    staticClass: "red--text mt-3",
-                                    attrs: { icon: "", small: "" },
-                                    nativeOn: {
-                                      click: function($event) {
-                                        _vm.remove(key)
-                                      }
-                                    }
-                                  },
-                                  [
-                                    _c("v-icon", { attrs: { dark: "" } }, [
-                                      _vm._v("remove_circle ")
-                                    ])
-                                  ],
-                                  1
-                                )
-                              ],
-                              1
-                            )
-                          ],
-                          1
-                        )
-                      }),
-                      _vm._v(" "),
-                      _c(
-                        "v-layout",
-                        [
-                          _c(
-                            "v-flex",
-                            {
-                              attrs: {
-                                xl12: "",
-                                lg12: "",
-                                md12: "",
-                                sm12: "",
-                                xs12: "",
-                                "offset-xl4": "",
-                                "offset-lg4": "",
-                                "offset-md4": "",
-                                "offset-sm4": "",
-                                "offset-xs4": ""
-                              }
-                            },
-                            [
-                              _c(
-                                "p",
+                              scopedSlots: _vm._u([
                                 {
-                                  staticClass:
-                                    "headline pt-2 borderTop grey--text ml-4"
-                                },
-                                [_vm._v("₱ " + _vm._s(_vm.cartTotal))]
-                              )
-                            ]
+                                  key: "items",
+                                  fn: function(props) {
+                                    return [
+                                      _c(
+                                        "td",
+                                        {
+                                          staticClass:
+                                            "text-lg-center text-md-center text-sm-center text-xs-center"
+                                        },
+                                        [
+                                          _c(
+                                            "v-avatar",
+                                            {
+                                              staticClass:
+                                                "grey lighten-4 ma-1",
+                                              attrs: {
+                                                size: "70px",
+                                                tile: true
+                                              }
+                                            },
+                                            [
+                                              _c("img", {
+                                                attrs: {
+                                                  src:
+                                                    props.item.item.images[0]
+                                                      .path,
+                                                  alt: "avatar"
+                                                }
+                                              })
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "div",
+                                            [
+                                              _vm._l(
+                                                props.item.item.colors,
+                                                function(color, key) {
+                                                  return color.id ===
+                                                    props.item.colorId
+                                                    ? _c("span", [
+                                                        _vm._v(
+                                                          "\n                    " +
+                                                            _vm._s(color.name) +
+                                                            " \n                  "
+                                                        )
+                                                      ])
+                                                    : _vm._e()
+                                                }
+                                              ),
+                                              _vm._v(" "),
+                                              _vm._l(
+                                                props.item.item.sizes,
+                                                function(size, key) {
+                                                  return size.id ===
+                                                    props.item.sizeId
+                                                    ? _c("span", [
+                                                        _vm._v(
+                                                          "\n                    " +
+                                                            _vm._s(
+                                                              " - " + size.name
+                                                            ) +
+                                                            " \n                  "
+                                                        )
+                                                      ])
+                                                    : _vm._e()
+                                                }
+                                              )
+                                            ],
+                                            2
+                                          )
+                                        ],
+                                        1
+                                      ),
+                                      _vm._v(" "),
+                                      _c("td", [
+                                        _vm._v(_vm._s(props.item.quantity))
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("td", [
+                                        _vm._v(_vm._s(props.item.item.amount))
+                                      ]),
+                                      _vm._v(" "),
+                                      _c(
+                                        "td",
+                                        [
+                                          _c(
+                                            "v-btn",
+                                            {
+                                              staticClass: "red--text mt-3",
+                                              attrs: { icon: "", small: "" },
+                                              nativeOn: {
+                                                click: function($event) {
+                                                  _vm.remove(props.index)
+                                                }
+                                              }
+                                            },
+                                            [
+                                              _c(
+                                                "v-icon",
+                                                { attrs: { dark: "" } },
+                                                [_vm._v("remove_circle")]
+                                              )
+                                            ],
+                                            1
+                                          )
+                                        ],
+                                        1
+                                      )
+                                    ]
+                                  }
+                                }
+                              ])
+                            },
+                            [
+                              _c("template", { slot: "footer" }, [
+                                _c("td", [
+                                  _vm._v("\n                 \n              ")
+                                ]),
+                                _vm._v(" "),
+                                _c("td", { staticClass: "subheading" }, [
+                                  _vm._v(
+                                    "\n                TOTAL: \n              "
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("td", { staticClass: "py-3 subheading" }, [
+                                  _vm._v(
+                                    "\n                ₱  " +
+                                      _vm._s(_vm.cartTotal) +
+                                      "\n              "
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("td", [
+                                  _vm._v("\n                 \n              ")
+                                ])
+                              ])
+                            ],
+                            2
                           )
                         ],
                         1
                       )
                     ],
-                    2
+                    1
                   )
                 ],
                 1
@@ -39571,6 +39513,7 @@ var store = new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
 			store.commit('cartSnackBar', value);
 		},
 		removeCartItem: function removeCartItem(store, key) {
+
 			var cart = store.state.cart;
 			delete cart[key];
 
@@ -39582,6 +39525,9 @@ var store = new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
 			}
 
 			store.commit('cart', cleanArray);
+		},
+		newCart: function newCart(store, _newCart) {
+			store.commit('cart', _newCart);
 		},
 		cartQuantity: function cartQuantity(store, value) {
 			store.commit('cartQuantity', value);
@@ -42972,7 +42918,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         localStorage.setItem('localCart', null);
       }
 
-      this.$store.dispatch('removeCartItem', key);
+      this.$store.dispatch('newCart', cleanArray);
     }
   }
 });
@@ -43069,7 +43015,7 @@ var render = function() {
                       attrs: { icon: "", small: "" },
                       nativeOn: {
                         click: function($event) {
-                          _vm.remove(_vm.key)
+                          _vm.remove(props.index)
                         }
                       }
                     },

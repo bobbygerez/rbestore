@@ -29,7 +29,7 @@
       <td>{{ props.item.item.amount }}</td>
       <td>{{ total(props.item.quantity, props.item.item.amount) }}</td>
       <td>
-        <v-btn icon small class="red--text mt-3" @click.native="remove(key)">
+        <v-btn icon small class="red--text mt-3" @click.native="remove(props.index)">
                         <v-icon dark>remove_circle</v-icon>
                     </v-btn>
       </td>
@@ -130,7 +130,7 @@
         }
         
 
-        this.$store.dispatch('removeCartItem', key)
+        this.$store.dispatch('newCart', cleanArray)
       }
     }
   }

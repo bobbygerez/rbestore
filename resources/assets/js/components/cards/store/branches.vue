@@ -16,14 +16,16 @@
              	v-bind:key="product.id">
              		
             </branch-product>
-			
+		
 		</v-layout>
+		<product-pagination></product-pagination>
 	</v-container>
 </template>
 
 <script type="text/javascript">
 	import detailsBC from '../../../components/breadcrumbs/detailsBC.vue'
 	import branchProduct from '../../../components/cards/store/branchProduct.vue'
+	import productPagination from '../../../components/pagination/store/productPagination.vue'
 	import axios from 'axios'
 	export default {
 
@@ -31,7 +33,7 @@
 		      page: 1,
 		    }),
 		components: {
-			detailsBC, branchProduct
+			detailsBC, branchProduct, productPagination
 		},
 		computed:{
 			branchProducts(){

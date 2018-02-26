@@ -36141,6 +36141,53 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -36481,6 +36528,7 @@ var render = function() {
             [
               _c(
                 "v-card-text",
+                { staticClass: "hidden-xs-only" },
                 [
                   _c(
                     "v-container",
@@ -36543,9 +36591,9 @@ var render = function() {
                                                     props.item.colorId
                                                     ? _c("span", [
                                                         _vm._v(
-                                                          "\n                    " +
+                                                          "\n              " +
                                                             _vm._s(color.name) +
-                                                            " \n                  "
+                                                            " \n            "
                                                         )
                                                       ])
                                                     : _vm._e()
@@ -36559,11 +36607,11 @@ var render = function() {
                                                     props.item.sizeId
                                                     ? _c("span", [
                                                         _vm._v(
-                                                          "\n                    " +
+                                                          "\n              " +
                                                             _vm._s(
                                                               " - " + size.name
                                                             ) +
-                                                            " \n                  "
+                                                            " \n            "
                                                         )
                                                       ])
                                                     : _vm._e()
@@ -36617,36 +36665,302 @@ var render = function() {
                             },
                             [
                               _c("template", { slot: "footer" }, [
-                                _c("td", [
-                                  _vm._v("\n                 \n              ")
-                                ]),
+                                _c("td", [_vm._v("\n           \n        ")]),
                                 _vm._v(" "),
                                 _c("td", { staticClass: "subheading" }, [
-                                  _vm._v(
-                                    "\n                TOTAL: \n              "
-                                  )
+                                  _vm._v("\n          TOTAL: \n        ")
                                 ]),
                                 _vm._v(" "),
                                 _c("td", { staticClass: "py-3 subheading" }, [
                                   _vm._v(
-                                    "\n                ₱  " +
+                                    "\n          ₱  " +
                                       _vm._s(_vm.cartTotal) +
-                                      "\n              "
+                                      "\n        "
                                   )
                                 ]),
                                 _vm._v(" "),
-                                _c("td", [
-                                  _vm._v("\n                 \n              ")
-                                ])
+                                _c("td", [_vm._v("\n           \n        ")])
                               ])
                             ],
                             2
+                          ),
+                          _vm._v(" "),
+                          _c("template", { slot: "footer" }, [
+                            _c("td", [_vm._v("\n         \n      ")]),
+                            _vm._v(" "),
+                            _c("td", { staticClass: "subheading" }, [
+                              _vm._v("\n        TOTAL: \n      ")
+                            ]),
+                            _vm._v(" "),
+                            _c("td", { staticClass: "py-3 subheading" }, [
+                              _vm._v(
+                                "\n        ₱  " +
+                                  _vm._s(_vm.cartTotal) +
+                                  "\n      "
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _c("td", [_vm._v("\n         \n      ")])
+                          ])
+                        ],
+                        2
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-card-text",
+                { staticClass: "hidden-sm-and-up" },
+                [
+                  _c(
+                    "v-container",
+                    { staticClass: "ma-0 pa-0" },
+                    [
+                      _c(
+                        "v-layout",
+                        { staticClass: "text-xs-left " },
+                        [
+                          _c(
+                            "v-flex",
+                            {
+                              attrs: {
+                                xl5: "",
+                                lg5: "",
+                                md5: "",
+                                sm5: "",
+                                xs5: ""
+                              }
+                            },
+                            [_c("p", [_vm._v("Product")])]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-flex",
+                            {
+                              attrs: {
+                                xl2: "",
+                                lg2: "",
+                                md2: "",
+                                sm2: "",
+                                xs2: ""
+                              }
+                            },
+                            [_c("p", [_vm._v("Qty")])]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-flex",
+                            {
+                              attrs: {
+                                xl3: "",
+                                lg3: "",
+                                md3: "",
+                                sm3: "",
+                                xs3: ""
+                              }
+                            },
+                            [_c("p", [_vm._v("Price")])]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-flex",
+                            {
+                              attrs: {
+                                xl1: "",
+                                lg1: "",
+                                md1: "",
+                                sm1: "",
+                                xs1: ""
+                              }
+                            },
+                            [_c("p", [_vm._v("Remove")])]
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _vm._l(_vm.cart, function(item, key) {
+                        return _c(
+                          "v-layout",
+                          { key: key, staticClass: "text-xs-left " },
+                          [
+                            _c(
+                              "v-flex",
+                              {
+                                attrs: {
+                                  xl5: "",
+                                  lg5: "",
+                                  md5: "",
+                                  sm5: "",
+                                  xs5: ""
+                                }
+                              },
+                              [
+                                _c(
+                                  "v-avatar",
+                                  {
+                                    staticClass: "grey lighten-4",
+                                    attrs: { size: "62px" }
+                                  },
+                                  [
+                                    _c("img", {
+                                      attrs: {
+                                        src: item.item.images[0].path,
+                                        alt: "avatar"
+                                      }
+                                    })
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _c("br"),
+                                _vm._v(" "),
+                                _vm._l(item.item.colors, function(color, key) {
+                                  return color.id === item.colorId
+                                    ? _c(
+                                        "span",
+                                        { staticClass: "grey--text" },
+                                        [
+                                          _vm._v(
+                                            "\n    " +
+                                              _vm._s(color.name) +
+                                              " \n  "
+                                          )
+                                        ]
+                                      )
+                                    : _vm._e()
+                                }),
+                                _vm._v("\n  -\n  "),
+                                _vm._l(item.item.sizes, function(size, key) {
+                                  return size.id === item.sizeId
+                                    ? _c(
+                                        "span",
+                                        { staticClass: "grey--text" },
+                                        [
+                                          _vm._v(
+                                            "\n    " +
+                                              _vm._s(size.name) +
+                                              " \n  "
+                                          )
+                                        ]
+                                      )
+                                    : _vm._e()
+                                })
+                              ],
+                              2
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "v-flex",
+                              {
+                                attrs: {
+                                  xl2: "",
+                                  lg2: "",
+                                  md2: "",
+                                  sm2: "",
+                                  xs2: ""
+                                }
+                              },
+                              [
+                                _c("p", { staticClass: "mt-3 ml-1" }, [
+                                  _vm._v(_vm._s(item.quantity))
+                                ])
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "v-flex",
+                              {
+                                attrs: {
+                                  xl3: "",
+                                  lg3: "",
+                                  md3: "",
+                                  sm3: "",
+                                  xs3: ""
+                                }
+                              },
+                              [
+                                _c("p", { staticClass: "mt-3 ml-1" }, [
+                                  _vm._v(_vm._s(item.item.amount))
+                                ])
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "v-flex",
+                              {
+                                attrs: {
+                                  xl1: "",
+                                  lg1: "",
+                                  md1: "",
+                                  sm1: "",
+                                  xs1: ""
+                                }
+                              },
+                              [
+                                _c(
+                                  "v-btn",
+                                  {
+                                    staticClass: "red--text mt-3",
+                                    attrs: { icon: "", small: "" },
+                                    nativeOn: {
+                                      click: function($event) {
+                                        _vm.remove(key)
+                                      }
+                                    }
+                                  },
+                                  [
+                                    _c("v-icon", { attrs: { dark: "" } }, [
+                                      _vm._v("remove_circle")
+                                    ])
+                                  ],
+                                  1
+                                )
+                              ],
+                              1
+                            )
+                          ],
+                          1
+                        )
+                      }),
+                      _vm._v(" "),
+                      _c(
+                        "v-layout",
+                        [
+                          _c(
+                            "v-flex",
+                            {
+                              attrs: {
+                                xl12: "",
+                                lg12: "",
+                                md12: "",
+                                sm12: "",
+                                xs12: "",
+                                "offset-xl4": "",
+                                "offset-lg4": "",
+                                "offset-md4": "",
+                                "offset-sm4": "",
+                                "offset-xs4": ""
+                              }
+                            },
+                            [
+                              _c(
+                                "p",
+                                {
+                                  staticClass: "subheading pt-2 borderTop ml-2"
+                                },
+                                [_vm._v("Total:  ₱ " + _vm._s(_vm.cartTotal))]
+                              )
+                            ]
                           )
                         ],
                         1
                       )
                     ],
-                    1
+                    2
                   )
                 ],
                 1
@@ -38035,7 +38349,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 
 
@@ -38111,7 +38424,6 @@ var render = function() {
                         attrs: {
                           "prepend-icon": "pin_drop",
                           items: _vm.cities,
-                          multiple: "",
                           label: "Select City",
                           autocomplete: "",
                           "item-value": "citymunCode",
@@ -44266,8 +44578,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_breadcrumbs_detailsBC_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_breadcrumbs_detailsBC_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_cards_store_branchProduct_vue__ = __webpack_require__(139);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_cards_store_branchProduct_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_cards_store_branchProduct_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_axios__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_axios__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_pagination_store_productPagination_vue__ = __webpack_require__(172);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_pagination_store_productPagination_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__components_pagination_store_productPagination_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_axios__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_axios__);
 //
 //
 //
@@ -44291,6 +44605,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+
 
 
 
@@ -44303,7 +44619,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		};
 	},
 	components: {
-		detailsBC: __WEBPACK_IMPORTED_MODULE_0__components_breadcrumbs_detailsBC_vue___default.a, branchProduct: __WEBPACK_IMPORTED_MODULE_1__components_cards_store_branchProduct_vue___default.a
+		detailsBC: __WEBPACK_IMPORTED_MODULE_0__components_breadcrumbs_detailsBC_vue___default.a, branchProduct: __WEBPACK_IMPORTED_MODULE_1__components_cards_store_branchProduct_vue___default.a, productPagination: __WEBPACK_IMPORTED_MODULE_2__components_pagination_store_productPagination_vue___default.a
 	},
 	computed: {
 		branchProducts: function branchProducts() {
@@ -44313,7 +44629,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 	created: function created() {
 		var data = this;
 		var branchProduct = this.$route.params.branchProduct;
-		__WEBPACK_IMPORTED_MODULE_2_axios___default.a.get(window.base + '/api/company/' + branchProduct + '/' + this.page).then(function (response) {
+		__WEBPACK_IMPORTED_MODULE_3_axios___default.a.get(window.base + '/api/company/' + branchProduct + '/' + this.page).then(function (response) {
 			data.$store.dispatch('branchProducts', response.data.brancProducts);
 			data.$store.dispatch('navBreadCrumbs', [{
 				text: 'Home',
@@ -45688,7 +46004,9 @@ var render = function() {
           })
         ],
         2
-      )
+      ),
+      _vm._v(" "),
+      _c("product-pagination")
     ],
     1
   )
@@ -49414,6 +49732,179 @@ module.exports = function (css) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 166 */,
+/* 167 */,
+/* 168 */,
+/* 169 */,
+/* 170 */,
+/* 171 */,
+/* 172 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = __webpack_require__(173)
+/* template */
+var __vue_template__ = __webpack_require__(174)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\pagination\\store\\productPagination.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-5845c503", Component.options)
+  } else {
+    hotAPI.reload("data-v-5845c503", Component.options)
+' + '  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 173 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+
+  computed: {
+    branchProducts: function branchProducts() {
+      return this.$store.getters.branchProducts;
+    }
+  },
+  watch: {
+    'branchProducts.current_page': function branchProductsCurrent_page(newVal, oldVal) {
+      var data = this;
+      var branchProduct = this.$route.params.branchProduct;
+      __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get(window.base + '/api/company/' + branchProduct + '/' + newVal).then(function (response) {
+        data.$store.dispatch('branchProducts', response.data.brancProducts);
+      }).catch();
+    }
+  }
+});
+
+/***/ }),
+/* 174 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "text-xs-center" },
+    [
+      _c(
+        "v-container",
+        [
+          _c(
+            "v-layout",
+            [
+              _c(
+                "v-flex",
+                [
+                  _c(
+                    "v-card",
+                    { attrs: { flat: "" } },
+                    [
+                      _c(
+                        "v-card-text",
+                        [
+                          _c("v-pagination", {
+                            staticClass: "ma-0",
+                            attrs: {
+                              length: _vm.branchProducts.last_page,
+                              "total-visible": 8
+                            },
+                            model: {
+                              value: _vm.branchProducts.current_page,
+                              callback: function($$v) {
+                                _vm.$set(
+                                  _vm.branchProducts,
+                                  "current_page",
+                                  $$v
+                                )
+                              },
+                              expression: "branchProducts.current_page"
+                            }
+                          })
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ],
+        1
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-5845c503", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);

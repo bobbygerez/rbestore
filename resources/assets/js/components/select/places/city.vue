@@ -8,7 +8,6 @@
               prepend-icon="pin_drop"
               v-bind:items="cities"
               v-model="city"
-              multiple 
               label="Select City"
               autocomplete
               item-value="citymunCode"

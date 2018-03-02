@@ -1,8 +1,10 @@
 <template>
 	<span>
 		<span v-if="successLogin">
-
-        <v-btn icon>
+        <shopping-cart></shopping-cart>
+        <v-btn icon
+           @click.stop="dashboard"
+        >
           <v-icon>dashboard</v-icon>
         </v-btn>
         <v-btn icon
@@ -63,6 +65,9 @@
       dialogLogin(){
 
           this.$store.dispatch('dialogLogin', true);
+      },
+      dashboard(){
+        this.$router.push('/dashboard')
       },
       logoutUser(){
           let data = this;

@@ -186,9 +186,15 @@
               :type="e1 ? 'password' : 'text'"
               counter
             ></v-text-field>
-
+              <a href="">
+              <div class="hidden-xs-only">
+                <img :src="base + '/images/facebook-login.png'" alt="avatar" class="responsive  ma-0 pa-0">
+              </div>
+              <div class="hidden-sm-and-up ma-0 pa-0">
+                <img :src="base + '/images/facebook-login.png'" alt="avatar" class="responsive1  ma-0 pa-0">
+              </div>
+              </a>
             </v-flex>
-
           </v-layout>
         </v-container>
         <v-card-actions>
@@ -277,6 +283,7 @@
         e2: false,
         e3: false,
         e4: false,
+        base: 'http://localhost/rbestore/public',
         loginAlert: false,
         loginMessage: '',
       passwordRules: [
@@ -499,3 +506,13 @@
     }
   }
 </script>
+<style type="text/css">
+  .responsive {
+    width: 40%;
+    height: auto;
+}
+  .responsive1 {
+    width: 100%;
+    height: auto;
+}
+</style>

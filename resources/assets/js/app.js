@@ -30,6 +30,7 @@ window.api_further_categories = baseUrl + 'further_categories';
 window.api_items = baseUrl + 'items';
 window.api_item = baseUrl + 'item';
 window.api_items_further_cat = baseUrl +'items/further_categories';
+window.api_item_search = baseUrl + 'item/search'
 window.api_province = baseUrl +'province';
 window.api_city = baseUrl +'city';
 window.api_brgy = baseUrl +'barangay';

@@ -1,10 +1,11 @@
 <template>
-   <v-select
+        <v-select
           label="Product search..."
           :items="people"
           v-model="e11"
           item-text="name"
           item-value="name"
+          multiple
           chips
           max-height="auto"
           autocomplete
@@ -41,6 +42,7 @@
         </v-select>
 </template>
 <script>
+  import axios from 'axios'
   export default {
     data () {
       let srcs = {
@@ -52,7 +54,8 @@
       }
 
       return {
-        e11: [],
+        e11: '',
+        product: [],
         people: [
           { header: 'Group 1' },
           { name: 'Sandra Adams', group: 'Group 1', avatar: srcs[1] },
@@ -66,6 +69,12 @@
           { name: 'John Smith', group: 'Group 2', avatar: srcs[1] },
           { name: 'Sandra Williams', group: 'Group 2', avatar: srcs[3] }
         ]
+      }
+    },
+   
+    watch: {
+      e11(){
+        console.log(this.e11)
       }
     }
   }

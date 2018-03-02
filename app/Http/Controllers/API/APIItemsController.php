@@ -65,16 +65,17 @@ class APIItemsController extends Controller
             ]);
     }
 
-    // public function startUp(){
+    public function itemSearch(){
 
-    //     return response()->json([
+            $request = app()->make('request');
 
-    //             'items' => $this->item->with(['images', 'province', 'userName', 'city', 'brgy', 'category', 'subcategory', 'furtherCategory', 'qty', 'colors.images', 'sizes'])->OrdPag(),
-    //             'provinces' => Province::orderBy('provDesc')->get(),
-    //             'categories' => $this->category->all()
-                            
-    //         ]);
-    // }
+            
+            return response()->json([
+                
+                'searchProduct' => $this->item->where('name', 'like', '%'.$request->search.'%')
+
+            ]);
+    }
 
 
 }

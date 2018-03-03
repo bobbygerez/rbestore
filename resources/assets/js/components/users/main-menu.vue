@@ -52,6 +52,9 @@
       shoppingCart
     },
     computed: {
+      authUser(){
+          return this.$store.getters.authUser
+        },
       successLogin(){
         return this.$store.getters.successLogin
       }
@@ -67,7 +70,7 @@
           this.$store.dispatch('dialogLogin', true);
       },
       dashboard(){
-        this.$router.push('/dashboard')
+        this.$router.push('/dashboard/user/' + this.authUser.uuid)
       },
       logoutUser(){
           let data = this;

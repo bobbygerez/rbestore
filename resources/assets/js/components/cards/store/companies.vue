@@ -49,7 +49,7 @@
               <router-link :to="'/company/' + company.name"> {{ company.name }}  </router-link>
             </div>
              <v-icon class="title">person</v-icon>
-             <router-link :to="'user/' + company.user.uuid "> {{ company.user.firstname }} {{ company.user.lastname }} </router-link>
+             <router-link :to="'user/items/' + company.user.uuid "> {{ company.user.firstname }} {{ company.user.lastname }} </router-link>
              <span class="grey--text">
              <br />
              <v-icon class="title">place</v-icon>

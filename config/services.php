@@ -34,5 +34,10 @@ return [
         'key' => env('STRIPE_KEY'),
         'secret' => env('STRIPE_SECRET'),
     ],
+    'facebook' => [
+    'client_id' => '2169527429942707',
+    'client_secret' => '6475dbba12e95b5091cd910cd0813cff',
+    'redirect' => 'http://localhost/rbestore/public/callback',
+        ],
 
 ];

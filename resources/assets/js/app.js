@@ -54,14 +54,7 @@ var allStartUp = {
     	.then(function(response){
     		
     		data.$store.dispatch('successLogin', true)
-    		data.$store.dispatch('users', { 
-                fieldName: 'firstname',
-                value: response.data.result.firstname
-            })
-            data.$store.dispatch('users', { 
-                fieldName: 'lastname',
-                value: response.data.result.lastname
-            })
+    		data.$store.dispatch('authUser', response.data.user)
     		
     	})
     	.catch(function(error){
@@ -83,6 +76,18 @@ var allStartUp = {
         })
 
 
+  },
+  watch: {
+    '$route' (to, from) {
+       if (to.params.uuid == undefined ){
+            this.$store.dispatch('items', 
+                [{ icon: 'place', text: 'Places' },
+                { icon: 'account_balance', text: 'Stores'},
+                { icon: 'chat_bubble', text: 'Send feedback' },
+                { icon: 'help', text: 'Help' }]
+            )
+       }
+    }
   }
 }
 

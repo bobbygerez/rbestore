@@ -72,6 +72,7 @@
     </v-navigation-drawer>
 
 
+
     <v-toolbar
       color="blue darken-3"
       dark
@@ -186,14 +187,14 @@
               :type="e1 ? 'password' : 'text'"
               counter
             ></v-text-field>
-              <a href="">
+              <!-- <a :href="baseLogin + '/facebook'" target="_blank" @click="MM_openBrWindow(baseLogin + '/facebook','facebook','scrollbars=yes,width=650,height=500'); return false;">
               <div class="hidden-xs-only">
                 <img :src="base + '/images/facebook-login.png'" alt="avatar" class="responsive  ma-0 pa-0">
               </div>
               <div class="hidden-sm-and-up ma-0 pa-0">
                 <img :src="base + '/images/facebook-login.png'" alt="avatar" class="responsive1  ma-0 pa-0">
               </div>
-              </a>
+              </a> -->
             </v-flex>
           </v-layout>
         </v-container>
@@ -284,6 +285,7 @@
         e3: false,
         e4: false,
         base: 'http://localhost/rbestore/public',
+        baseLogin: 'http://localhost/rbestore/public/socialite',
         loginAlert: false,
         loginMessage: '',
       passwordRules: [
@@ -316,7 +318,7 @@
     },
 
     computed: {
-
+        
         cartSnackBar: {
           get(){
             return this.$store.getters.cartSnackBar
@@ -435,7 +437,9 @@
 
     methods: {
 
-
+      MM_openBrWindow(theURL,winName,features) { //v2.0
+        window.open(theURL,winName,features);
+      },
       itemClick(value){
 
         if( value === 'Categories'){

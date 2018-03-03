@@ -48,6 +48,7 @@ export const state = {
   brgys: [],
   brgyId: null,
   
+  authUser: null,
 	users: {
 
 		firstname: '',
@@ -61,10 +62,6 @@ export const state = {
   userProfile:[],
   productDetails: [],
 	items: [
-       //  { icon: 'queue',
-       //    'icon-alt': 'queue',
-       //    text: 'Categories',
-      	// },
         { icon: 'place', text: 'Places' },
         { icon: 'account_balance', text: 'Stores'},
         { icon: 'chat_bubble', text: 'Send feedback' },

@@ -161,10 +161,19 @@ export const store = new Vuex.Store({
 		},
 		navBreadCrumbs(state, value){
 			state.navBreadCrumbs = value
+		},
+		authUser(state, value){
+			state.authUser = value
+		},
+		items(state, value){
+			state.items = value
 		}
 
 	},
 	actions: {
+		items(store, items){
+			store.commit('items', items);
+		},
 		branchProducts(store, branchProducts){
 			store.commit('branchProducts', branchProducts);
 		},
@@ -228,6 +237,9 @@ export const store = new Vuex.Store({
 			store.commit('dialogColors', value)
 		},
 
+		authUser(store, value){
+			store.commit('authUser', value)
+		},
 		users(store, value){
 			
 			store.commit(value['fieldName'], value['value'])
@@ -415,7 +427,9 @@ export const store = new Vuex.Store({
 
 	},
 	getters: {
-
+		authUser(){
+			return store.state.authUser
+		},
 		branchProducts(){
 			return store.state.branchProducts
 		},

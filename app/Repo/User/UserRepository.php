@@ -44,7 +44,7 @@ class UserRepository extends BaseRepository implements UserInterface{
 	public function getAuthUser($request){
         
         $user = JWTAuth::toUser($request->token);
-        return response()->json(['result' => $user]);
+        return response()->json(['user' => $user]);
     }
 
     public function logout($request){

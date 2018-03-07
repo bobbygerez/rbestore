@@ -79,14 +79,12 @@ var allStartUp = {
   },
   watch: {
     '$route' (to, from) {
-       if (to.params.uuid == undefined ){
-            this.$store.dispatch('items', 
+       this.$store.dispatch('items', 
                 [{ icon: 'place', text: 'Places' },
                 { icon: 'account_balance', text: 'Stores'},
                 { icon: 'chat_bubble', text: 'Send feedback' },
                 { icon: 'help', text: 'Help' }]
             )
-       }
     }
   }
 }

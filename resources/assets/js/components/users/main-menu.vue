@@ -70,7 +70,7 @@
           this.$store.dispatch('dialogLogin', true);
       },
       dashboard(){
-        this.$router.push('/dashboard/user/' + this.authUser.uuid)
+        this.$router.push('/dashboard/user')
       },
       logoutUser(){
           let data = this;

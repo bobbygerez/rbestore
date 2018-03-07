@@ -19,7 +19,7 @@ Route::post('city/province', 'City\CityController@getCities');
 Route::post('barangay/city', 'Barangay\BarangayController@getBarangays');
 Route::post('barangay/items', 'Barangay\BarangayController@getItems');
 Route::get('sample', 'API\APIItemsController@getSample');
-Route::get('user/{uuid}', 'API\UserController@getUserInfo');
+Route::get('user', 'API\UserController@getUserInfo');
 
 Route::get('companies/{company_id}', 'API\APICompanyController@getCompanies');
 Route::get('company/{name}/{page}', 'API\APIBranchController@getProduct');

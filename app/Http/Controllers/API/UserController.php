@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Repo\User\UserInterface;
 use App\Repo\Item\ItemInterface;
-
+use Auth;
 
 class UserController extends Controller
 {
@@ -41,7 +41,7 @@ class UserController extends Controller
     public function getUserInfo(Request $request){
 
         return response()->json([
-                'user' => $this->user->where('uuid', $request->uuid)
+                'user' => Auth::User()
                             ->with(['images'])
                             ->exclude(['email'])->first(),
                 'items' => $this->item->getUserItems($request)->withProduct()

@@ -38,12 +38,14 @@ class UserRepository extends BaseRepository implements UserInterface{
         }
         return response()->json([
                 'token' => $token,
+                'user' => JWTAuth::toUser($token)
             ]);
 	}
 
 	public function getAuthUser($request){
         
         $user = JWTAuth::toUser($request->token);
+        $user = User::where('id', $user->id)->with(['company.branches'])->first();
         return response()->json(['user' => $user]);
     }
 

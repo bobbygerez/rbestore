@@ -37,4 +37,8 @@ class User extends Authenticatable
 
         return $this->morphMany('App\Image', 'imageable');
     }
+
+    public function company(){
+        return $this->hasOne('App\Company', 'user_id', 'id');
+    }
 }

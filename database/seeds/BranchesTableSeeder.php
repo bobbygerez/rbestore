@@ -12,7 +12,7 @@ class BranchesTableSeeder extends Seeder
      */
     public function run()
     {
-        for ($i=1; $i < 290; $i++) { 
+        for ($i=1; $i < 97; $i++) { 
         	
         	$faker = Faker\Factory::create();
 

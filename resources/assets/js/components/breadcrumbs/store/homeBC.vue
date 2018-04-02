@@ -11,7 +11,7 @@
       Home
       </v-breadcrumbs-item>
     </v-breadcrumbs>
-       <p  class="headline mt-0 text-lg-center" >Displaying from {{ companies.from }} to  {{ companies.to }} out of {{ companies.total }} </p>
+       <p  class="headline mt-0 text-lg-center text-md-center text-sm-center text-xs-center" >Displaying {{ companies.from }} to  {{ companies.to }} out of {{ companies.total }} Companies</p>
     </v-flex>
   </v-layout>
 </template>

@@ -39,7 +39,7 @@
 
         <v-card-title primary-title>
           <div>
-            <div class="title">
+            <div class="title text-xl-center text-lg-center text-md-center text-sm-center text-xs-center">
               <router-link :to="'product/details/' + item.uuid"> {{ item.name }} </router-link>
             </div>
             <div class="subheading pa-1">
@@ -52,8 +52,8 @@
              <v-icon class="title">add_shopping_cart</v-icon>: {{ quantity }}
               left in stock</span>
              <br />
-             <v-icon class="title">person</v-icon>
-             <router-link :to="'user/' + item.user_name.uuid"> {{ item.user_name.firstname }} {{ item.user_name.lastname }} </router-link>
+             <v-icon class="title">account_balance</v-icon>
+             <router-link :to="'user/' + item.user_name.uuid">{{ item.user_name.company.name }}  </router-link>
           </div>
         </v-card-title>
 

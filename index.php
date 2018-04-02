@@ -1,5 +1,5 @@
 <?php
 
-header("Location: http://localhost/rbestore/public");
+header("Location: http://juanmerkado.it.nf/public");
 
 ?>

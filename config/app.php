@@ -186,6 +186,7 @@ return [
         App\Providers\ItemServiceProvider::class,
         App\Providers\CompanyServiceProvider::class,
         App\Providers\BranchServiceProvider::class,
+        App\Providers\RoleServiceProvider::class,
 
     ],
 

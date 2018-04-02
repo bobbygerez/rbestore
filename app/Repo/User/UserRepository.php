@@ -36,16 +36,30 @@ class UserRepository extends BaseRepository implements UserInterface{
         } catch (JWTAuthException $e) {
             return response()->json(['failed_to_create_token'], 500);
         }
+
+        $user = JWTAuth::toUser($token);
+        $user = User::where('id', $user->id)->with(['company.branches'])->first();
+
         return response()->json([
                 'token' => $token,
-                'user' => JWTAuth::toUser($token)
+                'user' => $user
             ]);
 	}
 
 	public function getAuthUser($request){
-        
+        //Useful in deleting
+        //$movie->find(1)->people()->newPivotStatement()->where('people_id',1)->where('role', 'Producer')->delete();
+        //$movie->find(1)->people()->newPivotStatementForId(1)->where('id', 2)->delete();
+
+        // $user = JWTAuth::toUser($request->token);
+        // $user = User::where('id', '=', $user->id)
+        //     ->with(['company.branches', 'roles'])
+        //     ->first();
+        // return response()->json(['user' => $user]);
         $user = JWTAuth::toUser($request->token);
-        $user = User::where('id', $user->id)->with(['company.branches'])->first();
+        $user = User::where('id', '=', $user->id)
+            ->with(['company.branches', 'roles.menu'])
+            ->first();
         return response()->json(['user' => $user]);
     }
 

@@ -49,7 +49,7 @@
     <v-list-tile
     v-for="(child, i) in item.children"
     :key="i"
-    @click="sample(child.id)"
+    @click="getBranch(child.id)"
 
     >
     <v-list-tile-action v-if="child.icon">
@@ -62,7 +62,7 @@
     </v-list-tile-content>
   </v-list-tile>
 </v-list-group>
-<v-list-tile v-else @click="" :key="item.text">
+<v-list-tile v-else @click="itemClick(item.text)" :key="item.text">
   <v-list-tile-action>
     <v-icon>{{ item.icon }}</v-icon>
   </v-list-tile-action>
@@ -88,7 +88,7 @@ class="hidden-sm-and-down"
 >
 <v-toolbar-title style="width: 300px" class="ml-0 pl-3 ">
   <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
-  RBE
+  JUAN MERKADO
 </v-toolbar-title>
 
 
@@ -442,7 +442,7 @@ placeholder="Search"
 
     methods: {
 
-      sample(id){
+      getBranch(id){
         alert(id)
       },
       itemClick(value){

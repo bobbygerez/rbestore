@@ -41,4 +41,9 @@ class User extends Authenticatable
     public function company(){
         return $this->hasOne('App\Company', 'user_id', 'id');
     }
+
+    public function roles(){
+
+        return $this->belongsToMany('App\Role', 'role_user', 'role_id', 'user_id');
+    }
 }

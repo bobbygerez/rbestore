@@ -10,6 +10,7 @@
 </template>
 <script type="text/javascript">
 	import detailsBC from '../../components/breadcrumbs/detailsBC.vue'
+	import axios from 'axios'
 	export default {
 		components: {
 			detailsBC
@@ -24,22 +25,6 @@
 		},
 		methods: {
 			changeBranches(){
-				this.$store.dispatch('items', 
-				[
-					{ icon: 'home', text: 'Home' },
-					{ icon: 'account_circle', text: 'Account Settings' },
-	        		{ icon: 'account_balance', text: 'Stores'},
-	        		{ icon: 'chat_bubble', text: 'sample' },
-	        		{ icon: 'help', text: 'Help' },
-	        		{
-			          icon: 'keyboard_arrow_up',
-			          'icon-alt': 'keyboard_arrow_down',
-			          text: 'Branches',
-			          model: false,
-			          children: this.authUser.company.branches
-			        }
-        		]
-        	)
 
 	        	this.$store.dispatch('navBreadCrumbs', [
 								{

@@ -4,8 +4,7 @@
 Route::post('auth/register', 'API\UserController@register');
 Route::post('auth/login', 'API\UserController@login');
 Route::get('auth/logout', 'API\UserController@logout');
-// Route::get('start-up', 'API\APIItemsController@startUp');
-Route::get('start-up', 'API\APICompanyController@allStores');
+Route::get('start-up', 'API\APIItemsController@index');
 Route::get('subcategory/{category_id}', 'API\UserSubCategoryController@categoryId');
 Route::get('categories', 'API\APICategoryController@index');
 Route::post('categories/selection', 'API\APICategoryController@getSubCategory');
@@ -21,6 +20,7 @@ Route::post('barangay/items', 'Barangay\BarangayController@getItems');
 Route::get('sample', 'API\APIItemsController@getSample');
 Route::get('user', 'API\UserController@getUserInfo');
 
+Route::get('companies', 'API\APICompanyController@allStores');
 Route::get('companies/{company_id}', 'API\APICompanyController@getCompanies');
 Route::get('company/{name}/{page}', 'API\APIBranchController@getProduct');
 

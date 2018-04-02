@@ -13,7 +13,7 @@ class BranchItemTableSeeder extends Seeder
     public function run()
     {
         for ($i=1; $i < 500; $i++) { 
-        	for ($i=1; $i < 290; $i++) { 
+        	for ($a=1; $a < 388; $a++) { 
         	
         		$branch = Branch::find($i);
         		$branch->items()->attach([rand(1, 10000)]);

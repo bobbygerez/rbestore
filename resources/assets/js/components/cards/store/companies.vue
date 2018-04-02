@@ -7,24 +7,24 @@
         v-on:mouseleave="productLeave"
 
       >
-      <div class="text-xl-center text-lg-center text-md-center text-sm-center">
-      <router-link :to="'/company/' + company.name"> 
+      <div class="text-xl-center text-lg-center text-md-center text-sm-center text-xs-center">
+        <router-link :to="'/company/' + company.name"> 
 
-        <v-avatar
-                :tile="true"
-                :size="'200px'"
-                class="grey lighten-4"
-                v-if="company.images[0].path != undefined || company.images[0].path != null"
-              >
-                <img class="center-text imgProduct"
-            :src="company.images[0].path"
-            center
+          <v-avatar
+                  :tile="true"
+                  :size="'200px'"
+                  class="grey lighten-4"
+                  v-if="company.images[0].path != undefined || company.images[0].path != null"
+                >
+                  <img class="center-text imgProduct"
+              :src="company.images[0].path"
+              center
 
-          />
-        </v-avatar> 
+            />
+          </v-avatar> 
 
 
-      </router-link>
+        </router-link>
         
       <!-- <v-viewer  v-bind:item="company" ></v-viewer> -->
       </div>

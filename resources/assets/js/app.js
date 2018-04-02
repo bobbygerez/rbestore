@@ -10,6 +10,7 @@ import { store } from './vuex/store.js'
 import {routes} from './router/route.js'
 
 import Viewer from 'v-viewer'
+
 Vue.use(Viewer)
 
 /******** USE FOR SHIFTING SERVER AND LOCAL DEVELOPMENT (APACHE SERVER) ***********/
@@ -19,6 +20,9 @@ Vue.use(Viewer)
 
 var baseUrl = 'http://localhost/rbestore/public/api/';
 window.base = 'http://localhost/rbestore/public/';
+
+// var baseUrl = 'http://juanmerkado.it.nf/public/api/';
+// window.base = 'http://juanmerkado.it.nf/public/'; 
 
 window.api_startup = baseUrl + 'start-up';
 window.api_register = baseUrl + 'auth/register';
@@ -71,7 +75,7 @@ var allStartUp = {
         })
         .catch( function(error){
 
-            return this.router.push(window.location.href)
+            // return this.router.push(window.location.href)
 
         })
 

@@ -35,7 +35,7 @@ class ItemRepository extends BaseRepository implements ItemInterface{
 
     public function withCities($request){
 
-        $cities = $this->modelName->whereIn('citymunCode', $request->cityId);
+        $cities = $this->modelName->where('citymunCode', $request->cityId);
         
         return $this->filterByCategory($cities, $request);
     }

@@ -62,8 +62,9 @@ export const state = {
   userProfile:[],
   productDetails: [],
 	items: [
+        { icon: 'subject', text: 'Categories' },
+        { icon: 'account_balance', text: 'Companies' },
         { icon: 'place', text: 'Places' },
-        { icon: 'account_balance', text: 'Stores'},
         { icon: 'chat_bubble', text: 'Send feedback' },
         { icon: 'help', text: 'Help' }
       ]

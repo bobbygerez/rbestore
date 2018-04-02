@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
     <meta charset="utf-8">
 
-    <title>RBE</title>
+    <title>Juan Merkado</title>
 
 </head>
 <body>

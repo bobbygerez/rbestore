@@ -92,7 +92,7 @@ class="hidden-sm-and-down"
 </v-toolbar-title>
 
 
-<search-product></search-product>
+<!-- <search-product></search-product> -->
 <v-spacer></v-spacer>
 
 
@@ -265,8 +265,8 @@ placeholder="Search"
 </v-card>
 </v-dialog>
 
-<filter-categories></filter-categories>
-<filter-places></filter-places>
+<!-- <filter-categories></filter-categories> -->
+<!-- <filter-places></filter-places> -->
 
 </v-app>
 </template>

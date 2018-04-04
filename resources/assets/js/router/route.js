@@ -9,7 +9,7 @@ import category from './category/category.vue'
 import branches from '../components/cards/store/branches.vue'
 
 export const routes = [
-		{path: '/', component: category},
+	  {path: '/', component: category},
 	  { path: '/companies', component: companies},
 	  { path: '/dashboard/user', component: dashboard},
 	  { path: '/dashboard/account-settings', component: accountSettings},

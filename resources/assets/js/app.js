@@ -47,7 +47,10 @@ var allStartUp = {
 
     let token = localStorage.getItem('tokenKey');
     let data = this
+    
+    //BEWARE OF THIS IF ERROR NO VUEX STORE DETECTED...
     let localCart = JSON.parse(localStorage.getItem('localCart'));
+
      if(localCart != null ){
         data.$store.dispatch('storageCart', localCart)
      }

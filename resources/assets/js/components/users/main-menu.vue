@@ -2,6 +2,8 @@
 	<span>
 		<span v-if="successLogin">
         <shopping-cart></shopping-cart>
+        <categories-menu></categories-menu>
+
         <v-btn icon
            @click.stop="dashboard"
         >
@@ -15,7 +17,10 @@
       </span>
 
       <span v-else>
-        <shopping-cart></shopping-cart>
+      <shopping-cart></shopping-cart>
+      <categories-menu></categories-menu>
+      
+
         <v-btn icon
         @click.stop="dialogLogin"
       >
@@ -28,15 +33,8 @@
           <v-icon>account_circle</v-icon>
         </v-btn>
       </span>
-
-      <v-btn icon large>
-        <v-avatar size="32px" tile>
-          <img
-            src="https://vuetifyjs.com/static/doc-images/logo.svg"
-            alt="Vuetify"
-          >
-        </v-avatar>
-      </v-btn>
+      
+      
       
 	</span>
 </template>
@@ -45,11 +43,14 @@
   
   import axios from 'axios' 
   import shoppingCart from '../../components/menu/shoppingCart.vue'
+  import categoriesMenu from '../../components/menu/categories-menu.vue'
 
 
   export default {
+    data: () => ({
+    }),
     components: {
-      shoppingCart
+      shoppingCart, categoriesMenu
     },
     computed: {
       authUser(){

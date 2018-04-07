@@ -9,7 +9,6 @@
                   v-bind:key="product.id"
                    
               >
-
               </product>
 
      </v-layout>
@@ -20,7 +19,7 @@
 
 <script type="text/javascript">
 
-  import productBreadCrumbs from '../../components/breadcrumbs/productBreadCrumbs.vue'
+  import productBreadCrumbs from '../../components/breadcrumbs/home/product-breadcrumbs.vue'
    import productPage from '../../components/pagination/productPage.vue'
     import product from '../../components/cards/product.vue'
 

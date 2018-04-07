@@ -17,11 +17,12 @@
         </v-card-text>
          <v-card-text class="mt-0 mb-0 pt-0 pb-0">
           <cart-quantity></cart-quantity>
+          
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn flat @click="cancel">Cancel</v-btn>
-          <v-btn color="primary" flat @click="addCart">Add Cart</v-btn>
+          <v-btn color="primary" flat @click="addCart">Add Cart </v-btn>
         </v-card-actions>
       </v-card>
     </v-menu>

@@ -1,5 +1,6 @@
 <?php
-
+//error_reporting(E_ALL ^ E_DEPRECATED);
+//https://github.com/laravel/framework/issues/16329
 return [
 
     /*

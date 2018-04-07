@@ -71,7 +71,7 @@ var allStartUp = {
 
     axios.get(api_startup)
         .then( function(response){
-            // data.$store.dispatch('categories', response.data.categories);
+            data.$store.dispatch('categories', response.data.categories);
             data.$store.dispatch('companies', response.data.companies);
             data.$store.dispatch('provinces', response.data.provinces);
             data.$store.dispatch('products', response.data.items);
@@ -87,10 +87,13 @@ var allStartUp = {
   watch: {
     '$route' (to, from) {
        this.$store.dispatch('items', 
-                [{ icon: 'place', text: 'Places' },
-                { icon: 'account_balance', text: 'Stores'},
-                { icon: 'chat_bubble', text: 'Send feedback' },
-                { icon: 'help', text: 'Help' }]
+                [ 
+                    { icon: 'subject', text: 'Categories' },
+                    { icon: 'place', text: 'Places' },
+                    { icon: 'account_balance', text: 'Companies' },
+                    { icon: 'chat_bubble', text: 'Send feedback' },
+                    { icon: 'help', text: 'Help' }
+                ]
             )
     }
   }

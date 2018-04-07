@@ -63,8 +63,8 @@ export const state = {
   productDetails: [],
 	items: [
         { icon: 'subject', text: 'Categories' },
-        { icon: 'account_balance', text: 'Companies' },
         { icon: 'place', text: 'Places' },
+        { icon: 'account_balance', text: 'Companies' },
         { icon: 'chat_bubble', text: 'Send feedback' },
         { icon: 'help', text: 'Help' }
       ]

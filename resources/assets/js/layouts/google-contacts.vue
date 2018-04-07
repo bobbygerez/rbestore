@@ -87,12 +87,26 @@ fixed
 class="hidden-sm-and-down"
 >
 <v-toolbar-title style="width: 300px" class="ml-0 pl-3 ">
-  <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
-  JUAN MERKADO
+  <v-layout>
+    <v-flex xs2 class="pt-4">
+         <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
+    </v-flex>
+
+    <v-flex xs10>
+      <router-link to="/">
+      <img
+            class="mt-2"
+            :src="logo"
+            alt="Juan Merkado"
+            width="200px"
+          >
+      </router-link>
+    </v-flex>
+  </v-layout>
 </v-toolbar-title>
 
 
-<!-- <search-product></search-product> -->
+<search-product></search-product>
 <v-spacer></v-spacer>
 
 
@@ -110,12 +124,8 @@ class="hidden-md-and-up"
 >
 
 <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
-<v-text-field
-solo
-prepend-icon="search"
-placeholder="Search"
-></v-text-field>
-
+<search-product></search-product>
+<v-spacer></v-spacer>
 <mainMenu></mainMenu>
 
 </v-toolbar>
@@ -265,8 +275,8 @@ placeholder="Search"
 </v-card>
 </v-dialog>
 
-<!-- <filter-categories></filter-categories> -->
-<!-- <filter-places></filter-places> -->
+<filter-categories></filter-categories>
+<filter-places></filter-places>
 
 </v-app>
 </template>
@@ -285,6 +295,7 @@ placeholder="Search"
       mainMenu, categories, filterCategories, searchProduct, filterPlaces
     },
     data: () => ({
+      logo: window.base + '/images/juanmerkado.png',
       e1: true,
       e2: false,
       e3: false,

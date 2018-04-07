@@ -7,25 +7,26 @@
         v-on:mouseleave="productLeave"
 
       >
-      <div class="text-xl-center text-lg-center text-md-center text-sm-center">
-      <v-avatar
-              :tile="true"
-              :size="'200px'"
-              class="grey lighten-4 hiddenImage"
-              v-if="item.images[0].path != undefined || item.images[0].path != null"
-            >
-              <img class="center-text imgProduct"
-          :src="item.images[0].path"
-          center
+      <div class="text-xl-center text-lg-center text-md-center text-sm-center"
+        v-if="item.images[0].path != undefined"
+      >
+        <v-avatar
+                :tile="true"
+                :size="'200px'"
+                class="grey lighten-4 hiddenImage"
+              >
+                <img class="center-text imgProduct"
+            :src="item.images[0].path"
+            center
 
-        />
-      </v-avatar>
-      <v-viewer  v-bind:item="item" ></v-viewer>
+          />
+        </v-avatar>
+        <v-viewer  v-bind:item="item" ></v-viewer>
+
       </div>
-        
-        
 
-        <!--   <v-card-media
+
+      <!--     <v-card-media
           v-for="(image, index) in item.images"
           v-bind:item="image"
           v-bind:index="index"
@@ -43,10 +44,10 @@
               <router-link :to="'product/details/' + item.uuid"> {{ item.name }} </router-link>
             </div>
             <div class="subheading pa-1">
-              &#8369; {{ item.amount }}
+              &#8369; {{ item.amount }} 
             </div>
              <span class="grey--text">
-             <v-icon class="title">place</v-icon>{{ item.created_at }} 
+             <v-icon class="title">place</v-icon> {{ item.category.name }} {{ item.created_at }} 
               {{ item.province.provDesc }}, {{ item.city.citymunDesc }}, {{ item.brgy.brgyDesc }}
              ({{ item.user_name.mobile }}) <br />
              <v-icon class="title">add_shopping_cart</v-icon>: {{ quantity }}
@@ -58,7 +59,7 @@
         </v-card-title>
 
         <v-card-actions>
-          <add-cart-product-menu  v-on:click.native="addInfo(item.uuid)" v-bind:item="item"></add-cart-product-menu>
+          <add-cart-product-menu  v-on:click.native="addInfo(item.uuid)" v-bind:product="item"></add-cart-product-menu>
           <v-spacer></v-spacer>
           <v-btn icon @click.native="show = !show">
             <v-icon>{{ show ? 'keyboard_arrow_down' : 'keyboard_arrow_up' }}</v-icon>

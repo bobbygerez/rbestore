@@ -12,5 +12,7 @@ class CategoryRepository extends BaseRepository implements CategoryInterface{
 
         $this->modelName = new Category();
     }
+
+    
 	
 }

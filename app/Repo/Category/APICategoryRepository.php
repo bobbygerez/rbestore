@@ -12,5 +12,10 @@ class APICategoryRepository extends BaseRepository implements CategoryInterface{
 
         $this->modelName = new Category();
     }
+
+    public function getSubFurthCategory(){
+
+    	return Category::with('subcategory.furtherCategory')->get();
+    }
 	
 }

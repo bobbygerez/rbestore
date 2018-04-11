@@ -14,7 +14,8 @@
                 </v-list-tile>
                   <v-list dense v-for="(subcategory, a) in category.subcategory" :key="a">
                       <v-menu offset-x open-on-hover left full-width >
-                      <v-list-tile slot="activator" @click="">
+                      <v-list-tile slot="activator" 
+                        @click="subcategoryClick(category.name, category.id, subcategory.name, subcategory.id)">
                         <v-list-tile-action>
                           <v-icon>navigate_before</v-icon>
                         </v-list-tile-action>
@@ -54,8 +55,19 @@
     },
     methods: {
         categoryClick(catName, catId){
-          this.$router.push({ path: '/category/'+ catName + '/' + catId})
+          this.$router.push({ path: '/category/'+ this.lowerCase(catName) + '/' + catId})
           this.$store.dispatch('categoryId', catId)
+        },
+        subcategoryClick(catName, catId, subName, subId){
+          this.$router.push({   
+            path: '/category/'+ this.lowerCase(catName) + '/' + catId + '/subcategory/' + this.lowerCase(subName) + '/' + subId
+          })
+           this.$store.dispatch('subcategoryId', subId)
+        },
+        lowerCase(str){
+
+          return str.replace(/\s+/g, '-').toLowerCase();
+
         }
     }
   }

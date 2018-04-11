@@ -57,10 +57,13 @@
 	                to: '/',
 	              },
 	              {
-	                text: this.$route.params.name,
-	                to: this.$route.params.name,
+	                text: this.dashToSpace(this.$route.params.name),
+	                to: this.dashToSpace(this.$route.params.name),
 	              },
 	              ])
+			},
+			dashToSpace(str){
+				return str.replace(/-/g, ' ').replace(/\b\w/g, function(l){ return l.toUpperCase() })
 			}
 		},
 		watch: {
@@ -68,7 +71,7 @@
 			       let data = this
 					axios.get(base + 'api/category/' + this.$route.params.id)
 					.then(function(response){
-						data.$store.dispatch('products', response.data.items);
+						data.changeId()
 					})
 					.catch()
 			    }

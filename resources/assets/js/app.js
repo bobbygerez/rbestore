@@ -69,6 +69,14 @@ var allStartUp = {
     	});
     }
 
+    axios.get(api_categories)
+              .then( function(response){
+                  data.$store.dispatch('categories', response.data.categories);
+              })
+              .catch( function(error){
+
+    })
+
 
   }
 

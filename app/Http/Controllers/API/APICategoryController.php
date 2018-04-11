@@ -29,7 +29,7 @@ class APICategoryController extends Controller
     {
         
          return response()->json([
-                'categories' => $this->category->all()
+                'categories' => $this->category->with(['subcategory.furtherCategory'])->get()
             ]);
     }
 

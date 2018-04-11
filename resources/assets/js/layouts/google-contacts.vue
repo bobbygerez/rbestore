@@ -275,7 +275,6 @@ class="hidden-md-and-up"
 </v-card>
 </v-dialog>
 
-<filter-categories></filter-categories>
 <filter-places></filter-places>
 
 </v-app>
@@ -286,13 +285,12 @@ class="hidden-md-and-up"
   import axios from 'axios'
   import mainMenu from '../components/users/main-menu.vue'
   import categories from '../components/select/categories.vue'
-  import filterCategories from '../components/dialog/filterCategories.vue'
   import filterPlaces from '../components/dialog/filterPlaces.vue'
   import searchProduct from '../components/textfield/searchProduct.vue'
 
   export default {
     components: {
-      mainMenu, categories, filterCategories, searchProduct, filterPlaces
+      mainMenu, categories, searchProduct, filterPlaces
     },
     data: () => ({
       logo: window.base + '/images/juanmerkado.png',

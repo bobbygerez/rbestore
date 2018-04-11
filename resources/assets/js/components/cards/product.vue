@@ -58,8 +58,8 @@
             <div class="title text-xl-center text-lg-center text-md-center text-sm-center text-xs-center">
               <router-link :to="'product/details/' + item.uuid"> {{ item.name }} </router-link>
             </div>
-            <div class="subheading pa-1">
-              &#8369; {{ item.amount }} 
+            <div class="grey lighten-5 grey--text--darken-3 pa-3  subheading pa-1 text-xl-center text-lg-center text-md-center text-sm-center text-xs-center ">
+             &#8369; {{ item.amount }}
             </div>
              <span class="grey--text">
              <v-icon class="title">place</v-icon> {{ item.category.name }} {{ item.created_at }} 

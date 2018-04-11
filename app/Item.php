@@ -31,7 +31,7 @@ class Item extends Model
      public function getAmountAttribute($value){
 
 
-        return number_format($value, 2, '.', ',');
+        return number_format($value, 2, '.', ', ');
     }
 
     public function getCreatedAtAttribute($value){

@@ -468,6 +468,7 @@ class="hidden-md-and-up"
         }
         if( value === 'Home'){
           this.$router.push('/');
+        
         }
         if( value === 'Send feedback'){
           this.$router.push('feedback');

@@ -55,5 +55,13 @@ class APICategoryController extends Controller
             ]);
     }
 
+
+    public function getItems($catId){
+
+        return response()->json([
+                'items' => $this->item->where('category_id', $catId)->withOnly()->ordPag()
+            ]);
+    }
+
     
 }

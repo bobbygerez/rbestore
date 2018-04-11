@@ -4,6 +4,7 @@ namespace App\Repo\Item;
 
 use App\Repo\BaseRepository;
 use App\Repo\BaseInterface;
+use Illuminate\Pagination\LengthAwarePaginator;
 use App\Item;
 use App\User;
 

@@ -8,7 +8,7 @@
 
       >
       <div class="text-xl-center text-lg-center text-md-center text-sm-center"
-        v-if="item.images[0].path != undefined"
+        v-if="Object.keys(item.images).length > 0"
       >
         <v-avatar
                 :tile="true"
@@ -23,6 +23,21 @@
         </v-avatar>
         <v-viewer  v-bind:item="item" ></v-viewer>
 
+      </div>
+      <div class="text-xl-center text-lg-center text-md-center text-sm-center"
+        v-else
+      >
+        <v-avatar
+                :tile="true"
+                :size="'200px'"
+                class="grey lighten-4"
+              >
+                <img class="center-text imgProduct"
+            src='images/uploads/62.jpg'
+            center
+
+          />
+        </v-avatar>
       </div>
 
 
@@ -54,7 +69,8 @@
               left in stock</span>
              <br />
              <v-icon class="title">account_balance</v-icon>
-             <router-link :to="'user/' + item.user_name.uuid">{{ item.user_name.company.name }}  </router-link>
+             <router-link :to="'user/' + item.user_name.uuid"> </router-link>
+             <!-- <router-link :to="'user/' + item.user_name.uuid">{{ item.user_name.company.name }}  </router-link> -->
           </div>
         </v-card-title>
 

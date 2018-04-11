@@ -48,7 +48,7 @@ var allStartUp = {
     let token = localStorage.getItem('tokenKey');
     let data = this
     
-    //BEWARE OF THIS IF ERROR NO VUEX STORE DETECTED...
+    // BEWARE OF THIS IF ERROR NO VUEX STORE DETECTED...
     let localCart = JSON.parse(localStorage.getItem('localCart'));
 
      if(localCart != null ){
@@ -69,34 +69,9 @@ var allStartUp = {
     	});
     }
 
-    axios.get(api_startup)
-        .then( function(response){
-            data.$store.dispatch('categories', response.data.categories);
-            data.$store.dispatch('companies', response.data.companies);
-            data.$store.dispatch('provinces', response.data.provinces);
-            data.$store.dispatch('products', response.data.items);
-        })
-        .catch( function(error){
 
-            // return this.router.push(window.location.href)
-
-        })
-
-
-  },
-  watch: {
-    '$route' (to, from) {
-       this.$store.dispatch('items', 
-                [ 
-                    { icon: 'subject', text: 'Categories' },
-                    { icon: 'place', text: 'Places' },
-                    { icon: 'account_balance', text: 'Companies' },
-                    { icon: 'chat_bubble', text: 'Send feedback' },
-                    { icon: 'help', text: 'Help' }
-                ]
-            )
-    }
   }
+
 }
 
 

@@ -5,11 +5,13 @@ import accountSettings from './dashboard/account-settings.vue'
 import productDetails from './products/productDetails.vue'
 import checkOut from '../components/stepper/checkout.vue'
 import companies from './stores/companies.vue'
+import home from './home/home.vue'
 import category from './category/category.vue'
 import branches from '../components/cards/store/branches.vue'
 
 export const routes = [
-	  {path: '/', component: category},
+	  {path: '/', component: home},
+	  {path: '/category/:name/:id', component: category},
 	  { path: '/companies', component: companies},
 	  { path: '/dashboard/user', component: dashboard},
 	  { path: '/dashboard/account-settings', component: accountSettings},

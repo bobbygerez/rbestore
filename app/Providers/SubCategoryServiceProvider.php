@@ -8,6 +8,7 @@ use App\Repo\SubCategory\SubCategoryRepository;
 use App\Repo\SubCategory\APISubCategoryRepository;
 
 use App\Http\Controllers\API\UserSubCategoryController;
+use App\Http\Controllers\API\APISubCategoryController;
 use App\Http\Controllers\API\APICategoryController;
 class SubCategoryServiceProvider extends ServiceProvider
 {
@@ -34,6 +35,10 @@ class SubCategoryServiceProvider extends ServiceProvider
           ->give(SubCategoryRepository::class);
 
          $this->app->when(APICategoryController::class)
+          ->needs(SubCategoryInterface::class)
+          ->give(APISubCategoryRepository::class);
+
+        $this->app->when(APISubCategoryController::class)
           ->needs(SubCategoryInterface::class)
           ->give(APISubCategoryRepository::class);
     }

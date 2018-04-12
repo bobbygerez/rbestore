@@ -46,7 +46,7 @@
 		methods: {
 			changeId(){
 				let data = this
-				axios.get(base + 'api/category/' + this.$route.params.catid)
+				axios.get(base + 'api/category/' + this.$route.params.catid + '/subcategory/' + this.$route.params.subid)
 				.then(function(response){
 					data.$store.dispatch('products', response.data.items);
 				})
@@ -58,7 +58,11 @@
 	              },
 	              {
 	                text: this.dashToSpace(this.$route.params.catname),
-	                to: this.dashToSpace(this.$route.params.catname),
+	                to: '/category/' + this.$route.params.catname + '/' + this.$route.params.catid,
+	              },
+	              {
+	                text: this.dashToSpace(this.$route.params.subname),
+	                to: this.dashToSpace(this.$route.params.subid),
 	              },
 	              ])
 			},

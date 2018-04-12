@@ -7,6 +7,7 @@ Route::get('auth/logout', 'API\UserController@logout');
 Route::get('start-up', 'API\APIItemsController@index');
 Route::get('subcategory/{category_id}', 'API\UserSubCategoryController@categoryId');
 Route::get('category/{category_id}', 'API\APICategoryController@getItems');
+Route::get('category/{catid}/subcategory/{subid}', 'API\APISubCategoryController@getItems');
 Route::get('categories', 'API\APICategoryController@index');
 Route::post('categories/selection', 'API\APICategoryController@getSubCategory');
 Route::post('further_categories', 'API\APICategoryController@furtherCategories');

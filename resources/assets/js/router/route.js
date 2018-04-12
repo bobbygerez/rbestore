@@ -7,11 +7,13 @@ import checkOut from '../components/stepper/checkout.vue'
 import companies from './stores/companies.vue'
 import home from './home/home.vue'
 import category from './category/category.vue'
+import subcategory from './subcategory/subcategory.vue'
 import branches from '../components/cards/store/branches.vue'
 
 export const routes = [
 	  {path: '/', component: home},
-	  {path: '/category/:name/:id', component: category},
+	  {path: '/category/:catname/:catid', component: category},
+	  {path: '/category/:catname/:catid/subcategory/:subname/:subid', component: subcategory},
 	  { path: '/companies', component: companies},
 	  { path: '/dashboard/user', component: dashboard},
 	  { path: '/dashboard/account-settings', component: accountSettings},

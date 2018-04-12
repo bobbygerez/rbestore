@@ -57,7 +57,7 @@ import axios from 'axios'
           this.$store.dispatch('provinceId', this.province)
           axios.post(api_city + '/province',{
               provinceId: this.province,
-              categoryId: this.categoryId,
+              categoryId: this.$route.params.catId,
               subcategoryId: this.subcategoryId,
               furtherCatId: this.furtherCatId
           }).then((response)=>{

@@ -47,7 +47,6 @@ var allStartUp = {
 
     let token = localStorage.getItem('tokenKey');
     let data = this
-    
     // BEWARE OF THIS IF ERROR NO VUEX STORE DETECTED...
     let localCart = JSON.parse(localStorage.getItem('localCart'));
 
@@ -55,7 +54,14 @@ var allStartUp = {
         data.$store.dispatch('storageCart', localCart)
      }
 
-    if(token != null){
+     axios.get(api_categories)
+              .then( function(response){
+                  data.$store.dispatch('categories', response.data.categories);
+              })
+              .catch( function(error){
+
+    })
+    if(token != null && token.length > 30){
     	
     	axios.get(api_getUser + token)
     	.then(function(response){
@@ -66,16 +72,11 @@ var allStartUp = {
     	})
     	.catch(function(error){
             data.$store.dispatch('successLogin', false)
+            localStorage.setItem('tokenKey', 'token_expired')
     	});
     }
 
-    axios.get(api_categories)
-              .then( function(response){
-                  data.$store.dispatch('categories', response.data.categories);
-              })
-              .catch( function(error){
-
-    })
+    
 
 
   }

@@ -455,14 +455,24 @@ class="hidden-md-and-up"
         alert(id)
       },
       itemClick(value){
-
-        if( value === 'Categories'){
-          this.$store.dispatch('filterCategories', true);
-          this.$router.push('/')
-        }
+        // if( value === 'Categories'){
+        //   this.$store.dispatch('filterCategories', true);
+        //   this.$router.push('/')
+        // }
+        let data = this;
         if( value === 'Places'){
+          axios.get(api_province, {
+            
+          }).then(function(response){
+
+            data.$store.dispatch('provinces', response.data.provinces);
+
+          })
+          .catch(function(error){
+           
+          })
+
           this.$store.dispatch('filterPlaces', true);
-          this.$router.push('/')
         }
         if( value === 'Home'){
           this.$router.push('/');

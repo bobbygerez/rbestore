@@ -79,6 +79,7 @@
           axios.get(api_logout + token)
           .then(function(response){
             data.$store.dispatch('successLogin', false)
+            localStorage.setItem('tokenKey', 'token_invalid')
 
           })
           .catch(function(error){

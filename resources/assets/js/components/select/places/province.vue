@@ -39,13 +39,6 @@ import axios from 'axios'
         provinceId(){
             return this.$store.getters.provinceId
         },
-        categoryId(){
-
-            return this.$store.getters.categoryId
-        },
-        subcategoryId(){
-            return this.$store.getters.subcategoryId
-        },
         furtherCatId(){
             return this.$store.getters.furtherCatId
         }
@@ -57,8 +50,8 @@ import axios from 'axios'
           this.$store.dispatch('provinceId', this.province)
           axios.post(api_city + '/province',{
               provinceId: this.province,
-              categoryId: this.$route.params.catId,
-              subcategoryId: this.subcategoryId,
+              categoryId: this.$route.params.catid,
+              subcategoryId: this.$route.params.subid,
               furtherCatId: this.furtherCatId
           }).then((response)=>{
 

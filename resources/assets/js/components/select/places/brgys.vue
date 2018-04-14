@@ -8,7 +8,6 @@
               prepend-icon="drag_handle"
               v-bind:items="brgys"
               v-model="brgy"
-              multiple 
               label="Select Barangay"
               autocomplete
               item-value="brgyCode"
@@ -37,13 +36,6 @@ import axios from 'axios'
 
             return this.$store.getters.brgys
         },
-        categoryId(){
-
-            return this.$store.getters.categoryId
-        },
-        subcategoryId(){
-            return this.$store.getters.subcategoryId
-        },
         furtherCatId(){
             return this.$store.getters.furtherCatId
         }
@@ -54,8 +46,8 @@ import axios from 'axios'
           this.$store.dispatch('brgyId', this.brgy)
           axios.post(api_brgy + '/items',{
             brgyId: this.brgy,
-            categoryId: this.categoryId,
-            subcategoryId: this.subcategoryId,
+            categoryId: this.$route.params.catid,
+            subcategoryId: this.$route.params.subid,
             furtherCatId: this.furtherCatId
           }).then((response) => {
             

@@ -7,7 +7,7 @@
         v-on:mouseleave="productLeave"
 
       >
-      <div class="text-xl-center text-lg-center text-md-center text-sm-center"
+      <div class="text-xl-center text-lg-center text-md-center text-sm-center text-xs-center"
         v-if="Object.keys(item.images).length > 0"
       >
         <v-avatar
@@ -24,7 +24,7 @@
         <v-viewer  v-bind:item="item" ></v-viewer>
 
       </div>
-      <div class="text-xl-center text-lg-center text-md-center text-sm-center"
+      <div class="text-xl-center text-lg-center text-md-center text-sm-center text-xs-center"
         v-else
       >
         <v-avatar
@@ -56,21 +56,30 @@
         <v-card-title primary-title>
           <div>
             <div class="title text-xl-center text-lg-center text-md-center text-sm-center text-xs-center">
-              <router-link :to="'product/details/' + item.uuid"> {{ item.name }} </router-link>
+              <router-link 
+                :to="{ path: '/company/' 
+                  + this.toLowerCase(item.user_name.company.name) + '/' 
+                  + this.toLowerCase(item.category.name) + '/' 
+                  + this.toLowerCase(item.subcategory.name) + '/'
+                  + this.toLowerCase(item.further_category.name) + '/'
+                  + this.toLowerCase(item.name) + '/'
+                  + item.uuid
+                  }" > 
+                  {{ item.name }} 
+                </router-link>
             </div>
             <div class="grey lighten-5 grey--text--darken-3 pa-3  subheading pa-1 text-xl-center text-lg-center text-md-center text-sm-center text-xs-center ">
              &#8369; {{ item.amount }}
             </div>
-             <span class="grey--text">
-             <v-icon class="title">place</v-icon> {{ item.category.name }} {{ item.created_at }} 
+            <div color="blue-grey darken-1">
+              <v-icon class="title">dashboard</v-icon>
+              <router-link :to="'/company/' + item.user_name.uuid" v-if="item.user_name.company != null " class="green--text">{{ item.user_name.company.name }}  </router-link>
+              <br />
+              <v-icon>place</v-icon>
               {{ item.province.provDesc }}, {{ item.city.citymunDesc }}, {{ item.brgy.brgyDesc }}
-             ({{ item.user_name.mobile }}) <br />
-             <v-icon class="title">add_shopping_cart</v-icon>: {{ quantity }}
-              left in stock</span>
-             <br />
-             <v-icon class="title">account_balance</v-icon>
-             <router-link :to="'user/' + item.user_name.uuid"> </router-link>
-             <!-- <router-link :to="'user/' + item.user_name.uuid">{{ item.user_name.company.name }}  </router-link> -->
+              
+            </div>
+             
           </div>
         </v-card-title>
 
@@ -83,7 +92,18 @@
         </v-card-actions>
          <v-slide-y-transition>
           <v-card-text v-show="show">
-            {{ item.short_desc }}
+            <span class="grey--text">
+             <v-icon class="title">access_time</v-icon>
+              {{ item.created_at }} 
+              <br />
+              <v-icon class="title">view_comfy</v-icon>
+               {{ item.category.name }} 
+              <br />
+              <v-icon class="title">contact_phone</v-icon>
+             ({{ item.user_name.mobile }}) 
+             <br />
+             <v-icon class="title">add_shopping_cart</v-icon>: {{ quantity }}
+              left in stock</span>
           </v-card-text>
         </v-slide-y-transition>
       </v-card>
@@ -129,7 +149,12 @@
         })
         .catch()
         this.$store.dispatch('dialogColors', true);
-      }
+      },
+        toLowerCase(str){
+
+          return str.replace(/\s+/g, '-').toLowerCase();
+
+        }
     }
 
     
@@ -145,5 +170,8 @@
   }
   .hiddenImage {
     display: none
+  }
+  .green--text{
+    text-decoration: none;
   }
 </style>

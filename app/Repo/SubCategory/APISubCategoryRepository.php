@@ -24,11 +24,24 @@ class APISubCategoryRepository extends BaseRepository implements SubCategoryInte
 		});
     }
 
-    public function getItems($catId, $subId){
+    public function getItems($catId, $subId, $request){
 
-        $items = Item::where('subcategory_id', $subId)->withProduct();
+        $items = Item::where('subcategory_id', $subId);
 
-       return $items;
+        if ($request->provinceId != null) {
+            
+            $items  = $items->where('provCode', $request->provinceId);
+        }
+        else if ($request->cityId != null) {
+
+            $items  = $items->where('citymunCode', $request->cityId);
+        }
+        else if ($request->brgyId != null) {
+
+             $items  = $items->where('brgyCode', $request->brgyId);
+        }
+
+        return $items->withOnly()->ordPag();
         
     }
 	

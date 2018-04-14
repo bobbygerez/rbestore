@@ -58,8 +58,9 @@ class APICategoryController extends Controller
 
     public function getItems($catId){
 
+        $request = app()->make('request');
         return response()->json([
-                'items' => $this->item->where('category_id', $catId)->withOnly()->ordPag()
+                'items' => $this->item->catPlace($catId, $request)
             ]);
     }
 

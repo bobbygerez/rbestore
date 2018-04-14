@@ -15,6 +15,26 @@ class ItemRepository extends BaseRepository implements ItemInterface{
         $this->modelName = new Item();
     }
 
+    public function catPlace($catId, $request){
+
+        $items = $this->modelName->where('category_id', $catId);
+
+        if ($request->provinceId != null) {
+            
+            $items  = $items->where('provCode', $request->provinceId);
+        }
+        else if ($request->cityId != null) {
+
+            $items  = $items->where('citymunCode', $request->cityId);
+        }
+        else if ($request->brgyId != null) {
+
+             $items  = $items->where('brgyCode', $request->brgyId);
+        }
+
+        return $items->withOnly()->ordPag();
+    }
+
     public function getItemDetails($uuid){
 
         return $this->modelName->where('uuid', $uuid)->withOnly()->first();

@@ -9,6 +9,7 @@ use Hash;
 use JWTAuth;
 use Auth;
 use JWTAuthException;
+use Uuid;
 
 class UserRepository extends BaseRepository implements UserInterface{
 
@@ -21,6 +22,7 @@ class UserRepository extends BaseRepository implements UserInterface{
 	public function create($request){
 		
 		$requestAll = $request->all();
+        $requestAll["uuid"] = Uuid::generate()->string;
 		$requestAll["password"] = Hash::make($request->input('password'));
 		return $this->modelName->create($requestAll);
 	}

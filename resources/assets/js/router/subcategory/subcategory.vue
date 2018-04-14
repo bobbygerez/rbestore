@@ -41,12 +41,30 @@
 	        },
 	        categoryId(){
 	        	return this.$store.getters.categoryId
+	        },
+	        provinceId(){
+
+	        	return this.$store.getters.provinceId
+	        },
+	        cityId(){
+
+	        	return this.$store.getters.cityId
+	        },
+	        brgyId(){
+
+	        	return this.$store.getters.brgyId
 	        }
 		},
 		methods: {
 			changeId(){
 				let data = this
-				axios.get(base + 'api/category/' + this.$route.params.catid + '/subcategory/' + this.$route.params.subid)
+				axios.post(base + 'api/category/' + this.$route.params.catid + '/subcategory/' + this.$route.params.subid,{
+
+					provinceId: this.provinceId,
+					cityId: this.cityId,
+					brgyId: this.brgyId
+					
+				})
 				.then(function(response){
 					data.$store.dispatch('products', response.data.items);
 				})

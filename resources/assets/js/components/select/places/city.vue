@@ -53,8 +53,8 @@ import axios from 'axios'
           this.$store.dispatch('cityId', this.city)
           axios.post(api_brgy + '/city',{
             cityId: this.city,
-            categoryId: this.categoryId,
-            subcategoryId: this.subcategoryId,
+            categoryId: this.$route.params.catid,
+            subcategoryId: this.$route.params.subid,
             furtherCatId: this.furtherCatId
           }).then((response) => {
             data.$store.dispatch('products', response.data.items)

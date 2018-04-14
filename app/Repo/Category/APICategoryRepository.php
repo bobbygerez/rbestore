@@ -17,5 +17,7 @@ class APICategoryRepository extends BaseRepository implements CategoryInterface{
 
     	return Category::with('subcategory.furtherCategory')->get();
     }
+
+  
 	
 }

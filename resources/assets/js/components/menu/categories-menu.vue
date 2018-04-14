@@ -2,7 +2,7 @@
   <span>
 	<v-menu offset-y offset-x left >
         <v-btn icon slot="activator">
-           <v-icon>more_vert</v-icon>
+           <v-icon>view_comfy</v-icon>
         </v-btn>
         <v-list dense v-for="(category, i) in categories" :key="i">
                <v-menu offset-x open-on-hover left full-width >

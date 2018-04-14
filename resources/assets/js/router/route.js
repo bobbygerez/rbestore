@@ -18,8 +18,8 @@ export const routes = [
 	  { path: '/dashboard/user', component: dashboard},
 	  { path: '/dashboard/account-settings', component: accountSettings},
 	  { path: '/user/items/:uuid', component: publicProfile},
-	  { path: '/product/details/:uuid', component: productDetails},
+	  { path: '/company/:companyName/:categoryName/:subName/:furtherName/:itemName/:itemUuid', component: productDetails},
 	  { path: '/checkout', component: checkOut },
-	  { path: '/company/:branchProduct', component: branches }
+	  // { path: '/company/:branchProduct', component: branches }
 
 	]

@@ -13856,13 +13856,6 @@ module.exports = g;
         provinceId: function provinceId() {
             return this.$store.getters.provinceId;
         },
-        categoryId: function categoryId() {
-
-            return this.$store.getters.categoryId;
-        },
-        subcategoryId: function subcategoryId() {
-            return this.$store.getters.subcategoryId;
-        },
         furtherCatId: function furtherCatId() {
             return this.$store.getters.furtherCatId;
         }
@@ -13874,8 +13867,8 @@ module.exports = g;
             this.$store.dispatch('provinceId', this.province);
             __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post(api_city + '/province', {
                 provinceId: this.province,
-                categoryId: this.$route.params.catId,
-                subcategoryId: this.subcategoryId,
+                categoryId: this.$route.params.catid,
+                subcategoryId: this.$route.params.subid,
                 furtherCatId: this.furtherCatId
             }).then(function (response) {
 
@@ -13949,8 +13942,8 @@ module.exports = g;
       this.$store.dispatch('cityId', this.city);
       __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post(api_brgy + '/city', {
         cityId: this.city,
-        categoryId: this.categoryId,
-        subcategoryId: this.subcategoryId,
+        categoryId: this.$route.params.catid,
+        subcategoryId: this.$route.params.subid,
         furtherCatId: this.furtherCatId
       }).then(function (response) {
         data.$store.dispatch('products', response.data.items);
@@ -13967,7 +13960,6 @@ module.exports = g;
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
-//
 //
 //
 //
@@ -14007,13 +13999,6 @@ module.exports = g;
 
       return this.$store.getters.brgys;
     },
-    categoryId: function categoryId() {
-
-      return this.$store.getters.categoryId;
-    },
-    subcategoryId: function subcategoryId() {
-      return this.$store.getters.subcategoryId;
-    },
     furtherCatId: function furtherCatId() {
       return this.$store.getters.furtherCatId;
     }
@@ -14024,8 +14009,8 @@ module.exports = g;
       this.$store.dispatch('brgyId', this.brgy);
       __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post(api_brgy + '/items', {
         brgyId: this.brgy,
-        categoryId: this.categoryId,
-        subcategoryId: this.subcategoryId,
+        categoryId: this.$route.params.catid,
+        subcategoryId: this.$route.params.subid,
         furtherCatId: this.furtherCatId
       }).then(function (response) {
 
@@ -14637,7 +14622,7 @@ module.exports = g;
 	},
 	created: function created() {
 		var data = this;
-		__WEBPACK_IMPORTED_MODULE_2_axios___default.a.get(api_item + '/details/' + this.$route.params.uuid).then(function (response) {
+		__WEBPACK_IMPORTED_MODULE_2_axios___default.a.get(api_item + '/details/' + this.$route.params.itemUuid).then(function (response) {
 			data.$store.dispatch('productDetails', response.data.item);
 			data.$store.dispatch('navBreadCrumbs', [{
 				text: 'Home',
@@ -15266,21 +15251,21 @@ module.exports = g;
   methods: {
     home: function home() {
       var data = this;
+      data.$store.dispatch('breadCrumbsItems', [{
+        text: 'Home',
+        to: '/',
+        disabled: false
+      }, {
+        text: data.$route.params.cat,
+        to: data.$route.params.cat,
+        disabled: false
+      }]);
       __WEBPACK_IMPORTED_MODULE_3_axios___default.a.get(api_startup).then(function (response) {
+
         data.$store.dispatch('categories', response.data.categories);
         data.$store.dispatch('companies', response.data.companies);
         data.$store.dispatch('provinces', response.data.provinces);
         data.$store.dispatch('products', response.data.items);
-
-        data.$store.dispatch('breadCrumbsItems', [{
-          text: 'Home',
-          to: '/',
-          disabled: false
-        }, {
-          text: data.$route.params.cat,
-          to: data.$route.params.cat,
-          disabled: false
-        }]);
       }).catch(function (error) {
 
         // return this.router.push(window.location.href)
@@ -15556,6 +15541,26 @@ module.exports = g;
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -15594,6 +15599,10 @@ module.exports = g;
         data.$store.dispatch('productDetails', response.data.item);
       }).catch();
       this.$store.dispatch('dialogColors', true);
+    },
+    toLowerCase: function toLowerCase(str) {
+
+      return str.replace(/\s+/g, '-').toLowerCase();
     }
   }
 
@@ -16014,12 +16023,26 @@ if (false) {(function () {
 		},
 		categoryId: function categoryId() {
 			return this.$store.getters.categoryId;
+		},
+		provinceId: function provinceId() {
+			return this.$store.getters.provinceId;
+		},
+		cityId: function cityId() {
+			return this.$store.getters.cityId;
+		},
+		brgyId: function brgyId() {
+			return this.$store.getters.brgyId;
 		}
 	},
 	methods: {
 		changeId: function changeId() {
 			var data = this;
-			__WEBPACK_IMPORTED_MODULE_0_axios___default.a.get(base + 'api/category/' + this.$route.params.catid).then(function (response) {
+			__WEBPACK_IMPORTED_MODULE_0_axios___default.a.post(base + 'api/category/' + this.$route.params.catid, {
+				provinceId: this.provinceId,
+				cityId: this.cityId,
+				brgyId: this.brgyId
+
+			}).then(function (response) {
 				data.$store.dispatch('products', response.data.items);
 			}).catch();
 			data.$store.dispatch('breadCrumbsItems', [{
@@ -16039,7 +16062,7 @@ if (false) {(function () {
 	watch: {
 		'$route': function $route(to, from) {
 			var data = this;
-			__WEBPACK_IMPORTED_MODULE_0_axios___default.a.get(base + 'api/category/' + this.$route.params.id).then(function (response) {
+			__WEBPACK_IMPORTED_MODULE_0_axios___default.a.post(base + 'api/category/' + this.$route.params.id).then(function (response) {
 				data.changeId();
 			}).catch();
 		}
@@ -16099,12 +16122,30 @@ if (false) {(function () {
 		},
 		categoryId: function categoryId() {
 			return this.$store.getters.categoryId;
+		},
+		provinceId: function provinceId() {
+
+			return this.$store.getters.provinceId;
+		},
+		cityId: function cityId() {
+
+			return this.$store.getters.cityId;
+		},
+		brgyId: function brgyId() {
+
+			return this.$store.getters.brgyId;
 		}
 	},
 	methods: {
 		changeId: function changeId() {
 			var data = this;
-			__WEBPACK_IMPORTED_MODULE_0_axios___default.a.get(base + 'api/category/' + this.$route.params.catid + '/subcategory/' + this.$route.params.subid).then(function (response) {
+			__WEBPACK_IMPORTED_MODULE_0_axios___default.a.post(base + 'api/category/' + this.$route.params.catid + '/subcategory/' + this.$route.params.subid, {
+
+				provinceId: this.provinceId,
+				cityId: this.cityId,
+				brgyId: this.brgyId
+
+			}).then(function (response) {
 				data.$store.dispatch('products', response.data.items);
 			}).catch();
 			data.$store.dispatch('breadCrumbsItems', [{
@@ -38986,7 +39027,7 @@ var render = function() {
           _c(
             "v-btn",
             { attrs: { slot: "activator", icon: "" }, slot: "activator" },
-            [_c("v-icon", [_vm._v("more_vert")])],
+            [_c("v-icon", [_vm._v("view_comfy")])],
             1
           ),
           _vm._v(" "),
@@ -39792,7 +39833,6 @@ var render = function() {
                         attrs: {
                           "prepend-icon": "drag_handle",
                           items: _vm.brgys,
-                          multiple: "",
                           label: "Select Barangay",
                           autocomplete: "",
                           "item-value": "brgyCode",
@@ -42389,7 +42429,7 @@ var state = {
 
 
 
-var routes = [{ path: '/', component: __WEBPACK_IMPORTED_MODULE_6__home_home_vue__["a" /* default */] }, { path: '/category/:catname/:catid', component: __WEBPACK_IMPORTED_MODULE_7__category_category_vue__["a" /* default */] }, { path: '/category/:catname/:catid/subcategory/:subname/:subid', component: __WEBPACK_IMPORTED_MODULE_8__subcategory_subcategory_vue__["a" /* default */] }, { path: '/companies', component: __WEBPACK_IMPORTED_MODULE_5__stores_companies_vue__["a" /* default */] }, { path: '/dashboard/user', component: __WEBPACK_IMPORTED_MODULE_1__dashboard_user_vue__["a" /* default */] }, { path: '/dashboard/account-settings', component: __WEBPACK_IMPORTED_MODULE_2__dashboard_account_settings_vue__["a" /* default */] }, { path: '/user/items/:uuid', component: __WEBPACK_IMPORTED_MODULE_0__dashboard_publicProfile_vue__["a" /* default */] }, { path: '/product/details/:uuid', component: __WEBPACK_IMPORTED_MODULE_3__products_productDetails_vue__["a" /* default */] }, { path: '/checkout', component: __WEBPACK_IMPORTED_MODULE_4__components_stepper_checkout_vue__["a" /* default */] }, { path: '/company/:branchProduct', component: __WEBPACK_IMPORTED_MODULE_9__components_cards_store_branches_vue__["a" /* default */] }];
+var routes = [{ path: '/', component: __WEBPACK_IMPORTED_MODULE_6__home_home_vue__["a" /* default */] }, { path: '/category/:catname/:catid', component: __WEBPACK_IMPORTED_MODULE_7__category_category_vue__["a" /* default */] }, { path: '/category/:catname/:catid/subcategory/:subname/:subid', component: __WEBPACK_IMPORTED_MODULE_8__subcategory_subcategory_vue__["a" /* default */] }, { path: '/companies', component: __WEBPACK_IMPORTED_MODULE_5__stores_companies_vue__["a" /* default */] }, { path: '/dashboard/user', component: __WEBPACK_IMPORTED_MODULE_1__dashboard_user_vue__["a" /* default */] }, { path: '/dashboard/account-settings', component: __WEBPACK_IMPORTED_MODULE_2__dashboard_account_settings_vue__["a" /* default */] }, { path: '/user/items/:uuid', component: __WEBPACK_IMPORTED_MODULE_0__dashboard_publicProfile_vue__["a" /* default */] }, { path: '/company/:companyName/:categoryName/:subName/:furtherName/:itemName/:itemUuid', component: __WEBPACK_IMPORTED_MODULE_3__products_productDetails_vue__["a" /* default */] }, { path: '/checkout', component: __WEBPACK_IMPORTED_MODULE_4__components_stepper_checkout_vue__["a" /* default */] }];
 
 /***/ }),
 /* 119 */
@@ -45216,7 +45256,7 @@ exports = module.exports = __webpack_require__(3)(undefined);
 
 
 // module
-exports.push([module.i, "\n.title a{\n  text-decoration: none;\n  color: #337ab7;\n}\n.title a:hover{\n  text-decoration: underline;\n}\n.hiddenImage {\n  display: none\n}\n", ""]);
+exports.push([module.i, "\n.title a{\n  text-decoration: none;\n  color: #337ab7;\n}\n.title a:hover{\n  text-decoration: underline;\n}\n.hiddenImage {\n  display: none\n}\n.green--text{\n  text-decoration: none;\n}\n", ""]);
 
 // exports
 
@@ -45864,7 +45904,7 @@ var render = function() {
                 "div",
                 {
                   staticClass:
-                    "text-xl-center text-lg-center text-md-center text-sm-center"
+                    "text-xl-center text-lg-center text-md-center text-sm-center text-xs-center"
                 },
                 [
                   _c(
@@ -45889,7 +45929,7 @@ var render = function() {
                 "div",
                 {
                   staticClass:
-                    "text-xl-center text-lg-center text-md-center text-sm-center"
+                    "text-xl-center text-lg-center text-md-center text-sm-center text-xs-center"
                 },
                 [
                   _c(
@@ -45910,82 +45950,93 @@ var render = function() {
               ),
           _vm._v(" "),
           _c("v-card-title", { attrs: { "primary-title": "" } }, [
-            _c(
-              "div",
-              [
-                _c(
-                  "div",
-                  {
-                    staticClass:
-                      "title text-xl-center text-lg-center text-md-center text-sm-center text-xs-center"
-                  },
-                  [
-                    _c(
-                      "router-link",
-                      { attrs: { to: "product/details/" + _vm.item.uuid } },
-                      [_vm._v(" " + _vm._s(_vm.item.name) + " ")]
-                    )
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  {
-                    staticClass:
-                      "grey lighten-5 grey--text--darken-3 pa-3  subheading pa-1 text-xl-center text-lg-center text-md-center text-sm-center text-xs-center "
-                  },
-                  [
-                    _vm._v(
-                      "\n         ₱ " + _vm._s(_vm.item.amount) + "\n        "
-                    )
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "span",
-                  { staticClass: "grey--text" },
-                  [
-                    _c("v-icon", { staticClass: "title" }, [_vm._v("place")]),
-                    _vm._v(
-                      " " +
-                        _vm._s(_vm.item.category.name) +
-                        " " +
-                        _vm._s(_vm.item.created_at) +
-                        " \n          " +
-                        _vm._s(_vm.item.province.provDesc) +
-                        ", " +
-                        _vm._s(_vm.item.city.citymunDesc) +
-                        ", " +
-                        _vm._s(_vm.item.brgy.brgyDesc) +
-                        "\n         (" +
-                        _vm._s(_vm.item.user_name.mobile) +
-                        ") "
-                    ),
-                    _c("br"),
-                    _vm._v(" "),
-                    _c("v-icon", { staticClass: "title" }, [
-                      _vm._v("add_shopping_cart")
-                    ]),
-                    _vm._v(
-                      ": " + _vm._s(_vm.quantity) + "\n          left in stock"
-                    )
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c("br"),
-                _vm._v(" "),
-                _c("v-icon", { staticClass: "title" }, [
-                  _vm._v("account_balance")
-                ]),
-                _vm._v(" "),
-                _c("router-link", {
-                  attrs: { to: "user/" + _vm.item.user_name.uuid }
-                })
-              ],
-              1
-            )
+            _c("div", [
+              _c(
+                "div",
+                {
+                  staticClass:
+                    "title text-xl-center text-lg-center text-md-center text-sm-center text-xs-center"
+                },
+                [
+                  _c(
+                    "router-link",
+                    {
+                      attrs: {
+                        to: {
+                          path:
+                            "/company/" +
+                            this.toLowerCase(_vm.item.user_name.company.name) +
+                            "/" +
+                            this.toLowerCase(_vm.item.category.name) +
+                            "/" +
+                            this.toLowerCase(_vm.item.subcategory.name) +
+                            "/" +
+                            this.toLowerCase(_vm.item.further_category.name) +
+                            "/" +
+                            this.toLowerCase(_vm.item.name) +
+                            "/" +
+                            _vm.item.uuid
+                        }
+                      }
+                    },
+                    [
+                      _vm._v(
+                        " \n              " +
+                          _vm._s(_vm.item.name) +
+                          " \n            "
+                      )
+                    ]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass:
+                    "grey lighten-5 grey--text--darken-3 pa-3  subheading pa-1 text-xl-center text-lg-center text-md-center text-sm-center text-xs-center "
+                },
+                [
+                  _vm._v(
+                    "\n         ₱ " + _vm._s(_vm.item.amount) + "\n        "
+                  )
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                { attrs: { color: "blue-grey darken-1" } },
+                [
+                  _c("v-icon", { staticClass: "title" }, [_vm._v("dashboard")]),
+                  _vm._v(" "),
+                  _vm.item.user_name.company != null
+                    ? _c(
+                        "router-link",
+                        {
+                          staticClass: "green--text",
+                          attrs: { to: "/company/" + _vm.item.user_name.uuid }
+                        },
+                        [_vm._v(_vm._s(_vm.item.user_name.company.name) + "  ")]
+                      )
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _c("br"),
+                  _vm._v(" "),
+                  _c("v-icon", [_vm._v("place")]),
+                  _vm._v(
+                    "\n          " +
+                      _vm._s(_vm.item.province.provDesc) +
+                      ", " +
+                      _vm._s(_vm.item.city.citymunDesc) +
+                      ", " +
+                      _vm._s(_vm.item.brgy.brgyDesc) +
+                      "\n          \n        "
+                  )
+                ],
+                1
+              )
+            ])
           ]),
           _vm._v(" "),
           _c(
@@ -46043,8 +46094,50 @@ var render = function() {
                   ]
                 },
                 [
-                  _vm._v(
-                    "\n        " + _vm._s(_vm.item.short_desc) + "\n      "
+                  _c(
+                    "span",
+                    { staticClass: "grey--text" },
+                    [
+                      _c("v-icon", { staticClass: "title" }, [
+                        _vm._v("access_time")
+                      ]),
+                      _vm._v(
+                        "\n          " +
+                          _vm._s(_vm.item.created_at) +
+                          " \n          "
+                      ),
+                      _c("br"),
+                      _vm._v(" "),
+                      _c("v-icon", { staticClass: "title" }, [
+                        _vm._v("view_comfy")
+                      ]),
+                      _vm._v(
+                        "\n           " +
+                          _vm._s(_vm.item.category.name) +
+                          " \n          "
+                      ),
+                      _c("br"),
+                      _vm._v(" "),
+                      _c("v-icon", { staticClass: "title" }, [
+                        _vm._v("contact_phone")
+                      ]),
+                      _vm._v(
+                        "\n         (" +
+                          _vm._s(_vm.item.user_name.mobile) +
+                          ") \n         "
+                      ),
+                      _c("br"),
+                      _vm._v(" "),
+                      _c("v-icon", { staticClass: "title" }, [
+                        _vm._v("add_shopping_cart")
+                      ]),
+                      _vm._v(
+                        ": " +
+                          _vm._s(_vm.quantity) +
+                          "\n          left in stock"
+                      )
+                    ],
+                    1
                   )
                 ]
               )
@@ -46311,7 +46404,7 @@ if (false) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_cacheDirectory_true_presets_env_modules_false_targets_browsers_2_uglify_true_plugins_transform_object_rest_spread_transform_runtime_polyfill_false_helpers_false_node_modules_vue_loader_lib_selector_type_script_index_0_branches_vue__ = __webpack_require__(59);
-/* unused harmony namespace reexport */
+/* unused harmony reexport namespace */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_f6c72c4a_hasScoped_false_optionsId_0_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_branches_vue__ = __webpack_require__(185);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__node_modules_vue_loader_lib_runtime_component_normalizer__ = __webpack_require__(0);
 var disposed = false
@@ -46356,7 +46449,7 @@ if (false) {(function () {
   })
 })()}
 
-/* harmony default export */ __webpack_exports__["a"] = (Component.exports);
+/* unused harmony default export */ var _unused_webpack_default_export = (Component.exports);
 
 
 /***/ }),

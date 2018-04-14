@@ -26,7 +26,7 @@
 		},
 		created(){
 			let data = this
-			axios.get(api_item + '/details/' + this.$route.params.uuid)
+			axios.get(api_item + '/details/' + this.$route.params.itemUuid)
 			.then(function(response){
 				data.$store.dispatch('productDetails', response.data.item)
 				data.$store.dispatch('navBreadCrumbs', [

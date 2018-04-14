@@ -41,14 +41,7 @@
 
           home(){
               let data = this
-              axios.get(api_startup)
-              .then( function(response){
-                  data.$store.dispatch('categories', response.data.categories);
-                  data.$store.dispatch('companies', response.data.companies);
-                  data.$store.dispatch('provinces', response.data.provinces);
-                  data.$store.dispatch('products', response.data.items);
-
-                  data.$store.dispatch('breadCrumbsItems',[
+              data.$store.dispatch('breadCrumbsItems',[
                     {
                       text: 'Home',
                       to: '/',
@@ -60,6 +53,15 @@
                       disabled: false
                     }
                   ])
+              axios.get(api_startup)
+              .then( function(response){
+
+                  data.$store.dispatch('categories', response.data.categories);
+                  data.$store.dispatch('companies', response.data.companies);
+                  data.$store.dispatch('provinces', response.data.provinces);
+                  data.$store.dispatch('products', response.data.items);
+
+                  
               })
               .catch( function(error){
 

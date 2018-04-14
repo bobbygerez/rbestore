@@ -41,12 +41,26 @@
 	        },
 	        categoryId(){
 	        	return this.$store.getters.categoryId
+	        },
+	        provinceId(){
+	        	return this.$store.getters.provinceId
+	        },
+	        cityId(){
+	        	return this.$store.getters.cityId
+	        },
+	        brgyId(){
+	        	return this.$store.getters.brgyId
 	        }
 		},
 		methods: {
 			changeId(){
 				let data = this
-				axios.get(base + 'api/category/' + this.$route.params.catid)
+				axios.post(base + 'api/category/' + this.$route.params.catid,{
+					provinceId: this.provinceId,
+					cityId: this.cityId,
+					brgyId: this.brgyId
+		             
+				})
 				.then(function(response){
 					data.$store.dispatch('products', response.data.items);
 				})
@@ -69,7 +83,7 @@
 		watch: {
 			'$route' (to, from) {
 			       let data = this
-					axios.get(base + 'api/category/' + this.$route.params.id)
+					axios.post(base + 'api/category/' + this.$route.params.id)
 					.then(function(response){
 						data.changeId()
 					})

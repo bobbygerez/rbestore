@@ -18,9 +18,11 @@ class APISubCategoryController extends Controller
 
     public function getItems($catId, $subId){
 
+    	$request = app()->make('request');
+
     	return response()->json([
 
-    			'items' => $this->subCat->getItems($catId, $subId)
+    			'items' => $this->subCat->getItems($catId, $subId, $request)
     		]);
     }
 }
